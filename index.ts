@@ -1,14 +1,18 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import apiRouter from './src/routes';
+import connectionDB from './src/connection/connection';
+
+const morgan = require('morgan');
 
 const app: Express = express();
-const morgan = require('morgan');
-const port = 3000;
+const port = 3006;
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(apiRouter);
 
+connectionDB();
+
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+console.log(`Example app listening on port ${port}`);
 });
