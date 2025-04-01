@@ -5,7 +5,7 @@ import connectionDB from './src/connection/connection';
 const morgan = require('morgan');
 
 const app: Express = express();
-const port = 3006;
+const port = 3000;
 
 app.use(morgan('dev'));
 app.use(express.json());

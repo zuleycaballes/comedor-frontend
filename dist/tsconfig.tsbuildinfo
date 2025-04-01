@@ -1,1 +1,1 @@
-{"root":["../index.ts","../src/connection/connection.ts","../src/models/product.ts","../src/routes/index.ts","../src/routes/productroutes.ts"],"version":"5.8.2"}
+{"root":["../index.ts","../src/connection/connection.ts","../src/controllers/productcontroler.ts","../src/models/product.ts","../src/routes/index.ts","../src/routes/productroutes.ts"],"version":"5.8.2"}
