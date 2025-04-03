@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const product_1 = require("../models/product");
 const person_1 = require("../models/person");
+const comedor_1 = require("../models/comedor");
 const connection = new sequelize_typescript_1.Sequelize({
     database: 'sisweb_db',
     dialect: 'mysql',
@@ -19,7 +20,8 @@ const connection = new sequelize_typescript_1.Sequelize({
     password: 'HDK#$%Ljkwerff.89',
     models: [
         product_1.Product,
-        person_1.Person
+        person_1.Person,
+        comedor_1.Comedor
     ]
 });
 function connectionDB() {
