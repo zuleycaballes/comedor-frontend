@@ -1,5 +1,6 @@
 import {Table, Model, Column, CreatedAt, UpdatedAt, DataType, ForeignKey, BelongsTo} from 'sequelize-typescript';
 import {Optional} from 'sequelize';
+import { Comedor } from './comedor';
 
 interface PersonAttributes{
     id: number;
@@ -24,6 +25,13 @@ export class Person extends Model<PersonAttributes, PersonCreationAttributes>{
     })
     id!: number;
 
+    @ForeignKey(() => Comedor)  // llave foranea
+    @Column
+    id_comedor!: number;
+
+    @BelongsTo(() => Comedor)  // define que la relacion es con 'Comedor'
+    comedor!: Comedor;
+    
     @Column
     nombre!: string;
 

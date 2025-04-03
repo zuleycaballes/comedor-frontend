@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Comedor = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const person_1 = require("./person");
 let Comedor = class Comedor extends sequelize_typescript_1.Model {
 };
 exports.Comedor = Comedor;
@@ -33,8 +34,13 @@ __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
 ], Comedor.prototype, "telefono", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => person_1.Person) // Relacion con 'Person'
+    ,
+    __metadata("design:type", Array)
+], Comedor.prototype, "personas", void 0);
 exports.Comedor = Comedor = __decorate([
     (0, sequelize_typescript_1.Table)({
-        tableName: "Comedores",
+        tableName: "Comedor",
     })
 ], Comedor);
