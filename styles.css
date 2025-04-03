@@ -109,3 +109,31 @@
     padding: 10px;
   }
   
+  /* Estilos para la tabla tipo SQL */
+  .json-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .json-table thead {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  .json-table th,
+  .json-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .json-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .json-table tr:hover {
+    background-color: #e0e0e0;
+  }  

@@ -74,6 +74,39 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
   });
 });
 
+// Función para renderizar el JSON como tabla SQL
+function renderJSONTable(data) {
+  if (!data.payload || !Array.isArray(data.payload)) {
+    return "<p>No hay datos para mostrar.</p>";
+  }
+
+  const items = data.payload;
+  if (items.length === 0) {
+    return "<p>La tabla está vacía.</p>";
+  }
+
+  // Encabezados de la tabla (tomados de las llaves del primer objeto)
+  const headers = Object.keys(items[0]);
+  let table = `<table class="json-table"><thead><tr>`;
+  headers.forEach(header => {
+    table += `<th>${header}</th>`;
+  });
+  table += `</tr></thead><tbody>`;
+
+  // Crear las filas de la tabla
+  items.forEach(item => {
+    table += `<tr>`;
+    headers.forEach(header => {
+      const value = (item[header] === null || item[header] === undefined) ? "NULL" : item[header];
+      table += `<td>${value}</td>`;
+    });
+    table += `</tr>`;
+  });
+
+  table += `</tbody></table>`;
+  return table;
+}
+
 // ------------------------
 // Obtener todos los elementos (GET /{entidad})
 document.getElementById('btnGetAll').addEventListener('click', async () => {
@@ -84,7 +117,8 @@ document.getElementById('btnGetAll').addEventListener('click', async () => {
     const res = await fetch(`${apiBaseUrl}/${entity}`);
     if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
     const data = await res.json();
-    output.textContent = JSON.stringify(data, null, 2);
+    // Mostrar mensaje y tabla en lugar de JSON crudo
+    output.innerHTML = `<h3>${data.message}</h3>` + renderJSONTable(data);
   } catch (err) {
     output.textContent = err.message;
   }
@@ -93,110 +127,136 @@ document.getElementById('btnGetAll').addEventListener('click', async () => {
 // ------------------------
 // Obtener un elemento por ID (GET /{entidad}/{id})
 document.getElementById('formGetById').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const entity = getSelectedEntity();
-  const id = document.getElementById('getId').value.trim();
-  const output = document.getElementById('outputGetById');
-  output.textContent = 'Cargando...';
-  try {
-    const res = await fetch(`${apiBaseUrl}/${entity}/${id}`);
-    if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
-    const data = await res.json();
-    output.textContent = JSON.stringify(data, null, 2);
-  } catch (err) {
-    output.textContent = err.message;
-  }
-});
+    e.preventDefault();
+    const entity = getSelectedEntity();
+    const id = document.getElementById('getId').value.trim();
+    console.log("ID obtenido:", id);
+    // También imprime la URL que se va a llamar
+    const url = `${apiBaseUrl}/${entity}/${id}`;
+    console.log("URL fetch:", url);
+    
+    const output = document.getElementById('outputGetById');
+    output.textContent = 'Cargando...';
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+      const data = await res.json();
+      
+      // Si el payload no es un arreglo, conviértelo en uno
+      if (!Array.isArray(data.payload)) {
+        data.payload = [data.payload];
+      }
+      
+      output.innerHTML = `<h3>${data.message}</h3>` + renderJSONTable(data);
+    } catch (err) {
+      output.textContent = err.message;
+    }
+  });
+  
 
 // ------------------------
 // Crear un nuevo elemento (POST /{entidad})
 document.getElementById('formCreate').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const entity = getSelectedEntity();
-  const output = document.getElementById('outputCreate');
-  output.textContent = 'Creando elemento...';
-
-  // Obtener datos del formulario
-  const formData = new FormData(e.target);
-  const bodyData = {};
-  for (let [key, value] of formData.entries()) {
-    // Convertir a número si es campo numérico
-    bodyData[key] = (entityFields[entity].find(f => f.name === key).type === "number")
-      ? Number(value)
-      : value;
-  }
-
-  try {
-    const res = await fetch(`${apiBaseUrl}/${entity}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bodyData)
-    });
-    if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
-    const data = await res.json();
-    output.textContent = JSON.stringify(data, null, 2);
-  } catch (err) {
-    output.textContent = err.message;
-  }
-});
-
-// ------------------------
-// Actualizar un elemento (PATCH /{entidad}/{id})
-document.getElementById('formUpdate').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const entity = getSelectedEntity();
-  const id = document.getElementById('updateId').value.trim();
-  const output = document.getElementById('outputUpdate');
-  output.textContent = 'Actualizando elemento...';
-
-  // Obtener datos del formulario
-  const formData = new FormData(e.target);
-  const bodyData = {};
-  // Se omite el campo id, ya que se obtiene de updateId
-  for (let [key, value] of formData.entries()) {
-    if (key !== 'updateId' && value !== "") {
+    e.preventDefault();
+    const entity = getSelectedEntity();
+    const output = document.getElementById('outputCreate');
+    output.textContent = 'Creando elemento...';
+  
+    // Obtener datos del formulario
+    const formData = new FormData(e.target);
+    const bodyData = {};
+    for (let [key, value] of formData.entries()) {
+      // Convertir a número si es campo numérico
       bodyData[key] = (entityFields[entity].find(f => f.name === key).type === "number")
         ? Number(value)
         : value;
     }
-  }
-
-  try {
-    const res = await fetch(`${apiBaseUrl}/${entity}/${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bodyData)
-    });
-    if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
-    const data = await res.json();
-    output.textContent = JSON.stringify(data, null, 2);
-  } catch (err) {
-    output.textContent = err.message;
-  }
-});
+  
+    try {
+      const res = await fetch(`${apiBaseUrl}/${entity}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bodyData)
+      });
+      if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+      const data = await res.json();
+  
+      // Si el payload es un objeto en lugar de un array, lo convertimos en array
+      if (data.payload && !Array.isArray(data.payload)) {
+        data.payload = [data.payload];
+      }
+  
+      // Ahora usamos renderJSONTable para mostrarlo en tabla
+      output.innerHTML = `<h3>${data.message}</h3>` + renderJSONTable(data);
+    } catch (err) {
+      output.textContent = err.message;
+    }
+  });  
 
 // ------------------------
-// Eliminar un elemento (DELETE /{entidad}/{id})
+// Actualizar un elemento (PATCH /{entidad}/{id})
+document.getElementById('formUpdate').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const entity = getSelectedEntity();
+    const id = document.getElementById('updateId').value.trim();
+    const output = document.getElementById('outputUpdate');
+    output.textContent = 'Actualizando elemento...';
+  
+    // Obtener datos del formulario
+    const formData = new FormData(e.target);
+    const bodyData = {};
+    for (let [key, value] of formData.entries()) {
+      if (key !== 'updateId' && value !== "") {
+        // Convertir a número si es campo numérico
+        bodyData[key] = (entityFields[entity].find(f => f.name === key).type === "number")
+          ? Number(value)
+          : value;
+      }
+    }
+  
+    try {
+      const res = await fetch(`${apiBaseUrl}/${entity}/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bodyData)
+      });
+      if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+      const data = await res.json();
+  
+      // Envolver payload en un array si es un objeto
+      if (data.payload && !Array.isArray(data.payload)) {
+        data.payload = [data.payload];
+      }
+  
+      // Mostrar la tabla en lugar de JSON crudo
+      output.innerHTML = `<h3>${data.message}</h3>` + renderJSONTable(data);
+    } catch (err) {
+      output.textContent = err.message;
+    }
+  });  
+
+// ------------------------
+// Eliminar un elemento (DELETE /{entidad})
 document.getElementById('formDelete').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const entity = getSelectedEntity();
-  const id = document.getElementById('deleteId').value.trim();
-  const output = document.getElementById('outputDelete');
-  output.textContent = 'Eliminando elemento...';
-  try {
-    // Para eliminar, según tus rutas, se usa DELETE sin pasar id en el body,
-    // pero en el controlador de comedor y person se usa DELETE sin id en URL.
-    // Aquí se envía la petición con id en la URL.
-    const res = await fetch(`${apiBaseUrl}/${entity}/${id}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      // Algunos controladores usan el id en el body, si es el caso descomenta la siguiente línea:
-      // body: JSON.stringify({ id })
-    });
-    if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
-    const data = await res.json();
-    output.textContent = JSON.stringify(data, null, 2);
-  } catch (err) {
-    output.textContent = err.message;
-  }
-});
+    e.preventDefault();
+    const entity = getSelectedEntity();
+    const id = document.getElementById('deleteId').value.trim();
+    const output = document.getElementById('outputDelete');
+    output.textContent = 'Eliminando elemento...';
+    try {
+      // Para todas las entidades, la ruta DELETE es sin id en la URL
+      const url = `${apiBaseUrl}/${entity}`;
+      const options = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }) // Enviamos el id en el body
+      };
+      
+      const res = await fetch(url, options);
+      if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
+      const data = await res.json();
+      output.textContent = JSON.stringify(data, null, 2);
+    } catch (err) {
+      output.textContent = err.message;
+    }
+  });  
