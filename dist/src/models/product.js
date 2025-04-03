@@ -17,29 +17,17 @@ exports.Product = Product;
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
-], Product.prototype, "title", void 0);
+], Product.prototype, "nombre", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING
     }),
     __metadata("design:type", String)
-], Product.prototype, "description", void 0);
+], Product.prototype, "descripcion", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
-], Product.prototype, "price", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], Product.prototype, "discountPercentage", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], Product.prototype, "rating", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
-    __metadata("design:type", Number)
-], Product.prototype, "stock", void 0);
+], Product.prototype, "inventario", void 0);
 __decorate([
     sequelize_typescript_1.CreatedAt,
     sequelize_typescript_1.Column,
