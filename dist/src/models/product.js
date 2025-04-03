@@ -11,9 +11,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const comedor_1 = require("./comedor");
 let Product = class Product extends sequelize_typescript_1.Model {
 };
 exports.Product = Product;
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        primaryKey: true,
+        autoIncrement: true
+    }),
+    __metadata("design:type", Number)
+], Product.prototype, "id", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => comedor_1.Comedor) // llave foranea
+    ,
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], Product.prototype, "id_comedor", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => comedor_1.Comedor) // define que la relacion es con 'Comedor'
+    ,
+    __metadata("design:type", comedor_1.Comedor)
+], Product.prototype, "comedor", void 0);
 __decorate([
     sequelize_typescript_1.Column,
     __metadata("design:type", String)

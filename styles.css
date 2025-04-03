@@ -1,0 +1,111 @@
+/* styles.css */
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+  }
+  
+  header {
+    background-color: #0056b3;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .entity-selector {
+    margin-top: 10px;
+  }
+  
+  .entity-selector label,
+  .entity-selector select {
+    font-size: 16px;
+    margin-right: 5px;
+  }
+  
+  .container {
+    display: flex;
+    min-height: calc(100vh - 130px);
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nav-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    border-bottom: 1px solid #444;
+    transition: background 0.3s;
+  }
+  
+  .nav-btn:hover {
+    background-color: #444;
+  }
+  
+  main {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  form input, form select {
+    padding: 10px;
+    flex: 1 1 200px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  form button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #0056b3;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  form button:hover {
+    background-color: #004494;
+  }
+  
+  pre {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  
+  footer {
+    background-color: #0056b3;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+  }
+  
