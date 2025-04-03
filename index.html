@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comedor Admin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Comedor Admin</h1>
+    <div class="entity-selector">
+      <label for="entitySelect">Entidad:</label>
+      <select id="entitySelect">
+        <option value="comedor">Comedor</option>
+        <option value="person">Person</option>
+        <option value="product">Product</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <button class="nav-btn" data-section="getAll">Obtener Todos</button>
+      <button class="nav-btn" data-section="getById">Obtener Por ID</button>
+      <button class="nav-btn" data-section="create">Crear Nuevo</button>
+      <button class="nav-btn" data-section="update">Actualizar</button>
+      <button class="nav-btn" data-section="delete">Eliminar</button>
+    </nav>
+
+    <main>
+      <!-- Sección: Obtener Todos -->
+      <section id="getAll" class="section">
+        <h2>Obtener Todos los Elementos</h2>
+        <button id="btnGetAll">Cargar Elementos</button>
+        <div id="outputGetAll">Aquí se mostrarán los resultados...</div>
+      </section>
+
+      <!-- Sección: Obtener Por ID -->
+      <section id="getById" class="section hidden">
+        <h2>Obtener Elemento Por ID</h2>
+        <form id="formGetById">
+          <input type="number" id="getId" placeholder="Ingrese ID" required>
+          <button type="submit">Buscar</button>
+        </form>
+        <div id="outputGetById">Aquí se mostrarán los resultados...</div>
+      </section>
+
+      <!-- Sección: Crear Nuevo -->
+      <section id="create" class="section hidden">
+        <h2>Crear Nuevo Elemento</h2>
+        <form id="formCreate">
+          <!-- Los campos se generarán dinámicamente -->
+          <div id="createFields"></div>
+          <button type="submit">Crear</button>
+        </form>
+        <pre id="outputCreate">Aquí se mostrarán los resultados...</pre>
+      </section>
+
+      <!-- Sección: Actualizar -->
+      <section id="update" class="section hidden">
+        <h2>Actualizar Elemento</h2>
+        <form id="formUpdate">
+          <input type="number" id="updateId" placeholder="ID a actualizar" required>
+          <!-- Los campos se generarán dinámicamente -->
+          <div id="updateFields"></div>
+          <button type="submit">Actualizar</button>
+        </form>
+        <pre id="outputUpdate">Aquí se mostrarán los resultados...</pre>
+      </section>
+
+      <!-- Sección: Eliminar -->
+      <section id="delete" class="section hidden">
+        <h2>Eliminar Elemento</h2>
+        <form id="formDelete">
+          <input type="number" id="deleteId" placeholder="ID a eliminar" required>
+          <button type="submit">Eliminar</button>
+        </form>
+        <pre id="outputDelete">Aquí se mostrarán los resultados...</pre>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
