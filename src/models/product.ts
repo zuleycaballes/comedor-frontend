@@ -1,5 +1,6 @@
-import {Table, Model, Column, CreatedAt, UpdatedAt, DataType} from 'sequelize-typescript';
+import {Table, Model, Column, CreatedAt, UpdatedAt, DataType, ForeignKey, BelongsTo} from 'sequelize-typescript';
 import {Optional} from 'sequelize';
+import { Comedor } from './comedor';
 
 interface ProductAttributes{
     id: number;
@@ -14,14 +15,22 @@ interface ProductCreationAttributes extends Optional<ProductAttributes, 'id'>{}
     tableName: "Products"
 })
 export class Product extends Model<ProductAttributes, ProductCreationAttributes>{
+    @Column({
+        primaryKey: true,
+        autoIncrement: true
+    })
+    id!: number;
+    
+    @ForeignKey(() => Comedor)  // llave foranea
+    @Column
+    id_comedor!: number;
 
-    // Here, TS infers Data Type from the JS Type
-    // The ! means that the variable title wont be null or undefine.
+    @BelongsTo(() => Comedor)  // define que la relacion es con 'Comedor'
+    comedor!: Comedor;
+
     @Column
     nombre!: string;
 
-    // Here, we set the Data Type explicity
-    // The ? means the variable can be null or undefined
     @Column({
         type: DataType.STRING
     })
