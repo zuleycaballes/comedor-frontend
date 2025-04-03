@@ -1,20 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const personControler_1 = require("../controllers/personControler");
 const personRouter = (0, express_1.Router)();
-personRouter.get('/', (req, res) => {
-    res.send('Get a list of people');
-});
-personRouter.get('/:id', (req, res) => {
-    res.send(`Get the person ${req.params.id}`);
-});
-personRouter.post('/', (req, res) => {
-    res.send(`Create a new person with ID: ${req.body.id}`);
-});
-personRouter.patch('/:id', (req, res) => {
-    res.send(`Update the person ${req.params.id} with the values of ${req.body.name}, ${req.body.email}, and ${req.body.rol}`);
-});
-personRouter.delete('/', (req, res) => {
-    res.send(`Deleting the person ${req.body.id}`);
-});
+personRouter.get('/', personControler_1.getAllPeople);
+personRouter.get('/:id', personControler_1.getPersonById);
+personRouter.post('/', personControler_1.createPerson);
+personRouter.patch('/:id', personControler_1.modifyPerson);
+personRouter.delete('/', personControler_1.deletePerson);
 exports.default = personRouter;
