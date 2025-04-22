@@ -1,42 +1,138 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Fondo blanco global */
+html, body, #root {
+  background-color: #ffffff;
+  font-family: 'Jost', sans-serif;
+  color: #363636;
+  height: 100%;
+  margin: 0;
+}
+
+/* Tabla clara y limpia */
+.table {
+  background-color: white;
+  border-collapse: collapse;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+/* Celdas de la tabla */
+.table th,
+.table td {
+  color: #363636 !important;
+  background-color: #ffffff !important;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+/* Encabezado con línea inferior suave */
+.table thead {
+  border-bottom: 1px solid #dbdbdb;
+}
+
+/* ID en azul suave */
+.table th:first-child {
+  color: #6FA4D3;
+  font-weight: 700;
+}
+
+/* Botones de íconos */
+.button.is-icon {
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: #6FA4D3;
+  padding: 0.25rem 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.button.is-icon:hover {
+  background-color: #eaf2f9;
+  border-radius: 6px;
+}
+
+/* Botón de eliminar */
+.button.is-trash {
+  color: #f14668;
+}
+
+.button.is-trash:hover {
+  background-color: #fdeaea;
+  border-radius: 6px;
+}
+
+/* Botón DONAR PRODUCTO */
+.button.donar {
+  color: #6FA4D3;
+  border: 1px solid #6FA4D3;
+  background-color: transparent;
+  font-weight: 600;
+}
+
+.button.donar:hover {
+  background-color: #eaf2f9;
+  border-color: #6FA4D3;
+}
+
+/* Título central claro */
+h1.title,
+h2.title,
+h3.title {
+  font-size: 1.8rem;
+  color: #363636;
   text-align: center;
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Encabezados más suaves */
+.table thead th {
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: none;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Filas con separación muy sutil */
+.table tr {
+  border-bottom: 1px solid #f0f0f0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Botón DONAR alineado */
+.donar-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  margin-right: 2rem;
 }
 
-.card {
-  padding: 2em;
+.thick-border {
+  border-width: 2px !important;
+  border-color: #ffffff !important;
 }
 
-.read-the-docs {
-  color: #888;
+.thick-border:hover {
+  border-width: 2px !important;
+  background-color: #ffffff !important;
+  color: #6FA4D3 !important;
+}
+
+.navbar-item:hover {
+  background-color: transparent !important;
+}
+
+.custom-table td,
+.custom-table th {
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+}
+
+.custom-table thead {
+  border-top: 1.5px solid #a0a0a0 !important;
+  border-bottom: 2px solid #a0a0a0 !important;
+}
+
+.custom-table tbody tr {
+  border-bottom: 1.5px solid #d3d3d3 !important; 
 }
