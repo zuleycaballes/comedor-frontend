@@ -17,6 +17,11 @@ export const createProduct = async (productData: Omit<Product, 'id' | 'createdAt
   return res.data.payload;
 };
 
+export const updateProduct = async (id: number, data: Partial<Product>) => {
+  const res = await api.patch(`/api/product/${id}`, data);
+  return res.data.payload;
+};
+
 export const deleteProduct = async (id: number) => {
   try {
     const res = await api.delete(`/api/product/${id}`);

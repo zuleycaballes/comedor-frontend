@@ -29,7 +29,7 @@ const ProductRow = ({ product, onUpdate }) => {
     });
     return (<tr>
       <th className="has-text-weight-semibold">{product.id}</th>
-      <td className="has-text-weight-semibold">{product.tipo}</td>
+      <td className="has-text-weight-semibold">{product.nombre}</td>
       <td className="has-text-weight-semibold">{product.descripcion}</td>
       <td className="is-flex is-align-items-center" style={{ border: "none" }}>
         <button className="button is-icon" onClick={handleDecrement}>−</button>

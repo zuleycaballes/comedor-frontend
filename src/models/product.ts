@@ -41,9 +41,6 @@ export class Product extends Model<ProductAttributes, ProductCreationAttributes>
     descripcion?: string;
 
     @Column
-    tipo!: string; 
-
-    @Column
     inventario!: number;
 
     @CreatedAt

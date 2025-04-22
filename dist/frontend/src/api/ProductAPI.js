@@ -29,11 +29,6 @@ const createProduct = (productData) => __awaiter(void 0, void 0, void 0, functio
     return res.data.payload;
 });
 exports.createProduct = createProduct;
-const createProduct = (product) => __awaiter(void 0, void 0, void 0, function* () {
-    const res = yield api.post("/api/product", product);
-    return res.data.payload;
-});
-exports.createProduct = createProduct;
 const updateProduct = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield api.patch(`/api/product/${id}`, data);
     return res.data.payload;

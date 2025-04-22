@@ -8,7 +8,7 @@ const Formulario: React.FC = () => {
   const [cantidad, setCantidad] = useState(0);
 
   const handleProductosClick = () => {
-    window.location.pathname = '/';
+    window.location.pathname = '/products';
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,13 +30,13 @@ const Formulario: React.FC = () => {
       className="container"
       style={{
         fontFamily: 'Jost, sans-serif',
-        marginTop: '50px',
+        marginTop: '100px',
         padding: '0 2rem',
       }}
     >
       <h1
         className="title is-3 mb-6"
-        style={{ fontWeight: '800', fontSize: '2rem', textAlign: 'left' }} 
+        style={{ fontWeight: '800', fontSize: '2rem', textAlign: 'left' }}
       >
         Donación
       </h1>
@@ -63,93 +63,91 @@ const Formulario: React.FC = () => {
           />
         </div>
 
-        <div style={{ maxWidth: '350px', textAlign: 'left' }}>
-          <form onSubmit={handleSubmit}>
-
-            <div className="field" style={{ marginBottom: '40px' }}>
-              <label className="label" style={{ fontSize: '1.4rem' }}>Nombre</label> 
-              <div className="control">
-                <input
-                  className="input"
-                  value={nombre}
-                  onChange={(e) => setNombre(e.target.value)}
-                  placeholder="Ingresa el nombre del producto"
-                  required
-                  style={{ width: '500px', height: '40px' }} 
-                />
-              </div>
+        <form onSubmit={handleSubmit} style={{ maxWidth: '350px', textAlign: 'left' }}>
+          <div className="field" style={{ marginBottom: '40px' }}>
+            <label className="label" style={{ fontSize: '1.4rem' }}>Nombre</label>
+            <div className="control">
+              <input
+                className="input"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+                placeholder="Ingresa el nombre del producto"
+                required
+                style={{ width: '500px', height: '40px' }}
+              />
             </div>
+          </div>
 
-            <div className="field" style={{ marginBottom: '40px' }}>
-              <label className="label" style={{ fontSize: '1.4rem' }}>Descripción</label> 
-              <div className="control">
-                <input
-                  className="input"
-                  value={descripcion}
-                  onChange={(e) => setDescripcion(e.target.value)}
-                  placeholder="Descripción del producto"
-                  style={{ width: '500px', height: '40px' }}
-                />
-              </div>
+          <div className="field" style={{ marginBottom: '40px' }}>
+            <label className="label" style={{ fontSize: '1.4rem' }}>Descripción</label>
+            <div className="control">
+              <input
+                className="input"
+                value={descripcion}
+                onChange={(e) => setDescripcion(e.target.value)}
+                placeholder="Descripción del producto"
+                style={{ width: '500px', height: '40px' }}
+              />
             </div>
+          </div>
 
-            <div className="field" style={{ marginBottom: '40px' }}>
-              <label className="label" style={{ fontSize: '1.4rem' }}>Cantidad</label> 
-              <div className="control">
-                <input
-                  className="input"
-                  type="number"
-                  value={cantidad}
-                  onChange={(e) => setCantidad(Number(e.target.value))}
-                  required
-                  style={{ width: '500px', height: '40px' }} 
-                />
-              </div>
+          <div className="field" style={{ marginBottom: '40px' }}>
+            <label className="label" style={{ fontSize: '1.4rem' }}>Cantidad</label>
+            <div className="control">
+              <input
+                className="input"
+                type="number"
+                value={cantidad}
+                onChange={(e) => setCantidad(Number(e.target.value))}
+                required
+                style={{ width: '500px', height: '40px' }}
+              />
             </div>
-          </form>
-        </div>
-      </div>
+          </div>
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px', paddingRight: '200px' }}>
-        <div className="control" style={{ marginRight: '10px' }}>
-          <button
-            type="button"
-            className="button"
-            onClick={handleProductosClick}
-            style={{
-              border: '1px solid #6FA4D3',
-              backgroundColor: '#efefef',
-              color: '#6FA4D3',
-              width: '120px',
-              height: '40px',
-              fontSize: '1.15rem',
-            }}
-          >
-            Cancelar
-          </button>
-        </div>
-        <div className="control">
-          <button
-            type="submit"
-            className="button"
-            style={{
-              border: '1px solid #6FA4D3',
-              backgroundColor: 'transparent',
-              color: '#6FA4D3',
-              width: '120px',
-              height: '40px',
-              fontSize: '1.15rem',
-            }}
-          >
-            Donar
-          </button>
-        </div>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px', paddingRight: '200px' }}>
+            <div className="control" style={{ marginRight: '10px' }}>
+              <button
+                type="button"
+                className="button"
+                onClick={handleProductosClick}
+                style={{
+                  border: '1px solid #6FA4D3',
+                  backgroundColor: '#efefef',
+                  color: '#6FA4D3',
+                  width: '160px',
+                  height: '40px',
+                  fontSize: '1.15rem',
+                }}
+              >
+                Cancelar
+              </button>
+            </div>
+            <div className="control">
+              <button
+                type="submit"
+                className="button"
+                style={{
+                  border: '1px solid #6FA4D3',
+                  backgroundColor: 'transparent',
+                  color: '#6FA4D3',
+                  width: '160px',
+                  height: '40px',
+                  fontSize: '1.15rem',
+                }}
+              >
+                Donar
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
 export default Formulario;
+
 
 
 

@@ -10,7 +10,7 @@ const DonarPage_1 = __importDefault(require("./pages/DonarPage"));
 function App() {
     return (<>
       <react_router_dom_1.Routes>
-        <react_router_dom_1.Route path="/" element={<ProductPage_1.default />}/>
+        <react_router_dom_1.Route path="/products" element={<ProductPage_1.default />}/>
         <react_router_dom_1.Route path="/donar" element={<DonarPage_1.default />}/>
       </react_router_dom_1.Routes>
     </>);

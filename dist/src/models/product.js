@@ -47,10 +47,6 @@ __decorate([
 ], Product.prototype, "descripcion", void 0);
 __decorate([
     sequelize_typescript_1.Column,
-    __metadata("design:type", String)
-], Product.prototype, "tipo", void 0);
-__decorate([
-    sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], Product.prototype, "inventario", void 0);
 __decorate([

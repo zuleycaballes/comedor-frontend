@@ -27,7 +27,7 @@ const ProductTable = () => {
         <thead style={{ borderBottom: "2px solid #a0a0a0" }}>
           <tr>
             <th className="has-text-weight-bold">ID</th>
-            <th className="has-text-weight-bold">TIPO</th>
+            <th className="has-text-weight-bold">NOMBRE</th>
             <th className="has-text-weight-bold">DESCRIPCIÓN</th>
             <th className="has-text-weight-bold">INVENTARIO</th>
             <th className="has-text-weight-bold"></th>
@@ -41,7 +41,6 @@ const ProductTable = () => {
         </tbody>
       </table>
 
-      {/* Botón alineado con tabla */}
       <div className="has-text-right mt-4">
         <button
           className="button"
