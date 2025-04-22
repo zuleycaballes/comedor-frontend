@@ -13,7 +13,7 @@ const Navbar = () => {
 
       <div className="navbar-menu is-active">
         <div className="navbar-end">
-          <a href="/dashboard" className={`navbar-item has-text-white ${currentPath === "/dashboard" ? "has-text-weight-bold" : ""}`}>
+          <a href="/" className={`navbar-item has-text-white ${currentPath === "/" ? "has-text-weight-bold" : ""}`}>
             Dashboard
           </a>
           <a href="/products" className={`navbar-item has-text-white ${currentPath === "/products" ? "has-text-weight-bold" : ""}`}>

@@ -4,7 +4,13 @@ import Navbar from '../components/Navbar';
 
 const App: React.FC = () => {
   return (
-    <div>
+    <div
+      className="container"
+      style={{
+      fontFamily: "Jost, sans-serif",
+      marginTop: "100px",
+      }}
+    >
         < Navbar />
         < Formulario />
     </div>
