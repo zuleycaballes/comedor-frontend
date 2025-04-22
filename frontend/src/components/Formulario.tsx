@@ -5,12 +5,11 @@ const Formulario: React.FC = () => {
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [inventario, setInventario] = useState(0);
-  const [idComedor, setIdComedor] = useState(1); // puedes ajustar el valor default
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await createProduct({ nombre, descripcion, inventario, id_comedor: idComedor });
+      await createProduct({ nombre, descripcion, inventario});
       alert('Producto creado con éxito');
       setNombre('');
       setDescripcion('');
@@ -38,15 +37,6 @@ const Formulario: React.FC = () => {
           type="number"
           value={inventario}
           onChange={(e) => setInventario(Number(e.target.value))}
-          required
-        />
-      </div>
-      <div>
-        <label>ID del comedor:</label>
-        <input
-          type="number"
-          value={idComedor}
-          onChange={(e) => setIdComedor(Number(e.target.value))}
           required
         />
       </div>

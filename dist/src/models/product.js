@@ -25,7 +25,9 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => comedor_1.Comedor) // llave foranea
     ,
-    sequelize_typescript_1.Column,
+    (0, sequelize_typescript_1.Column)({
+        defaultValue: 1
+    }),
     __metadata("design:type", Number)
 ], Product.prototype, "id_comedor", void 0);
 __decorate([

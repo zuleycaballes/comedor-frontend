@@ -48,11 +48,10 @@ const Formulario = () => {
     const [nombre, setNombre] = (0, react_1.useState)('');
     const [descripcion, setDescripcion] = (0, react_1.useState)('');
     const [inventario, setInventario] = (0, react_1.useState)(0);
-    const [idComedor, setIdComedor] = (0, react_1.useState)(1); // puedes ajustar el valor default
     const handleSubmit = (e) => __awaiter(void 0, void 0, void 0, function* () {
         e.preventDefault();
         try {
-            yield (0, ProductAPI_1.createProduct)({ nombre, descripcion, inventario, id_comedor: idComedor });
+            yield (0, ProductAPI_1.createProduct)({ nombre, descripcion, inventario });
             alert('Producto creado con éxito');
             setNombre('');
             setDescripcion('');
@@ -76,10 +75,6 @@ const Formulario = () => {
       <div>
         <label>Inventario:</label>
         <input type="number" value={inventario} onChange={(e) => setInventario(Number(e.target.value))} required/>
-      </div>
-      <div>
-        <label>ID del comedor:</label>
-        <input type="number" value={idComedor} onChange={(e) => setIdComedor(Number(e.target.value))} required/>
       </div>
       <button type="submit">Crear Producto</button>
     </form>);

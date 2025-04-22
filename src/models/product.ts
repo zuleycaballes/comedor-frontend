@@ -7,6 +7,7 @@ interface ProductAttributes{
     nombre: string;
     descripcion: string;
     inventario: number ;
+    id_comedor: number;
 }
 
 interface ProductCreationAttributes extends Optional<ProductAttributes, 'id'>{}
@@ -21,8 +22,10 @@ export class Product extends Model<ProductAttributes, ProductCreationAttributes>
     })
     id!: number;
     
-    @ForeignKey(() => Comedor)  // llave foranea
-    @Column
+    @ForeignKey(() => Comedor) // llave foranea
+    @Column({
+    defaultValue: 1 
+    })
     id_comedor!: number;
 
     @BelongsTo(() => Comedor)  // define que la relacion es con 'Comedor'

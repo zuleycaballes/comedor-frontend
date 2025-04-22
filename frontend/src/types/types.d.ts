@@ -5,5 +5,7 @@ declare module "my-types" {
     descripcion: string;
     inventario: number;
     id_comedor: number;
+    createdAt: Date;
+    updatedAt: Date;
   }
 }

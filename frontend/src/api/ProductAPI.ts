@@ -7,11 +7,12 @@ const api = axios.create({
 });
 
 export const getAllProducts = async (): Promise<Product[]> => {
-  const res = await api.get("/api/product"); // ahora apunta al endpoint correcto
+  const res = await api.get("/api/product");
   return res.data.payload;
 };
 
-export const createProduct = async (productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>): Promise<Product> => {
+export const createProduct = async (productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt' | 'id_comedor'>): Promise<Product> => {
+  console.log("Sending to backend:", productData);
   const res = await api.post("/api/product", productData);
   return res.data.payload;
 };

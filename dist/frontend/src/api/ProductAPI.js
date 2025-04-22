@@ -19,11 +19,12 @@ const api = axios_1.default.create({
     headers: { "Content-Type": "application/json" }
 });
 const getAllProducts = () => __awaiter(void 0, void 0, void 0, function* () {
-    const res = yield api.get("/api/product"); // ahora apunta al endpoint correcto
+    const res = yield api.get("/api/product");
     return res.data.payload;
 });
 exports.getAllProducts = getAllProducts;
 const createProduct = (productData) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Sending to backend:", productData);
     const res = yield api.post("/api/product", productData);
     return res.data.payload;
 });
