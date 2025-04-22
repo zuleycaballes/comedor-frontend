@@ -25,11 +25,13 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => comedor_1.Comedor) // llave foranea
     ,
-    sequelize_typescript_1.Column,
+    (0, sequelize_typescript_1.Column)({
+        defaultValue: 1
+    }),
     __metadata("design:type", Number)
 ], Product.prototype, "id_comedor", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => comedor_1.Comedor) // define que la relacion es con 'Comedor'
+    (0, sequelize_typescript_1.BelongsTo)(() => comedor_1.Comedor) // Define relationship with 'Comedor'
     ,
     __metadata("design:type", comedor_1.Comedor)
 ], Product.prototype, "comedor", void 0);
@@ -59,6 +61,7 @@ __decorate([
 ], Product.prototype, "updatedAt", void 0);
 exports.Product = Product = __decorate([
     (0, sequelize_typescript_1.Table)({
-        tableName: "Products"
+        tableName: "Products",
+        timestamps: true // Ensure timestamps are enabled
     })
 ], Product);

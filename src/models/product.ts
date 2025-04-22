@@ -2,30 +2,34 @@ import {Table, Model, Column, CreatedAt, UpdatedAt, DataType, ForeignKey, Belong
 import {Optional} from 'sequelize';
 import { Comedor } from './comedor';
 
-interface ProductAttributes{
+interface ProductAttributes {
     id: number;
     nombre: string;
     descripcion: string;
     inventario: number ;
+    id_comedor: number;
 }
 
-interface ProductCreationAttributes extends Optional<ProductAttributes, 'id'>{}
+interface ProductCreationAttributes extends Optional<ProductAttributes, 'id'> {}
 
-@Table ({
-    tableName: "Products"
+@Table({
+    tableName: "Products",
+    timestamps: true // Ensure timestamps are enabled
 })
-export class Product extends Model<ProductAttributes, ProductCreationAttributes>{
+export class Product extends Model<ProductAttributes, ProductCreationAttributes> {
     @Column({
         primaryKey: true,
         autoIncrement: true
     })
     id!: number;
     
-    @ForeignKey(() => Comedor)  // llave foranea
-    @Column
+    @ForeignKey(() => Comedor) // llave foranea
+    @Column({
+    defaultValue: 1 
+    })
     id_comedor!: number;
 
-    @BelongsTo(() => Comedor)  // define que la relacion es con 'Comedor'
+    @BelongsTo(() => Comedor) // Define relationship with 'Comedor'
     comedor!: Comedor;
 
     @Column
@@ -42,7 +46,7 @@ export class Product extends Model<ProductAttributes, ProductCreationAttributes>
     @CreatedAt
     @Column
     createdAt!: Date;
-    
+
     @UpdatedAt
     @Column
     updatedAt!: Date;

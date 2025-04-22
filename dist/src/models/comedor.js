@@ -39,8 +39,27 @@ __decorate([
     ,
     __metadata("design:type", Array)
 ], Comedor.prototype, "personas", void 0);
+__decorate([
+    sequelize_typescript_1.CreatedAt,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.DATE,
+        allowNull: false,
+        defaultValue: sequelize_typescript_1.DataType.NOW, // Valor por defecto
+    }),
+    __metadata("design:type", Date)
+], Comedor.prototype, "createdAt", void 0);
+__decorate([
+    sequelize_typescript_1.UpdatedAt,
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.DATE,
+        allowNull: false,
+        defaultValue: sequelize_typescript_1.DataType.NOW, // Valor por defecto
+    }),
+    __metadata("design:type", Date)
+], Comedor.prototype, "updatedAt", void 0);
 exports.Comedor = Comedor = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: "Comedor",
+        timestamps: true, // Asegura que Sequelize maneje los timestamps
     })
 ], Comedor);

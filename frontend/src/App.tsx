@@ -1,12 +1,14 @@
-import "./App.css";
-import ProductPage from "./pages/ProductPage";
+import { Routes, Route } from "react-router-dom";
+import ProductPage from "./pages/ProductPage";  
+import DonarPage from "./pages/DonarPage";   
 
-function App() {
+export default function App() {
   return (
-    <div className="container mt-5">
-      <ProductPage />
-    </div>
+    <>
+      <Routes>
+        <Route path="/products" element={<ProductPage />} />
+        <Route path="/donar" element={<DonarPage />} />
+      </Routes>
+    </>
   );
 }
-
-export default App;

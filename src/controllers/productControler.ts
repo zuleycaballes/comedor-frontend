@@ -15,7 +15,20 @@ export const createProduct: RequestHandler = async (req: Request, res: Response)
         }
 
         // Save Product in the database
-        const product = { ...req.body };
+        const {
+            nombre,
+            descripcion,
+            inventario,
+            id_comedor = 1
+        } = req.body;
+
+        const product = {
+            nombre,
+            descripcion,
+            inventario,
+            id_comedor
+        };
+        console.log("Creando producto con:", product); 
         const data = await Product.create(product);
         res.status(200).json({
             status: "success",
