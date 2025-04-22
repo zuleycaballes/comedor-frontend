@@ -12,6 +12,9 @@ const ProductPage = () => {
                 setProducts(data);
         });
     }, []);
+    const handleDonarClick = () => {
+        window.location.pathname = "/donar"; // Cambiar ruta a la página de donar
+    };
     return (<div className="container" style={{ fontFamily: "Jost, sans-serif" }}>
       <p className="title is-4 has-text-centered mt-5">Productos</p>
 
@@ -31,7 +34,6 @@ const ProductPage = () => {
               <th className="has-text-link" style={{ color: "#6FA4D3" }}>
                 {product.id}
               </th>
-              <td>{product.tipo}</td>
               <td>{product.descripcion}</td>
               <td className="is-flex is-align-items-center gap-2">
                 <button className="button is-small is-light">−</button>
@@ -53,7 +55,7 @@ const ProductPage = () => {
       </table>
 
       <div className="has-text-right">
-        <button className="button" style={{
+        <button className="button" onClick={handleDonarClick} style={{
             border: "1px solid #6FA4D3",
             color: "#6FA4D3",
             backgroundColor: "transparent",

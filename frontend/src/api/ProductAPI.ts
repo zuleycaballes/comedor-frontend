@@ -10,3 +10,8 @@ export const getAllProducts = async (): Promise<Product[]> => {
   const res = await api.get("/api/product"); // ahora apunta al endpoint correcto
   return res.data.payload;
 };
+
+export const createProduct = async (productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>): Promise<Product> => {
+  const res = await api.post("/api/product", productData);
+  return res.data.payload;
+};
