@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../api/ProductAPI";
 import { Product } from "my-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { getAllProducts, createProduct } from "../api/ProductAPI";
+import Navbar from "../components/Navbar";
+import ProductTable from "../components/ProductTable";
 
 const ProductPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
+  // Obtener productos al montar el componente
   useEffect(() => {
     getAllProducts().then((data) => {
       if (data) setProducts(data);

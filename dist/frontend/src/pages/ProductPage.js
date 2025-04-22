@@ -1,11 +1,14 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const ProductAPI_1 = require("../api/ProductAPI");
-const react_fontawesome_1 = require("@fortawesome/react-fontawesome");
-const free_solid_svg_icons_1 = require("@fortawesome/free-solid-svg-icons");
+const Navbar_1 = __importDefault(require("../components/Navbar"));
 const ProductPage = () => {
     const [products, setProducts] = (0, react_1.useState)([]);
+    // Obtener productos al montar el componente
     (0, react_1.useEffect)(() => {
         (0, ProductAPI_1.getAllProducts)().then((data) => {
             if (data)
@@ -15,10 +18,12 @@ const ProductPage = () => {
     const handleDonarClick = () => {
         window.location.pathname = "/donar"; // Cambiar ruta a la página de donar
     };
-    return (<div className="container" style={{ fontFamily: "Jost, sans-serif" }}>
-      <p className="title is-4 has-text-centered mt-5">Productos</p>
-
-      <table className="table is-fullwidth is-hoverable">
+    return (<div className="container" style={{
+            fontFamily: "Jost, sans-serif",
+            marginTop: "100px",
+        }}>
+      <Navbar_1.default /></>);
+    <table className="table is-fullwidth is-hoverable">
         <thead>
           <tr>
             <th>ID</th>
@@ -42,27 +47,30 @@ const ProductPage = () => {
               </td>
               <td>
                 <button className="button is-small" style={{ backgroundColor: "#6FA4D3", color: "white" }}>
-                  <react_fontawesome_1.FontAwesomeIcon icon={free_solid_svg_icons_1.faEdit}/>
+                  <FontAwesomeIcon icon={faEdit}/>
                 </button>
               </td>
               <td>
                 <button className="button is-small" style={{ backgroundColor: "#f14668", color: "white" }}>
-                  <react_fontawesome_1.FontAwesomeIcon icon={free_solid_svg_icons_1.faTrash}/>
+                  <FontAwesomeIcon icon={faTrash}/>
                 </button>
               </td>
             </tr>))}
         </tbody>
       </table>
-
-      <div className="has-text-right">
+        ,
+            <div className="has-text-right">
         <button className="button" onClick={handleDonarClick} style={{
-            border: "1px solid #6FA4D3",
-            color: "#6FA4D3",
-            backgroundColor: "transparent",
-        }}>
+                    border: "1px solid #6FA4D3",
+                    color: "#6FA4D3",
+                    backgroundColor: "transparent",
+                }}>
           DONAR PRODUCTO
         </button>
-      </div>
-    </div>);
+      </div>;
 };
+div >
+;
+;
+;
 exports.default = ProductPage;
