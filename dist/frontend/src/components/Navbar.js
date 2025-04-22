@@ -12,7 +12,7 @@ const Navbar = () => {
         </span>
       </div>
 
-      <div className="navbar-menu is-active">
+      <div className="navbar-menu">
         <div className="navbar-end">
           <a className="navbar-item has-text-white" onClick={() => navigate("/dashboard")}>
             Dashboard

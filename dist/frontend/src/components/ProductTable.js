@@ -22,7 +22,7 @@ const ProductTable = () => {
     }, []);
     const handleUpdate = () => __awaiter(void 0, void 0, void 0, function* () {
         const updated = yield (0, ProductAPI_1.getAllProducts)();
-        console.log("Actualizado:", updated); // <-- revisa si el número cambia aquí
+        console.log("Actualizado:", updated);
         setProducts(updated);
     });
     return (<div style={{ maxWidth: "90%", margin: "0 auto", fontFamily: "Jost, sans-serif" }}>

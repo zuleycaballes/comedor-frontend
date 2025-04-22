@@ -12,7 +12,7 @@ const ProductTable = () => {
 
   const handleUpdate = async () => {
     const updated = await getAllProducts();
-    console.log("Actualizado:", updated); // <-- revisa si el número cambia aquí
+    console.log("Actualizado:", updated); 
     setProducts(updated);
   };
   

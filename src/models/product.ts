@@ -6,7 +6,6 @@ interface ProductAttributes {
     id: number;
     nombre: string;
     descripcion: string;
-    tipo: string;
     inventario: number;
     id_comedor: number;
 }
@@ -38,9 +37,6 @@ export class Product extends Model<ProductAttributes, ProductCreationAttributes>
         type: DataType.STRING
     })
     descripcion?: string;
-
-    @Column
-    tipo!: string; 
 
     @Column
     inventario!: number;
