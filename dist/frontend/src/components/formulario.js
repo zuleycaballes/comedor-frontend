@@ -14,8 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const a_adir_img_png_1 = __importDefault(require("../assets/a\u00F1adir_img.png"));
-require("./Formulario.css"); // Asegúrate de importar el archivo CSS
-const Formulario = ({ product, onSubmit, buttonText }) => {
+require("./Formulario.css");
+const ProductAPI_1 = require("../api/ProductAPI");
+const Formulario = ({ product, buttonText }) => {
     const [nombre, setNombre] = (0, react_1.useState)('');
     const [descripcion, setDescripcion] = (0, react_1.useState)('');
     const [cantidad, setCantidad] = (0, react_1.useState)(0);
@@ -31,19 +32,28 @@ const Formulario = ({ product, onSubmit, buttonText }) => {
     };
     const handleSubmit = (e) => __awaiter(void 0, void 0, void 0, function* () {
         e.preventDefault();
+        const comedorId = Number(localStorage.getItem("comedorId"));
+        if (!comedorId) {
+            alert("Error: no hay sesión activa");
+            return;
+        }
         try {
-            onSubmit({ nombre, descripcion, inventario: cantidad });
-            setNombre('');
-            setDescripcion('');
+            yield (0, ProductAPI_1.createProduct)({
+                nombre,
+                descripcion,
+                inventario: cantidad,
+                id_comedor: comedorId,
+            });
+            alert("Donación registrada con éxito");
+            setNombre("");
+            setDescripcion("");
             setCantidad(0);
         }
         catch (error) {
-            console.error('Error al procesar el producto:', error);
-            alert('Hubo un error al procesar el producto.');
+            alert("Hubo un error al registrar la donación.");
         }
     });
     return (<div className="formulario-container">
-
       <div className="formulario-content">
         <div className="formulario-image">
           <img src={a_adir_img_png_1.default} alt="Añadir imagen"/>

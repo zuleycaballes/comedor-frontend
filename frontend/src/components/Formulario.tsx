@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import Image from '../assets/añadir_img.png';
-import './Formulario.css'; // Asegúrate de importar el archivo CSS
+import './Formulario.css';
+import { createProduct } from "../api/ProductAPI";
 
 interface FormularioProps {
-  product?: { nombre: string; descripcion: string; inventario: number };  // Si estamos editando, el producto estará disponible
-  onSubmit: (product: { nombre: string; descripcion: string; inventario: number }) => void;  // Función que maneja el envío
-  buttonText: string;  // Texto del botón, cambia según si es 'Donar' o 'Guardar'
+  product?: { nombre: string; descripcion: string; inventario: number };
+  onSubmit: (product: { nombre: string; descripcion: string; inventario: number }) => void;
+  buttonText: string;
 }
 
-const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }) => {
+const Formulario: React.FC<FormularioProps> = ({ product, buttonText }) => {
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [cantidad, setCantidad] = useState(0);
@@ -27,20 +28,32 @@ const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+  
+    const comedorId = Number(localStorage.getItem("comedorId"));
+    if (!comedorId) {
+      alert("Error: no hay sesión activa");
+      return;
+    }
+  
     try {
-      onSubmit({ nombre, descripcion, inventario: cantidad });
-      setNombre('');
-      setDescripcion('');
+      await createProduct({
+        nombre,
+        descripcion,
+        inventario: cantidad,
+        id_comedor: comedorId,
+      });
+      alert("Donación registrada con éxito");
+      setNombre("");
+      setDescripcion("");
       setCantidad(0);
     } catch (error) {
-      console.error('Error al procesar el producto:', error);
-      alert('Hubo un error al procesar el producto.');
+      alert("Hubo un error al registrar la donación.");
     }
   };
+  
 
   return (
     <div className="formulario-container">
-
       <div className="formulario-content">
         <div className="formulario-image">
           <img src={Image} alt="Añadir imagen" />
@@ -105,6 +118,5 @@ const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }
     </div>
   );
 };
-
 
 export default Formulario;

@@ -57,8 +57,9 @@ const LoginForm = () => {
         try {
             const res = yield axios_1.default.get(`http://localhost:3000/api/comedor`);
             const comedores = res.data.payload;
-            const existe = comedores.some((comedor) => comedor.nombre === usuario);
-            if (existe && password === "123") {
+            const comedor = comedores.find((comedor) => comedor.nombre === usuario);
+            if (comedor && password === "123") {
+                localStorage.setItem("comedorId", comedor.id.toString()); // Guarda el ID
                 navigate("/dashboard");
             }
             else {

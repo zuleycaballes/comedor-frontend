@@ -14,9 +14,10 @@ const LoginForm: React.FC = () => {
       const res = await axios.get(`http://localhost:3000/api/comedor`);
       const comedores = res.data.payload;
 
-      const existe = comedores.some((comedor: any) => comedor.nombre === usuario);
+      const comedor = comedores.find((comedor: any) => comedor.nombre === usuario);
 
-      if (existe && password === "123") {
+      if (comedor && password === "123") {
+        localStorage.setItem("comedorId", comedor.id.toString()); // Guarda el ID
         navigate("/dashboard");
       } else {
         alert("Usuario o contraseña incorrectos");

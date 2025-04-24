@@ -11,7 +11,9 @@ export const getAllProducts = async (): Promise<Product[]> => {
   return res.data.payload;
 };
 
-export const createProduct = async (productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt' | 'id_comedor'>): Promise<Product> => {
+export const createProduct = async (
+  productData: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>
+): Promise<Product> => {
   console.log("Sending to backend:", productData);
   const res = await api.post("/api/product", productData);
   return res.data.payload;
