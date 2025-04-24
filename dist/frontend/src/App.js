@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = App;
 const react_router_dom_1 = require("react-router-dom");
 const ProductPage_1 = __importDefault(require("./pages/ProductPage"));
-const DashboardPage_1 = __importDefault(require("./pages/DashboardPage"));
 const DonarPage_1 = __importDefault(require("./pages/DonarPage"));
 const DashboardPage_1 = __importDefault(require("./pages/DashboardPage"));
 function App() {
