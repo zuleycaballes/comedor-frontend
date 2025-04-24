@@ -34,7 +34,7 @@ const ProductTable = () => {
             <th className="has-text-weight-bold">ID</th>
             <th className="has-text-weight-bold">NOMBRE</th>
             <th className="has-text-weight-bold">DESCRIPCIÓN</th>
-            <th className="has-text-weight-bold">INVENTARIO</th>
+            <th className="has-text-centered has-text-weight-bold">INVENTARIO</th>
             <th className="has-text-weight-bold"></th>
             <th className="has-text-weight-bold"></th>
           </tr>

@@ -1,17 +1,29 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginForm: React.FC = () => {
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Aquí luego se hará la verificación en base de datos
-    if (usuario && password) {
-      navigate("/dashboard");
+
+    try {
+      const res = await axios.get(`http://localhost:3000/api/comedor`);
+      const comedores = res.data.payload;
+
+      const existe = comedores.some((comedor: any) => comedor.nombre === usuario);
+
+      if (existe && password === "123") {
+        navigate("/dashboard");
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
+    } catch (error) {
+      console.error("Error al verificar el usuario:", error);
+      alert("Error al intentar iniciar sesión");
     }
   };
 
@@ -55,7 +67,6 @@ const LoginForm: React.FC = () => {
             Iniciar Sesión
         </button>
       </div>
-
     </form>
   );
 };

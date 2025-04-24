@@ -171,6 +171,12 @@ h3.title {
   background-color: #5A94C1;
 }
 
+.logout-button:hover {
+  background-color: #ffffff !important;
+  color: #6FA4D3 !important;
+  border-color: #6FA4D3 !important;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: light;

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletePerson = exports.updatePerson = exports.createPerson = exports.getPersonById = exports.getAllPeople = void 0;
+exports.login = exports.deletePerson = exports.updatePerson = exports.createPerson = exports.getPersonById = exports.getAllPeople = void 0;
 const axios_1 = __importDefault(require("axios"));
 const api = axios_1.default.create({
     baseURL: "http://localhost:3000", // Asegúrate de que esta URL sea correcta
@@ -42,3 +42,7 @@ const deletePerson = (id) => __awaiter(void 0, void 0, void 0, function* () {
     yield api.delete("/api/person", { data: { id } });
 });
 exports.deletePerson = deletePerson;
+const login = (username, password) => __awaiter(void 0, void 0, void 0, function* () {
+    return axios_1.default.post("/api/comedor/login", { username, password });
+});
+exports.login = login;

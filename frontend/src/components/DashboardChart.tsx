@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Product } from "my-types";
 import axios from "axios";
-import InventoryBarChart from "../components/InventoryBarchart";
+import InventoryBarChart from "../components/InventoryBarChart";
 import LowInventoryPieChart from "../components/LowInventoryPieChart";
 
 const DashboardChart = () => {
@@ -36,7 +36,7 @@ const DashboardChart = () => {
   return (
     <div style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
       <div style={{ padding: "2rem", backgroundColor: "#ffffff", fontFamily: "Jost, sans-serif", marginTop: "2rem" }}>
-        <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem", marginTop: "2rem", color: "#363636" }}>
+        <h1 style={{ fontSize: "2rem", fontWeight: 500, marginBottom: "1rem", marginTop: "2rem", color: "#363636" }}>
           Dashboard
         </h1> 
 

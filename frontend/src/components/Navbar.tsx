@@ -31,8 +31,8 @@ const Navbar = () => {
       <div className="navbar-menu">
         <div className="navbar-end">
           <a
-            href="/"
-            className={`navbar-item has-text-white ${currentPath === "/" ? "has-text-weight-bold" : ""}`}
+            href="/dashboard"
+            className={`navbar-item has-text-white ${currentPath === "/dashboard" ? "has-text-weight-bold" : ""}`}
           >
             Dashboard
           </a>
@@ -56,11 +56,14 @@ const Navbar = () => {
           </a>
 
           <div className="navbar-item mr-4">
-            <button onClick={handleLogout}
-              className="button is-white is-outlined has-text-weight-semibold">
+            <button
+              onClick={handleLogout}
+              className="button logout-button is-white is-outlined has-text-weight-semibold"
+            >
               Cerrar Sesión
             </button>
           </div>
+
 
           <div className="navbar-item">
             <button

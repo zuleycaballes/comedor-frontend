@@ -1,6 +1,23 @@
 import { RequestHandler, Request, Response } from "express"; 
 import { Comedor } from "../models/comedor";
 
+export const login: RequestHandler = async (req, res): Promise<void> => {
+    const { username, password } = req.body;
+  
+    if (password !== "123") {
+        res.status(401).json({ message: "Contraseña incorrecta" });
+        return;
+    }
+  
+    const user = await Comedor.findOne({ where: { nombre: username } });
+    if (!user) {
+        res.status(404).json({ message: "Usuario no encontrado" });
+        return;
+    }
+  
+    res.status(200).json({ message: "Login exitoso" });
+};
+
 // Create and Save a new Comedor
 export const createComedor: RequestHandler = async (req: Request, res: Response): Promise<void> => {
     try {
