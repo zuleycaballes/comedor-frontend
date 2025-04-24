@@ -6,46 +6,48 @@ import Navbar from "../components/Navbar";
 import Formulario from "../components/Formulario";
 
 const EditarPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const [product, setProduct] = useState<Product | null>(null);
+  const { id } = useParams<{ id: string }>(); // Obtener el ID del producto
+  const navigate = useNavigate(); // Navegación para redirigir
+  const [product, setProduct] = useState<Product | null>(null); 
 
   useEffect(() => {
+    // Obtener todos los productos y buscar el producto por ID
     getAllProducts().then((products) => {
       const found = products.find((p) => p.id === Number(id));
       if (found) {
-        console.log("Producto encontrado:", found); 
+        console.log("Producto encontrado:", found); // Log para depuración
         setProduct(found);
       }
     });
-  }, [id]);  
+  }, [id]);
 
+  // Manejar la edición del producto
   const handleEditProduct = async (updatedProduct: { nombre: string; descripcion: string; inventario: number }) => {
     if (product) {
-      const updated = { ...product, ...updatedProduct };
-      await updateProduct(updated.id, updated);
-      navigate("/products");
+      const updated = { ...product, ...updatedProduct }; // Actualizar los datos del producto
+      await updateProduct(updated.id, updated); // Llamada a la API para actualizar
+      navigate("/products"); // Redirigir a la lista de productos
     }
   };
 
-  if (!product) return <div>Cargando...</div>;
+  if (!product) return <div>Cargando...</div>; // Mostrar mensaje mientras se carga el producto
 
   return (
-      <div
+    <div
       className="container"
       style={{
-      fontFamily: "Jost, sans-serif",
-      marginTop: "100px",
+        fontFamily: "Jost, sans-serif",
+        marginTop: "100px",
       }}
     >
-      <Navbar />
-      <h1 className="title is-3 mb-4 has-text-left">Editar Producto</h1>
-        <Formulario
-          product={product}
-          onSubmit={handleEditProduct}
-          buttonText="Guardar"
-        />
-      </div>
+      <Navbar /> 
+      <h1 className="title is-3 mb-4 has-text-left">Editar Producto</h1> 
+      <Formulario
+        product={product} // Producto a editar
+        onSubmit={handleEditProduct} // Manejar el envío del formulario
+        buttonText="Guardar" 
+      />
+    </div>
   );
 };
 

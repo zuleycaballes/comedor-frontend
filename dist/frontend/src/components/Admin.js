@@ -13,26 +13,32 @@ const react_1 = require("react");
 const ComedorAPI_1 = require("../api/ComedorAPI");
 require("./Admin.css");
 const AdminPage = () => {
+    // Estado para almacenar los datos del comedor
     const [comedor, setComedor] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
+        // Recuperar el ID del comedor desde localStorage
         const comedorId = localStorage.getItem("comedorId");
-        console.log("comedorId from localStorage:", comedorId);
+        console.log("comedorId desde localStorage:", comedorId);
         if (!comedorId) {
+            // Mostrar alerta si no hay sesión activa
             alert("Error: no hay sesión activa");
             return;
         }
         const id = Number(comedorId);
-        console.log("Parsed ID:", id);
+        console.log("ID parseado:", id);
         const fetchData = () => __awaiter(void 0, void 0, void 0, function* () {
+            // Obtener datos del comedor por ID
             const data = yield (0, ComedorAPI_1.getComedorById)(id);
-            console.log("Comedor data:", data);
+            console.log("Datos del comedor:", data);
             setComedor(data);
         });
         fetchData();
     }, []);
+    // Mostrar mensaje de carga si los datos aún no están disponibles
     if (!comedor)
         return <div className="loading">Cargando información del comedor...</div>;
     return (<div className="admin-container">
+      {/* Mostrar detalles del comedor */}
       <h1 className="admin-title">{comedor.nombre}</h1>
       <div className="admin-details">
         <p className="admin-category"><strong>Dirección:</strong> {comedor.direccion || "No especificada"}</p>

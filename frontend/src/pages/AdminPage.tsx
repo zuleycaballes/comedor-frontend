@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Admin from "../components/Admin";
-const ProductDetailPage = () => {
 
+const ProductDetailPage = () => {
   return (
     <div
       className="container"
@@ -10,12 +10,11 @@ const ProductDetailPage = () => {
         marginTop: "100px",
       }}
     >
-      <Navbar />
+      <Navbar /> 
       <h1 className="title is-3 mb-4 has-text-left">Comedor</h1>
-      <Admin />
+      <Admin /> 
     </div>
   );
 };
-
 
 export default ProductDetailPage;

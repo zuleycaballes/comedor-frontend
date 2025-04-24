@@ -16,6 +16,7 @@ const react_1 = require("react");
 const axios_1 = __importDefault(require("axios"));
 const ImageUpload = ({ onUpload }) => {
     const [preview, setPreview] = (0, react_1.useState)(null);
+    // Manejar el cambio de archivo seleccionado
     const handleFileChange = (e) => __awaiter(void 0, void 0, void 0, function* () {
         if (!e.target.files || e.target.files.length === 0)
             return;
@@ -23,13 +24,14 @@ const ImageUpload = ({ onUpload }) => {
         const formData = new FormData();
         formData.append('image', file);
         try {
+            // Subir la imagen al servidor
             const res = yield axios_1.default.post('http://localhost:3000/api/product/upload', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
-            const imageUrl = res.data.imageUrl; // ej: "/uploads/foto.jpg"
+            const imageUrl = res.data.imageUrl;
             const fullUrl = `http://localhost:3000${imageUrl}`;
-            setPreview(fullUrl);
-            onUpload(fullUrl);
+            setPreview(fullUrl); // Actualizar la vista previa
+            onUpload(fullUrl); // Notificar al componente padre
         }
         catch (error) {
             console.error("Error al subir la imagen:", error);

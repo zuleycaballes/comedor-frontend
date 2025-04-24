@@ -5,35 +5,39 @@ import { Person } from "my-types";
 import FilterBar from "./FilterBar";
 
 const PersonTable = () => {
+  // Estados para manejar personas, filtros y ordenamiento
   const [people, setPeople] = useState<Person[]>([]);
   const [filteredPeople, setFilteredPeople] = useState<Person[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<"nombre-asc" | "nombre-desc" | "">("");
 
-  // Obtener personas al iniciar
+  // Obtener personas al montar el componente
   useEffect(() => {
     handleUpdate();
   }, []);
 
   const handleUpdate = async () => {
+    // Obtener el ID del comedor desde localStorage
     const comedorId = Number(localStorage.getItem("comedorId"));
+    // Obtener todas las personas y filtrar por comedor
     const updated = await getAllPeople();
     const filtered = updated.filter((p) => p.id_comedor === comedorId);
     setPeople(filtered);
     setFilteredPeople(filtered);
   };
-  
 
-  // Aplicar filtros y ordenamiento
+  // Aplicar filtros y ordenamiento cuando cambian los estados
   useEffect(() => {
     let result = [...people];
 
+    // Filtrar por término de búsqueda
     if (searchTerm.trim()) {
       result = result.filter((p) =>
         p.nombre.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
+    // Ordenar por nombre ascendente o descendente
     if (sortBy === "nombre-asc") {
       result.sort((a, b) => a.nombre.localeCompare(b.nombre));
     } else if (sortBy === "nombre-desc") {
@@ -61,6 +65,7 @@ const PersonTable = () => {
         ]}
       />
 
+      {/* Tabla de personas */}
       <table className="table is-fullwidth is-striped custom-table">
         <thead>
           <tr>
@@ -75,6 +80,7 @@ const PersonTable = () => {
           </tr>
         </thead>
         <tbody>
+          {/* Filtrar y mostrar filas de personas */}
           {filteredPeople.map((person) => (
             <PersonRow key={person.id} person={person} onUpdate={handleUpdate} />
           ))}

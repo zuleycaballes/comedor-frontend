@@ -20,16 +20,19 @@ const react_1 = require("react");
 const ConfirmDialog_1 = __importDefault(require("./ConfirmDialog"));
 const ProductRow = ({ product, onUpdate }) => {
     const [showConfirm, setShowConfirm] = (0, react_1.useState)(false);
+    // Incrementar inventario del producto
     const handleIncrement = () => __awaiter(void 0, void 0, void 0, function* () {
         yield (0, ProductAPI_1.updateProduct)(product.id, Object.assign(Object.assign({}, product), { inventario: product.inventario + 1 }));
         onUpdate();
     });
+    // Decrementar inventario del producto
     const handleDecrement = () => __awaiter(void 0, void 0, void 0, function* () {
         if (product.inventario > 0) {
             yield (0, ProductAPI_1.updateProduct)(product.id, Object.assign(Object.assign({}, product), { inventario: product.inventario - 1 }));
             onUpdate();
         }
     });
+    // Confirmar y eliminar producto
     const confirmDelete = () => __awaiter(void 0, void 0, void 0, function* () {
         yield (0, ProductAPI_1.deleteProduct)(product.id);
         onUpdate();
@@ -38,11 +41,13 @@ const ProductRow = ({ product, onUpdate }) => {
     return (<>
       <tr>
         <th className="has-text-weight-semibold">{product.id}</th>
+
         <td className="has-text-weight-semibold">
           <react_router_dom_1.Link to={`/products/${product.id}`} style={{ color: 'black', textDecoration: 'underline' }}>
             {product.nombre}
           </react_router_dom_1.Link>
         </td>
+
         <td className="has-text-weight-semibold" style={{
             maxWidth: "200px",
             overflow: "hidden",
@@ -51,16 +56,20 @@ const ProductRow = ({ product, onUpdate }) => {
         }}>
           {product.descripcion}
         </td>
+
+        {/* Controles para inventario */}
         <td className="is-flex is-align-items-center" style={{ border: "none" }}>
           <button className="button is-icon" onClick={handleDecrement}>−</button>
           <span className="mx-2">{product.inventario}</span>
           <button className="button is-icon" onClick={handleIncrement}>+</button>
         </td>
+
         <td>
           <react_router_dom_1.Link to={`/products/edit/${product.id}`} className="button is-icon">
             <react_fontawesome_1.FontAwesomeIcon icon={free_solid_svg_icons_1.faEdit}/>
           </react_router_dom_1.Link>
         </td>
+
         <td>
           <button className="button is-icon is-trash" onClick={() => setShowConfirm(true)}>
             <react_fontawesome_1.FontAwesomeIcon icon={free_solid_svg_icons_1.faTrash}/>

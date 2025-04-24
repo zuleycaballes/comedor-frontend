@@ -1,26 +1,28 @@
-import { useNavigate } from "react-router-dom";
-import "./BotonAñadir.css";
+import { useNavigate } from "react-router-dom"; 
+import "./BotonAñadir.css"; 
 
+// Interfaz para las propiedades del componente
 interface Props {
-  label: string;
-  onClick?: () => void;
-  to?: string;
+  label: string; 
+  onClick?: () => void; 
+  to?: string; 
 }
 
+// Componente del botón personalizado
 const CustomButton: React.FC<Props> = ({ label, onClick, to }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
     if (to) {
-      navigate(to);
+      navigate(to); 
     } else if (onClick) {
-      onClick();
+      onClick(); 
     }
   };
 
   return (
     <button className="button" onClick={handleClick}>
-      {label}
+      {label} 
     </button>
   );
 };

@@ -5,18 +5,23 @@ import InventoryBarChart from "../components/InventoryBarChart";
 import LowInventoryPieChart from "../components/LowInventoryPieChart";
 
 const DashboardChart = () => {
+  // Estado para almacenar todos los productos
   const [productos, setProductos] = useState<Product[]>([]);
+  // Estado para almacenar productos con bajo inventario
   const [bajoInventario, setBajoInventario] = useState<Product[]>([]);
 
   useEffect(() => {
+    // Obtener comedorId desde localStorage
     const comedorId = Number(localStorage.getItem("comedorId"));
     if (!comedorId) return;
 
     axios.get("http://localhost:3000/api/product")
       .then(res => {
         const todos = res.data.payload as Product[];
+        // Filtrar productos por comedorId
         const filtrados = todos.filter(p => p.id_comedor === comedorId);
         setProductos(filtrados);
+        // Filtrar productos con inventario <= 10
         setBajoInventario(filtrados.filter(p => Number(p.inventario) <= 10));
       })
       .catch(err => console.error("Error al obtener productos:", err));

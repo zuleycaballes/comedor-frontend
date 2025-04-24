@@ -16,24 +16,30 @@ const react_1 = require("react");
 const react_router_dom_1 = require("react-router-dom");
 const axios_1 = __importDefault(require("axios"));
 const LoginForm = () => {
+    // Estados para usuario y contraseña
     const [usuario, setUsuario] = (0, react_1.useState)("");
     const [password, setPassword] = (0, react_1.useState)("");
     const navigate = (0, react_router_dom_1.useNavigate)();
+    // Manejar el envío del formulario
     const handleSubmit = (e) => __awaiter(void 0, void 0, void 0, function* () {
         e.preventDefault();
         try {
+            // Obtener datos de los comedores desde la API
             const res = yield axios_1.default.get(`http://localhost:3000/api/comedor`);
             const comedores = res.data.payload;
+            // Buscar el comedor que coincida con el usuario ingresado
             const comedor = comedores.find((comedor) => comedor.nombre === usuario);
+            // Validar usuario y contraseña
             if (comedor && password === "123") {
-                localStorage.setItem("comedorId", comedor.id.toString()); // Guarda el ID
-                navigate("/dashboard");
+                localStorage.setItem("comedorId", comedor.id.toString()); // Guardar ID en localStorage
+                navigate("/dashboard"); // Redirigir al dashboard
             }
             else {
                 alert("Usuario o contraseña incorrectos");
             }
         }
         catch (error) {
+            // Manejar errores en la verificación
             console.error("Error al verificar el usuario:", error);
             alert("Error al intentar iniciar sesión");
         }

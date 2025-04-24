@@ -19,14 +19,16 @@ const react_router_dom_1 = require("react-router-dom");
 const react_1 = require("react");
 const ConfirmDialog_1 = __importDefault(require("./ConfirmDialog"));
 const PersonRow = ({ person, onUpdate }) => {
-    const [showConfirm, setShowConfirm] = (0, react_1.useState)(false);
+    const [showConfirm, setShowConfirm] = (0, react_1.useState)(false); // Estado para mostrar el diálogo de confirmación
+    // Confirmar eliminación de la persona
     const confirmDelete = () => __awaiter(void 0, void 0, void 0, function* () {
-        yield (0, PersonAPI_1.deletePerson)(person.id);
-        onUpdate();
-        setShowConfirm(false);
+        yield (0, PersonAPI_1.deletePerson)(person.id); // Llamada a la API para eliminar
+        onUpdate(); // Actualizar la tabla
+        setShowConfirm(false); // Cerrar el diálogo
     });
     return (<>
       <tr>
+        {/* Mostrar datos de la persona */}
         <td className="has-text-weight-semibold">{person.id}</td>
         <td className="has-text-weight-semibold">{person.nombre}</td>
         <td className="has-text-weight-semibold">{person.apellido}</td>

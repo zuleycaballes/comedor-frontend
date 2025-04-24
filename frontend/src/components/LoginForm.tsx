@@ -3,26 +3,32 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const LoginForm: React.FC = () => {
+  // Estados para usuario y contraseña
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // Manejar el envío del formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
+      // Obtener datos de los comedores desde la API
       const res = await axios.get(`http://localhost:3000/api/comedor`);
       const comedores = res.data.payload;
 
+      // Buscar el comedor que coincida con el usuario ingresado
       const comedor = comedores.find((comedor: any) => comedor.nombre === usuario);
 
+      // Validar usuario y contraseña
       if (comedor && password === "123") {
-        localStorage.setItem("comedorId", comedor.id.toString()); // Guarda el ID
-        navigate("/dashboard");
+        localStorage.setItem("comedorId", comedor.id.toString()); // Guardar ID en localStorage
+        navigate("/dashboard"); // Redirigir al dashboard
       } else {
         alert("Usuario o contraseña incorrectos");
       }
     } catch (error) {
+      // Manejar errores en la verificación
       console.error("Error al verificar el usuario:", error);
       alert("Error al intentar iniciar sesión");
     }

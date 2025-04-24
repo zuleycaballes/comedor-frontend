@@ -17,24 +17,27 @@ const FormularioPerson_1 = __importDefault(require("../components/FormularioPers
 const PersonAPI_1 = require("../api/PersonAPI");
 const react_router_dom_1 = require("react-router-dom");
 const AñadirPersonaPage = () => {
-    const navigate = (0, react_router_dom_1.useNavigate)();
+    const navigate = (0, react_router_dom_1.useNavigate)(); // Navegación para redirigir
+    // Manejar el envío del formulario
     const handleSubmit = (persona) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            yield (0, PersonAPI_1.createPerson)(persona);
+            yield (0, PersonAPI_1.createPerson)(persona); // Crear persona en la API
             navigate("/personas"); // Redirigir a la lista de personas
         }
         catch (error) {
-            console.error("Error al crear la persona:", error);
-            alert("Hubo un error al crear la persona.");
+            console.error("Error al crear la persona:", error); // Mostrar error en consola
+            alert("Hubo un error al crear la persona."); // Mostrar alerta al usuario
         }
     });
     return (<div className="container" style={{
             fontFamily: "Jost, sans-serif",
             marginTop: "100px",
         }}>
-      <Navbar_1.default />
+      <Navbar_1.default /> 
       <h1 className="title is-3 mb-4 has-text-left">Añadir Persona</h1>
-      <FormularioPerson_1.default initialData={{ nombre: "", apellido: "", edad: 0, email: "", rol: "donador", id_comedor: 1 }} onSubmit={handleSubmit} submitLabel="Añadir Persona"/>
+      <FormularioPerson_1.default initialData={{ nombre: "", apellido: "", edad: 0, email: "", rol: "donador", id_comedor: 1 }} // Datos iniciales
+     onSubmit={handleSubmit} // Manejar el envío
+     submitLabel="Añadir Persona"/>
     </div>);
 };
 exports.default = AñadirPersonaPage;

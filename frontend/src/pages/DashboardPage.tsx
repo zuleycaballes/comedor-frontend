@@ -4,19 +4,19 @@ import Navbar from "../components/Navbar";
 const DashboardPage = () => {
   return (
     <div
-    className="container"
-    style={{
-    fontFamily: "Jost, sans-serif",
-    }}
-  >
-      <Navbar />
+      className="container"
+      style={{
+        fontFamily: "Jost, sans-serif",
+      }}
+    >
+      <Navbar /> 
       <div
         className="container"
         style={{
           fontFamily: "Jost, sans-serif",
         }}
       >
-        <DashboardChart />
+        <DashboardChart /> 
       </div>
     </div>
   );

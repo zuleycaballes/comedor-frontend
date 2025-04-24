@@ -17,24 +17,26 @@ const react_router_dom_1 = require("react-router-dom");
 const Formulario_1 = __importDefault(require("../components/Formulario"));
 const Navbar_1 = __importDefault(require("../components/Navbar"));
 const DonarPage = () => {
-    const navigate = (0, react_router_dom_1.useNavigate)();
+    const navigate = (0, react_router_dom_1.useNavigate)(); // Navegación para redirigir
+    // Manejar la donación de un producto
     const handleDonar = (product) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            yield (0, ProductAPI_1.createProduct)(product);
-            navigate("/products");
+            const productWithComedor = Object.assign(Object.assign({}, product), { id_comedor: 1 });
+            yield (0, ProductAPI_1.createProduct)(productWithComedor); // Crear producto en la API
+            navigate("/products"); // Redirigir a la lista de productos
         }
         catch (error) {
-            console.error('Error al crear el producto:', error);
-            alert('Hubo un error al crear el producto.');
+            console.error('Error al crear el producto:', error); // Mostrar error en consola
+            alert('Hubo un error al crear el producto.'); // Mostrar alerta al usuario
         }
     });
     return (<div className="container" style={{
             fontFamily: "Jost, sans-serif",
             marginTop: "100px",
         }}>
-    <Navbar_1.default />
-    <h1 className="title is-3 mb-4 has-text-left">Donar Producto</h1>
-        <Formulario_1.default onSubmit={handleDonar} buttonText="Donar"/>
-      </div>);
+      <Navbar_1.default />
+      <h1 className="title is-3 mb-4 has-text-left">Donar Producto</h1> 
+      <Formulario_1.default onSubmit={handleDonar} buttonText="Donar"/>
+    </div>);
 };
 exports.default = DonarPage;

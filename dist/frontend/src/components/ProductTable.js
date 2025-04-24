@@ -17,13 +17,16 @@ const ProductAPI_1 = require("../api/ProductAPI");
 const ProductRow_1 = __importDefault(require("./ProductRow"));
 const FilterBar_1 = __importDefault(require("./FilterBar"));
 const ProductTable = () => {
+    // Estados para manejar productos, filtros y ordenamiento
     const [products, setProducts] = (0, react_1.useState)([]);
     const [filteredProducts, setFilteredProducts] = (0, react_1.useState)([]);
     const [searchTerm, setSearchTerm] = (0, react_1.useState)("");
     const [sortBy, setSortBy] = (0, react_1.useState)("");
+    // Cargar productos al montar el componente
     (0, react_1.useEffect)(() => {
         handleUpdate();
     }, []);
+    // Obtener productos desde la API y filtrarlos por comedor
     const handleUpdate = () => __awaiter(void 0, void 0, void 0, function* () {
         const comedorId = Number(localStorage.getItem("comedorId"));
         const updated = yield (0, ProductAPI_1.getAllProducts)();
@@ -31,16 +34,20 @@ const ProductTable = () => {
         setProducts(filtered);
         setFilteredProducts(filtered);
     });
+    // Reiniciar filtros y ordenamiento
     const handleResetFilters = () => {
         setSearchTerm("");
         setSortBy("");
         setFilteredProducts(products);
     };
+    // Aplicar filtros y ordenamiento cuando cambian los estados relacionados
     (0, react_1.useEffect)(() => {
         let result = [...products];
+        // Filtrar por término de búsqueda
         if (searchTerm.trim() !== "") {
             result = result.filter((p) => p.nombre.toLowerCase().includes(searchTerm.toLowerCase()));
         }
+        // Ordenar según la opción seleccionada
         switch (sortBy) {
             case "nombre-asc":
                 result.sort((a, b) => a.nombre.localeCompare(b.nombre));
@@ -65,6 +72,7 @@ const ProductTable = () => {
             { label: "Cantidad mayor a menor", value: "inventario-desc" },
         ]}/>
 
+      {/* Tabla de productos */}
       <table className="table is-fullwidth is-striped custom-table">
         <thead>
           <tr>
@@ -77,6 +85,7 @@ const ProductTable = () => {
           </tr>
         </thead>
         <tbody>
+          {/* Filtrar y mostrar filas de productos */}
           {filteredProducts.map((product) => (<ProductRow_1.default key={product.id} product={product} onUpdate={handleUpdate}/>))}
         </tbody>
       </table>

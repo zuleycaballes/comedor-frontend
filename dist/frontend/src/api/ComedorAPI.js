@@ -18,10 +18,14 @@ const api = axios_1.default.create({
     baseURL: "http://localhost:3000",
     headers: { "Content-Type": "application/json" },
 });
+// Función para realizar el login.
+// Recibe un nombre de usuario y contraseña, y realiza una solicitud POST al endpoint correspondiente.
 const login = (username, password) => __awaiter(void 0, void 0, void 0, function* () {
     return axios_1.default.post("/api/comedor/login", { username, password });
 });
 exports.login = login;
+// Función para obtener un comedor por su ID.
+// Realiza una solicitud GET al endpoint correspondiente y devuelve el payload de la respuesta.
 const getComedorById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield axios_1.default.get(`http://localhost:3000/api/comedor/${id}`);
     return res.data.payload;

@@ -4,13 +4,13 @@ const react_fontawesome_1 = require("@fortawesome/react-fontawesome");
 const free_solid_svg_icons_1 = require("@fortawesome/free-solid-svg-icons");
 const react_router_dom_1 = require("react-router-dom");
 const Navbar = () => {
-    const currentPath = window.location.pathname;
-    const navigate = (0, react_router_dom_1.useNavigate)();
+    const currentPath = window.location.pathname; // Obtiene la ruta actual
+    const navigate = (0, react_router_dom_1.useNavigate)(); // Hook para navegar entre rutas
     const handleLogout = () => {
-        navigate("/");
+        navigate("/"); // Redirige al login
     };
     const handleAdminClick = () => {
-        navigate("/admin");
+        navigate("/admin"); // Redirige a la página de administración
     };
     return (<nav className="navbar px-4 py-2 is-fixed-top" style={{
             backgroundColor: "#6FA4D3",
@@ -20,7 +20,7 @@ const Navbar = () => {
         }}>
       <div className="navbar-brand">
         <span className="navbar-item has-text-white has-text-weight-semibold is-size-4">
-          El Comedor
+          El Comedor 
         </span>
       </div>
 
@@ -46,6 +46,7 @@ const Navbar = () => {
           </div>
 
           <div className="navbar-item">
+            {/* Botón página de administración */}
             <button className="button is-white is-outlined" style={{
             border: "none",
             backgroundColor: "transparent",

@@ -9,11 +9,11 @@ const DashboardPage = () => {
     return (<div className="container" style={{
             fontFamily: "Jost, sans-serif",
         }}>
-      <Navbar_1.default />
+      <Navbar_1.default /> 
       <div className="container" style={{
             fontFamily: "Jost, sans-serif",
         }}>
-        <DashboardChart_1.default />
+        <DashboardChart_1.default /> 
       </div>
     </div>);
 };

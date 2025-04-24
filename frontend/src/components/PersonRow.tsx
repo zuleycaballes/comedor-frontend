@@ -7,22 +7,24 @@ import { useState } from "react";
 import ConfirmDialog from "./ConfirmDialog";
 
 interface Props {
-  person: Person;
-  onUpdate: () => void;
+  person: Person; // Persona a mostrar
+  onUpdate: () => void; // Función para actualizar la tabla
 }
 
 const PersonRow = ({ person, onUpdate }: Props) => {
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false); // Estado para mostrar el diálogo de confirmación
 
+  // Confirmar eliminación de la persona
   const confirmDelete = async () => {
-    await deletePerson(person.id);
-    onUpdate();
-    setShowConfirm(false);
+    await deletePerson(person.id); // Llamada a la API para eliminar
+    onUpdate(); // Actualizar la tabla
+    setShowConfirm(false); // Cerrar el diálogo
   };
 
   return (
     <>
       <tr>
+        {/* Mostrar datos de la persona */}
         <td className="has-text-weight-semibold">{person.id}</td>
         <td className="has-text-weight-semibold">{person.nombre}</td>
         <td className="has-text-weight-semibold">{person.apellido}</td>

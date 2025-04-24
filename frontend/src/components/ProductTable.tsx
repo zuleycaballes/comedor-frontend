@@ -5,38 +5,45 @@ import ProductRow from "./ProductRow";
 import FilterBar, { SortOption } from "./FilterBar";
 
 const ProductTable = () => {
+  // Estados para manejar productos, filtros y ordenamiento
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("");
 
+  // Cargar productos al montar el componente
   useEffect(() => {
     handleUpdate();
   }, []);
 
+  // Obtener productos desde la API y filtrarlos por comedor
   const handleUpdate = async () => {
     const comedorId = Number(localStorage.getItem("comedorId"));
     const updated = await getAllProducts();
     const filtered = updated.filter((p) => p.id_comedor === comedorId);
     setProducts(filtered);
     setFilteredProducts(filtered);
-  };  
+  };
 
+  // Reiniciar filtros y ordenamiento
   const handleResetFilters = () => {
     setSearchTerm("");
     setSortBy("");
     setFilteredProducts(products);
   };
 
+  // Aplicar filtros y ordenamiento cuando cambian los estados relacionados
   useEffect(() => {
     let result = [...products];
 
+    // Filtrar por término de búsqueda
     if (searchTerm.trim() !== "") {
       result = result.filter((p) =>
         p.nombre.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
+    // Ordenar según la opción seleccionada
     switch (sortBy) {
       case "nombre-asc":
         result.sort((a, b) => a.nombre.localeCompare(b.nombre));
@@ -72,6 +79,7 @@ const ProductTable = () => {
         ]}
       />
 
+      {/* Tabla de productos */}
       <table className="table is-fullwidth is-striped custom-table">
         <thead>
           <tr>
@@ -84,6 +92,7 @@ const ProductTable = () => {
           </tr>
         </thead>
         <tbody>
+          {/* Filtrar y mostrar filas de productos */}
           {filteredProducts.map((product) => (
             <ProductRow key={product.id} product={product} onUpdate={handleUpdate} />
           ))}

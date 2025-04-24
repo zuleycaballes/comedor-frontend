@@ -26,12 +26,14 @@ const FormularioPersona: React.FC<FormularioPersonaProps> = ({
   onSubmit,
   submitLabel,
 }) => {
+  // Estados para los campos del formulario
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [edad, setEdad] = useState(0);
   const [email, setEmail] = useState('');
   const [rol, setRol] = useState<"donador" | "consumidor">("donador");
 
+  // Efecto para inicializar los datos si se proporcionan
   useEffect(() => {
     if (initialData) {
       setNombre(initialData.nombre);
@@ -42,6 +44,7 @@ const FormularioPersona: React.FC<FormularioPersonaProps> = ({
     }
   }, [initialData]);
 
+  // Manejo del envío del formulario
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const id_comedor = Number(localStorage.getItem("comedorId"));

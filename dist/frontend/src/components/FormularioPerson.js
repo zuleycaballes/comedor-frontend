@@ -3,11 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 require("./FormularioPerson.css");
 const FormularioPersona = ({ initialData, onSubmit, submitLabel, }) => {
+    // Estados para los campos del formulario
     const [nombre, setNombre] = (0, react_1.useState)('');
     const [apellido, setApellido] = (0, react_1.useState)('');
     const [edad, setEdad] = (0, react_1.useState)(0);
     const [email, setEmail] = (0, react_1.useState)('');
     const [rol, setRol] = (0, react_1.useState)("donador");
+    // Efecto para inicializar los datos si se proporcionan
     (0, react_1.useEffect)(() => {
         if (initialData) {
             setNombre(initialData.nombre);
@@ -17,6 +19,7 @@ const FormularioPersona = ({ initialData, onSubmit, submitLabel, }) => {
             setRol(initialData.rol);
         }
     }, [initialData]);
+    // Manejo del envío del formulario
     const handleSubmit = (e) => {
         e.preventDefault();
         const id_comedor = Number(localStorage.getItem("comedorId"));

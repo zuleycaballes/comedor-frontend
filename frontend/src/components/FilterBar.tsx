@@ -1,5 +1,6 @@
 import React from "react";
 
+// Tipos de opciones de ordenamiento
 export type SortOption =
   | "nombre-asc"
   | "nombre-desc"
@@ -8,13 +9,13 @@ export type SortOption =
   | "";
 
 interface FilterBarProps {
-  searchTerm: string;
-  setSearchTerm: (value: string) => void;
-  sortBy: SortOption;
-  setSortBy: (value: SortOption) => void;
-  options: { label: string; value: SortOption }[];
-  showReset?: boolean;
-  onReset?: () => void;
+  searchTerm: string; // Término de búsqueda
+  setSearchTerm: (value: string) => void; 
+  sortBy: SortOption; // Opción de ordenamiento seleccionada
+  setSortBy: (value: SortOption) => void; 
+  options: { label: string; value: SortOption }[]; // Opciones disponibles para ordenar
+  showReset?: boolean; 
+  onReset?: () => void; 
 }
 
 const FilterBar: React.FC<FilterBarProps> = ({
@@ -29,9 +30,9 @@ const FilterBar: React.FC<FilterBarProps> = ({
   return (
     <div
       style={{
-        display: "flex",
-        gap: "1rem",
-        alignItems: "center",
+        display: "flex", 
+        gap: "1rem", 
+        alignItems: "center", 
         marginBottom: "1.5rem",
         flexWrap: "wrap",
       }}

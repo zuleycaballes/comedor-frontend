@@ -14,12 +14,12 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   isOpen,
   title = "Confirmar acción",
   message,
-  confirmText = "Aceptar",
+  confirmText = "Confirmar",
   cancelText = "Cancelar",
   onConfirm,
   onCancel,
 }) => {
-  if (!isOpen) return null;
+  if (!isOpen) return null; // No renderiza si no está abierto
 
   return (
     <div

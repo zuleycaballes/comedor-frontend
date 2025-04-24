@@ -6,10 +6,10 @@ import "./ProductDetail.css";
 import DefaultImage from "../assets/añadir_img.png";
 
 const ProductDetailPage = () => {
-  const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const { id } = useParams<{ id: string }>(); // Obtener el ID del producto 
+  const [product, setProduct] = useState<Product | null>(null); // Almacenar el producto
+  const [loading, setLoading] = useState<boolean>(true); // Manejar la carga
+  const [error, setError] = useState<string | null>(null); // Manejar errores
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -17,29 +17,28 @@ const ProductDetailPage = () => {
       setError(null);
       try {
         if (id) {
-          const fetchedProduct = await getProductById(Number(id));
+          const fetchedProduct = await getProductById(Number(id)); // Llamada a la API para obtener el producto
           setProduct(fetchedProduct);
         }
       } catch (err) {
-        setError("No se pudo cargar el producto. Intenta nuevamente.");
+        setError("No se pudo cargar el producto. Intenta nuevamente."); // Manejo de errores
       } finally {
-        setLoading(false);
+        setLoading(false); 
       }
     };
     fetchProduct();
-  }, [id]);
+  }, [id]); // Ejecutar efecto cuando cambie el ID
 
-  if (loading) return <div>Cargando...</div>;
-  if (error) return <div>{error}</div>;
-  if (!product) return <div>Producto no encontrado.</div>;
-
+  if (loading) return <div>Cargando...</div>; 
+  if (error) return <div>{error}</div>; 
+  if (!product) return <div>Producto no encontrado.</div>; 
   return (
     <div className="product-detail-container">
-      <h1 className="product-title">{product.nombre}</h1>
+      <h1 className="product-title">{product.nombre}</h1> 
 
       <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem" }}>
         <img
-          src={product.imagen ? `http://localhost:3000${product.imagen}` : DefaultImage}
+          src={product.imagen ? `http://localhost:3000${product.imagen}` : DefaultImage} // Mostrar imagen del producto o una por defecto
           alt={`Imagen de ${product.nombre}`}
           style={{
             width: "250px",
@@ -51,6 +50,7 @@ const ProductDetailPage = () => {
       </div>
 
       <div className="product-details">
+        {/* Mostrar detalles del producto */}
         <p className="product-details-category"><strong>ID:</strong> {product.id}</p>
         <p className="product-details-category"><strong>Descripción:</strong> {product.descripcion}</p>
         <p className="product-details-category"><strong>Inventario:</strong> {product.inventario}</p>

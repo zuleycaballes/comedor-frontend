@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
-const ConfirmDialog = ({ isOpen, title = "Confirmar acción", message, confirmText = "Aceptar", cancelText = "Cancelar", onConfirm, onCancel, }) => {
+const ConfirmDialog = ({ isOpen, title = "Confirmar acción", message, confirmText = "Confirmar", cancelText = "Cancelar", onConfirm, onCancel, }) => {
     if (!isOpen)
-        return null;
+        return null; // No renderiza si no está abierto
     return (<div style={{
             position: "fixed",
             top: 0,

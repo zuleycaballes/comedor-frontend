@@ -10,9 +10,9 @@ const ProductDetailPage = () => {
             fontFamily: "Jost, sans-serif",
             marginTop: "100px",
         }}>
-      <Navbar_1.default />
+      <Navbar_1.default /> 
       <h1 className="title is-3 mb-4 has-text-left">Comedor</h1>
-      <Admin_1.default />
+      <Admin_1.default /> 
     </div>);
 };
 exports.default = ProductDetailPage;

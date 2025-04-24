@@ -4,8 +4,9 @@ import { createPerson } from "../api/PersonAPI";
 import { useNavigate } from "react-router-dom";
 
 const AñadirPersonaPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Navegación para redirigir
 
+  // Manejar el envío del formulario
   const handleSubmit = async (persona: {
     nombre: string;
     apellido: string;
@@ -15,11 +16,11 @@ const AñadirPersonaPage = () => {
     id_comedor: number;
   }) => {
     try {
-      await createPerson(persona);
+      await createPerson(persona); // Crear persona en la API
       navigate("/personas"); // Redirigir a la lista de personas
     } catch (error) {
-      console.error("Error al crear la persona:", error);
-      alert("Hubo un error al crear la persona.");
+      console.error("Error al crear la persona:", error); // Mostrar error en consola
+      alert("Hubo un error al crear la persona."); // Mostrar alerta al usuario
     }
   };
 
@@ -31,11 +32,11 @@ const AñadirPersonaPage = () => {
         marginTop: "100px",
       }}
     >
-      <Navbar />
+      <Navbar /> 
       <h1 className="title is-3 mb-4 has-text-left">Añadir Persona</h1>
       <FormularioPerson 
-        initialData={{ nombre: "", apellido: "", edad: 0, email: "", rol: "donador", id_comedor: 1 }}
-        onSubmit={handleSubmit}
+        initialData={{ nombre: "", apellido: "", edad: 0, email: "", rol: "donador", id_comedor: 1 }} // Datos iniciales
+        onSubmit={handleSubmit} // Manejar el envío
         submitLabel="Añadir Persona"
       />
     </div>
@@ -43,7 +44,3 @@ const AñadirPersonaPage = () => {
 };
 
 export default AñadirPersonaPage;
-
-
-
-

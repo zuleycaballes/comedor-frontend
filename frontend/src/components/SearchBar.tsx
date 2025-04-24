@@ -6,6 +6,7 @@ interface Props {
 const SearchBar = ({ searchTerm, setSearchTerm }: Props) => {
   return (
     <div style={{ marginBottom: "1rem" }}>
+      {/* Input para buscar, actualiza el estado al escribir */}
       <input
         type="text"
         placeholder="Buscar..."

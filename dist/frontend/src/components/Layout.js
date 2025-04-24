@@ -5,8 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const Layout = ({ children }) => {
-    return (<div style={{ height: "100vh", fontFamily: "Jost, sans-serif", display: "flex", flexDirection: "column" }}>
+    return (<div style={{
+            height: "100vh",
+            fontFamily: "Jost, sans-serif",
+            display: "flex",
+            flexDirection: "column",
+        }}>
       <div style={{ height: "25%", backgroundColor: "#6FA4D3" }}/>
+      
       <div style={{
             flex: 1,
             backgroundColor: "#ffffff",
@@ -14,10 +20,11 @@ const Layout = ({ children }) => {
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            padding: "2rem"
+            padding: "2rem",
         }}>
         {children}
       </div>
+      
       <div style={{ height: "25%", backgroundColor: "#6FA4D3" }}/>
     </div>);
 };

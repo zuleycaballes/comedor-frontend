@@ -17,27 +17,32 @@ const PersonAPI_1 = require("../api/PersonAPI");
 const PersonRow_1 = __importDefault(require("./PersonRow"));
 const FilterBar_1 = __importDefault(require("./FilterBar"));
 const PersonTable = () => {
+    // Estados para manejar personas, filtros y ordenamiento
     const [people, setPeople] = (0, react_1.useState)([]);
     const [filteredPeople, setFilteredPeople] = (0, react_1.useState)([]);
     const [searchTerm, setSearchTerm] = (0, react_1.useState)("");
     const [sortBy, setSortBy] = (0, react_1.useState)("");
-    // Obtener personas al iniciar
+    // Obtener personas al montar el componente
     (0, react_1.useEffect)(() => {
         handleUpdate();
     }, []);
     const handleUpdate = () => __awaiter(void 0, void 0, void 0, function* () {
+        // Obtener el ID del comedor desde localStorage
         const comedorId = Number(localStorage.getItem("comedorId"));
+        // Obtener todas las personas y filtrar por comedor
         const updated = yield (0, PersonAPI_1.getAllPeople)();
         const filtered = updated.filter((p) => p.id_comedor === comedorId);
         setPeople(filtered);
         setFilteredPeople(filtered);
     });
-    // Aplicar filtros y ordenamiento
+    // Aplicar filtros y ordenamiento cuando cambian los estados
     (0, react_1.useEffect)(() => {
         let result = [...people];
+        // Filtrar por término de búsqueda
         if (searchTerm.trim()) {
             result = result.filter((p) => p.nombre.toLowerCase().includes(searchTerm.toLowerCase()));
         }
+        // Ordenar por nombre ascendente o descendente
         if (sortBy === "nombre-asc") {
             result.sort((a, b) => a.nombre.localeCompare(b.nombre));
         }
@@ -55,6 +60,7 @@ const PersonTable = () => {
             { label: "Ordenar Z-A", value: "nombre-desc" },
         ]}/>
 
+      {/* Tabla de personas */}
       <table className="table is-fullwidth is-striped custom-table">
         <thead>
           <tr>
@@ -69,6 +75,7 @@ const PersonTable = () => {
           </tr>
         </thead>
         <tbody>
+          {/* Filtrar y mostrar filas de personas */}
           {filteredPeople.map((person) => (<PersonRow_1.default key={person.id} person={person} onUpdate={handleUpdate}/>))}
         </tbody>
       </table>

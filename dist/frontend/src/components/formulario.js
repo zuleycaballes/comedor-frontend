@@ -17,11 +17,13 @@ const a_adir_img_png_1 = __importDefault(require("../assets/a\u00F1adir_img.png"
 require("./Formulario.css");
 const ProductAPI_1 = require("../api/ProductAPI");
 const ImageUpload_1 = __importDefault(require("./ImageUpload"));
-const Formulario = ({ product, onSubmit, buttonText }) => {
+const Formulario = ({ product, buttonText }) => {
+    // Estados para manejar los valores del formulario
     const [nombre, setNombre] = (0, react_1.useState)('');
     const [descripcion, setDescripcion] = (0, react_1.useState)('');
     const [cantidad, setCantidad] = (0, react_1.useState)(0);
     const [imagenUrl, setImagenUrl] = (0, react_1.useState)(null);
+    // Inicializar los valores si se recibe un producto
     (0, react_1.useEffect)(() => {
         if (product) {
             setNombre(product.nombre);
@@ -30,9 +32,11 @@ const Formulario = ({ product, onSubmit, buttonText }) => {
             setImagenUrl(product.imagen ? `http://localhost:3000${product.imagen}` : '');
         }
     }, [product]);
+    // Redirige a la página de productos
     const handleProductosClick = () => {
         window.location.pathname = '/products';
     };
+    // Maneja el envío del formulario
     const handleSubmit = (e) => __awaiter(void 0, void 0, void 0, function* () {
         e.preventDefault();
         const comedorId = Number(localStorage.getItem("comedorId"));
@@ -41,6 +45,7 @@ const Formulario = ({ product, onSubmit, buttonText }) => {
             return;
         }
         try {
+            // Llama a la API para crear el producto
             yield (0, ProductAPI_1.createProduct)({
                 nombre,
                 descripcion,
@@ -49,6 +54,7 @@ const Formulario = ({ product, onSubmit, buttonText }) => {
                 imagen: imagenUrl ? imagenUrl.replace("http://localhost:3000", "") : null // guarda solo la ruta relativa
             });
             alert("Donación registrada con éxito");
+            // Resetea los valores del formulario
             setNombre('');
             setDescripcion('');
             setCantidad(0);

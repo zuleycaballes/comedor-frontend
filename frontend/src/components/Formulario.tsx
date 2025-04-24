@@ -10,12 +10,14 @@ interface FormularioProps {
   buttonText: string;
 }
 
-const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }) => {
+const Formulario: React.FC<FormularioProps> = ({ product, buttonText }) => {
+  // Estados para manejar los valores del formulario
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [cantidad, setCantidad] = useState(0);
   const [imagenUrl, setImagenUrl] = useState<string | null>(null);
 
+  // Inicializar los valores si se recibe un producto
   useEffect(() => {
     if (product) {
       setNombre(product.nombre);
@@ -25,10 +27,12 @@ const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }
     }
   }, [product]);
 
+  // Redirige a la página de productos
   const handleProductosClick = () => {
     window.location.pathname = '/products';
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -39,6 +43,7 @@ const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }
     }
 
     try {
+      // Llama a la API para crear el producto
       await createProduct({
         nombre,
         descripcion,
@@ -47,6 +52,7 @@ const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }
         imagen: imagenUrl ? imagenUrl.replace("http://localhost:3000", "") : null // guarda solo la ruta relativa
       });
       alert("Donación registrada con éxito");
+      // Resetea los valores del formulario
       setNombre('');
       setDescripcion('');
       setCantidad(0);

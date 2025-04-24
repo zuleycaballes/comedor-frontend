@@ -17,10 +17,12 @@ const LowInventoryPieChart: React.FC<Props> = ({ data }) => {
         Productos con Bajo Inventario (≤ 10)
       </h2>
       {data.length === 0 ? (
+        // Mensaje cuando no hay datos
         <p className="has-text-centered has-text-grey">
           No hay productos con inventario menor o igual a 10.
         </p>
       ) : (
+        // Gráfico pie responsivo
         <ResponsiveContainer width="100%" height={400}>
           <PieChart>
             <Pie
@@ -36,6 +38,7 @@ const LowInventoryPieChart: React.FC<Props> = ({ data }) => {
                 <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
               ))}
             </Pie>
+            {/* Tooltip para mostrar información al pasar el mouse */}
             <Tooltip wrapperStyle={{ fontSize: '14px' }} />
             <Legend />
           </PieChart>
