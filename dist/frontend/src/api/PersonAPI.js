@@ -18,32 +18,40 @@ const api = axios_1.default.create({
     baseURL: "http://localhost:3000",
     headers: { "Content-Type": "application/json" },
 });
+// Obtiene todas las personas desde el backend
 const getAllPeople = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield api.get("/api/person");
     return response.data.payload;
 });
 exports.getAllPeople = getAllPeople;
+// Obtiene una persona específica por su ID
 const getPersonById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield api.get(`/api/person/${id}`);
     return response.data.payload;
 });
 exports.getPersonById = getPersonById;
-const createPerson = (personData) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Sending to backend:", personData);
+// Crea una nueva persona en el backend
+const createPerson = (personData // Excluye ciertos campos
+) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Sending to backend:", personData); // Log para depuración
     const response = yield api.post("/api/person", personData);
     return response.data.payload;
 });
 exports.createPerson = createPerson;
-const updatePerson = (id, person) => __awaiter(void 0, void 0, void 0, function* () {
+// Actualiza una persona existente en el backend
+const updatePerson = (id, person // Permite enviar solo los campos que se desean actualizar
+) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield api.patch(`/api/person/${id}`, person);
     return response.data.payload;
 });
 exports.updatePerson = updatePerson;
+// Elimina una persona en el backend por su ID
 const deletePerson = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    yield api.delete("/api/person", { data: { id } });
+    yield api.delete("/api/person", { data: { id } }); // Envia el ID como parte del cuerpo de la solicitud
 });
 exports.deletePerson = deletePerson;
+// Realiza el login enviando las credenciales al backend
 const login = (username, password) => __awaiter(void 0, void 0, void 0, function* () {
-    return axios_1.default.post("/api/comedor/login", { username, password });
+    return axios_1.default.post("/api/comedor/login", { username, password }); // Retorna la respuesta completa
 });
 exports.login = login;
