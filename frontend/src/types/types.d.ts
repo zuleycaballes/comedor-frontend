@@ -8,4 +8,15 @@ declare module "my-types" {
     createdAt: Date;
     updatedAt: Date;
   }
+
+  export interface Person {
+    id: number;
+    nombre: string;
+    apellido: string;
+    edad: number;
+    email: string;
+    rol: "donador" | "consumidor";
+    createdAt: Date;
+    updatedAt: Date;
+  }
 }

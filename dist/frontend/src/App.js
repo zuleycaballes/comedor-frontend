@@ -8,8 +8,10 @@ const react_router_dom_1 = require("react-router-dom");
 const ProductPage_1 = __importDefault(require("./pages/ProductPage"));
 const DonarPage_1 = __importDefault(require("./pages/DonarPage"));
 const DashboardPage_1 = __importDefault(require("./pages/DashboardPage"));
-const LoginPage_1 = __importDefault(require("./pages/LoginPage"));
+const PersonPage_1 = __importDefault(require("./pages/PersonPage"));
 const EditarPage_1 = __importDefault(require("./pages/EditarPage"));
+const AddPersonPage_1 = __importDefault(require("./pages/AddPersonPage"));
+const LoginPage_1 = __importDefault(require("./pages/LoginPage"));
 
 function App() {
     return (<>
@@ -18,7 +20,10 @@ function App() {
         <react_router_dom_1.Route path="/dashboard" element={<DashboardPage_1.default />}/>
         <react_router_dom_1.Route path="/products" element={<ProductPage_1.default />}/>
         <react_router_dom_1.Route path="/donar" element={<DonarPage_1.default />}/>
+        <react_router_dom_1.Route path="/personas" element={<PersonPage_1.default />}/>
         <react_router_dom_1.Route path="/products/edit/:id" element={<EditarPage_1.default />}/>
+        <react_router_dom_1.Route path="/personas/add" element={<AddPersonPage_1.default />}/>
+
       </react_router_dom_1.Routes>
     </>);
 }

@@ -1,0 +1,31 @@
+import axios from "axios";
+import { Person } from "my-types";
+
+const api = axios.create({
+  baseURL: "http://localhost:3000", // Asegúrate de que esta URL sea correcta
+  headers: { "Content-Type": "application/json" },
+});
+
+export const getAllPeople = async (): Promise<Person[]> => {
+  const response = await api.get("/api/person");
+  return response.data.payload;
+};
+
+export const getPersonById = async (id: number): Promise<Person> => {
+  const response = await api.get(`/api/person/${id}`);
+  return response.data.payload;
+};
+
+export const createPerson = async (person: Omit<Person, "id">): Promise<Person> => {
+  const response = await api.post("/api/person", person); 
+  return response.data.payload;
+};
+
+export const updatePerson = async (id: number, person: Partial<Person>): Promise<Person> => {
+  const response = await api.put(`/api/person/${id}`, person); 
+  return response.data.payload;
+};
+
+export const deletePerson = async (id: number): Promise<void> => {
+  await api.delete("/api/person", { data: { id } }); 
+};
