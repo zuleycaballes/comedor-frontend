@@ -7,6 +7,7 @@ declare module "my-types" {
     id_comedor: number;
     createdAt: Date;
     updatedAt: Date;
+    imagen?: string;
   }
 
   export interface Person {

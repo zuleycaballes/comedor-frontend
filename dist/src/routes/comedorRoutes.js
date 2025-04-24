@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const comedorControler_1 = require("../controllers/comedorControler");
 const personRouter = (0, express_1.Router)();
+personRouter.post("/login", comedorControler_1.login);
 personRouter.get('/', comedorControler_1.getAllComedores);
 personRouter.get('/:id', comedorControler_1.getComedorById);
 personRouter.post('/', comedorControler_1.createComedor);

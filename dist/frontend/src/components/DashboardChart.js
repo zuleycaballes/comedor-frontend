@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const axios_1 = __importDefault(require("axios"));
-const InventoryBarchart_1 = __importDefault(require("../components/InventoryBarchart"));
+const InventoryBarChart_1 = __importDefault(require("../components/InventoryBarChart"));
 const LowInventoryPieChart_1 = __importDefault(require("../components/LowInventoryPieChart"));
 const DashboardChart = () => {
     const [productos, setProductos] = (0, react_1.useState)([]);
@@ -34,7 +34,7 @@ const DashboardChart = () => {
     };
     return (<div style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
       <div style={{ padding: "2rem", backgroundColor: "#ffffff", fontFamily: "Jost, sans-serif", marginTop: "2rem" }}>
-        <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem", marginTop: "2rem", color: "#363636" }}>
+        <h1 style={{ fontSize: "2rem", fontWeight: 500, marginBottom: "1rem", marginTop: "2rem", color: "#363636" }}>
           Dashboard
         </h1> 
 
@@ -45,7 +45,7 @@ const DashboardChart = () => {
               Total de productos: {productos.length}
             </div>
           </div>
-          <InventoryBarchart_1.default data={productos}/>
+          <InventoryBarChart_1.default data={productos}/>
         </div>
 
         <div style={boxStyle}>

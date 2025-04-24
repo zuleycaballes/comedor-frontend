@@ -2,7 +2,7 @@ import axios from "axios";
 import { Person } from "my-types";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000", // Asegúrate de que esta URL sea correcta
+  baseURL: "http://localhost:3000",
   headers: { "Content-Type": "application/json" },
 });
 
@@ -30,4 +30,8 @@ export const updatePerson = async (id: number, person: Partial<Person>): Promise
 
 export const deletePerson = async (id: number): Promise<void> => {
   await api.delete("/api/person", { data: { id } }); 
+};
+
+export const login = async (username: string, password: string) => {
+  return axios.post("/api/comedor/login", { username, password });
 };

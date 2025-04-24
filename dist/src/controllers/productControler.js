@@ -24,12 +24,13 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             return;
         }
         // Save Product in the database
-        const { nombre, descripcion, inventario, id_comedor = 1 } = req.body;
+        const { nombre, descripcion, inventario, id_comedor, imagen } = req.body;
         const product = {
             nombre,
             descripcion,
             inventario,
-            id_comedor
+            id_comedor,
+            imagen
         };
         console.log("Creando producto con:", product);
         const data = yield product_1.Product.create(product);

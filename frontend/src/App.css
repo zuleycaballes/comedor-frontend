@@ -171,6 +171,28 @@ h3.title {
   background-color: #5A94C1;
 }
 
+.logout-button:hover {
+  background-color: #ffffff !important;
+  color: #6FA4D3 !important;
+  border-color: #6FA4D3 !important;
+}
+
+table {
+  table-layout: auto;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+td.is-flex {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: light;

@@ -23,11 +23,10 @@ export class Product extends Model<ProductAttributes, ProductCreationAttributes>
     })
     id!: number;
     
-    @ForeignKey(() => Comedor) // llave foranea
-    @Column({
-    defaultValue: 1 
-    })
+    @ForeignKey(() => Comedor)
+    @Column
     id_comedor!: number;
+
 
     @BelongsTo(() => Comedor) // Define relationship with 'Comedor'
     comedor!: Comedor;
@@ -42,6 +41,12 @@ export class Product extends Model<ProductAttributes, ProductCreationAttributes>
 
     @Column
     inventario!: number;
+
+    @Column({
+        type: DataType.STRING,
+        allowNull: true
+      })
+      imagen?: string;      
 
     @CreatedAt
     @Column

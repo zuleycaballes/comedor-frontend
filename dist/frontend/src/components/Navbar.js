@@ -23,7 +23,7 @@ const Navbar = () => {
 
       <div className="navbar-menu">
         <div className="navbar-end">
-          <a href="/" className={`navbar-item has-text-white ${currentPath === "/" ? "has-text-weight-bold" : ""}`}>
+          <a href="/dashboard" className={`navbar-item has-text-white ${currentPath === "/dashboard" ? "has-text-weight-bold" : ""}`}>
             Dashboard
           </a>
           <a href="/products" className={`navbar-item has-text-white ${currentPath === "/products" ? "has-text-weight-bold" : ""}`}>
@@ -37,10 +37,11 @@ const Navbar = () => {
           </a>
 
           <div className="navbar-item mr-4">
-            <button onClick={handleLogout} className="button is-white is-outlined has-text-weight-semibold">
+            <button onClick={handleLogout} className="button logout-button is-white is-outlined has-text-weight-semibold">
               Cerrar Sesión
             </button>
           </div>
+
 
           <div className="navbar-item">
             <button className="button is-white is-outlined" style={{

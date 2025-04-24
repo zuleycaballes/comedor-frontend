@@ -9,8 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteComedor = exports.modifyComedor = exports.getComedorById = exports.getAllComedores = exports.createComedor = void 0;
+exports.deleteComedor = exports.modifyComedor = exports.getComedorById = exports.getAllComedores = exports.createComedor = exports.login = void 0;
 const comedor_1 = require("../models/comedor");
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username, password } = req.body;
+    if (password !== "123") {
+        res.status(401).json({ message: "Contraseña incorrecta" });
+        return;
+    }
+    const user = yield comedor_1.Comedor.findOne({ where: { nombre: username } });
+    if (!user) {
+        res.status(404).json({ message: "Usuario no encontrado" });
+        return;
+    }
+    res.status(200).json({ message: "Login exitoso" });
+});
+exports.login = login;
 // Create and Save a new Comedor
 const createComedor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
