@@ -26,14 +26,11 @@ const PersonTable = () => {
         handleUpdate();
     }, []);
     const handleUpdate = () => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            const updated = yield (0, PersonAPI_1.getAllPeople)();
-            setPeople(updated);
-            setFilteredPeople(updated);
-        }
-        catch (error) {
-            console.error("Error al obtener las personas:", error);
-        }
+        const comedorId = Number(localStorage.getItem("comedorId"));
+        const updated = yield (0, PersonAPI_1.getAllPeople)();
+        const filtered = updated.filter((p) => p.id_comedor === comedorId);
+        setPeople(filtered);
+        setFilteredPeople(filtered);
     });
     // Aplicar filtros y ordenamiento
     (0, react_1.useEffect)(() => {

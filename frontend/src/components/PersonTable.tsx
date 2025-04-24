@@ -16,14 +16,13 @@ const PersonTable = () => {
   }, []);
 
   const handleUpdate = async () => {
-    try {
-      const updated = await getAllPeople();
-      setPeople(updated);
-      setFilteredPeople(updated);
-    } catch (error) {
-      console.error("Error al obtener las personas:", error);
-    }
+    const comedorId = Number(localStorage.getItem("comedorId"));
+    const updated = await getAllPeople();
+    const filtered = updated.filter((p) => p.id_comedor === comedorId);
+    setPeople(filtered);
+    setFilteredPeople(filtered);
   };
+  
 
   // Aplicar filtros y ordenamiento
   useEffect(() => {

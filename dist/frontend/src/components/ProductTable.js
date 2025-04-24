@@ -25,9 +25,11 @@ const ProductTable = () => {
         handleUpdate();
     }, []);
     const handleUpdate = () => __awaiter(void 0, void 0, void 0, function* () {
+        const comedorId = Number(localStorage.getItem("comedorId"));
         const updated = yield (0, ProductAPI_1.getAllProducts)();
-        setProducts(updated);
-        setFilteredProducts(updated);
+        const filtered = updated.filter((p) => p.id_comedor === comedorId);
+        setProducts(filtered);
+        setFilteredProducts(filtered);
     });
     const handleResetFilters = () => {
         setSearchTerm("");

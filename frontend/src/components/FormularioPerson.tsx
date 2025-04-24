@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./FormularioPerson.css"; // Asegúrate que este path sea correcto
+import "./FormularioPerson.css";
 
 interface FormularioPersonaProps {
   initialData?: {
@@ -30,8 +30,7 @@ const FormularioPersona: React.FC<FormularioPersonaProps> = ({
   const [apellido, setApellido] = useState('');
   const [edad, setEdad] = useState(0);
   const [email, setEmail] = useState('');
-  const [rol, setRol] = useState("donador" as "donador" | "consumidor");
-  const [id_comedor, setIdComedor] = useState(1);
+  const [rol, setRol] = useState<"donador" | "consumidor">("donador");
 
   useEffect(() => {
     if (initialData) {
@@ -40,12 +39,18 @@ const FormularioPersona: React.FC<FormularioPersonaProps> = ({
       setEdad(initialData.edad);
       setEmail(initialData.email);
       setRol(initialData.rol);
-      setIdComedor(initialData.id_comedor);
     }
   }, [initialData]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const id_comedor = Number(localStorage.getItem("comedorId"));
+
+    if (!id_comedor) {
+      alert("No hay sesión activa.");
+      return;
+    }
+
     onSubmit({
       nombre,
       apellido,
@@ -60,7 +65,6 @@ const FormularioPersona: React.FC<FormularioPersonaProps> = ({
     <div className="formulario-container">
       <div className="formulario-content">
         <form onSubmit={handleSubmit} className="formulario-form">
-
           <div className="form-row">
             <div className="form-field">
               <label className="form-label">Nombre</label>
@@ -122,19 +126,6 @@ const FormularioPersona: React.FC<FormularioPersonaProps> = ({
             </div>
           </div>
 
-          <div className="form-row">
-            <div className="form-field">
-              <label className="form-label">Comedor</label>
-              <input
-                className="input"
-                type="number"
-                value={id_comedor}
-                onChange={(e) => setIdComedor(Number(e.target.value))}
-                required
-              />
-            </div>
-          </div>
-
           <div className="form-buttons">
             <button type="button" className="cancel-button" onClick={() => window.history.back()}>
               Cancelar
@@ -150,9 +141,3 @@ const FormularioPersona: React.FC<FormularioPersonaProps> = ({
 };
 
 export default FormularioPersona;
-
-
-
-
-
-

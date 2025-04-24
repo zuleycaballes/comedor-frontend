@@ -15,10 +15,12 @@ const ProductTable = () => {
   }, []);
 
   const handleUpdate = async () => {
+    const comedorId = Number(localStorage.getItem("comedorId"));
     const updated = await getAllProducts();
-    setProducts(updated);
-    setFilteredProducts(updated);
-  };
+    const filtered = updated.filter((p) => p.id_comedor === comedorId);
+    setProducts(filtered);
+    setFilteredProducts(filtered);
+  };  
 
   const handleResetFilters = () => {
     setSearchTerm("");
