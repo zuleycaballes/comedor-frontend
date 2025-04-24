@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Product } from "my-types";
 import { updateProduct, deleteProduct } from "../api/ProductAPI";
+import { Link } from "react-router-dom";
 
 interface Props {
   product: Product;
@@ -37,9 +38,11 @@ const ProductRow = ({ product, onUpdate }: Props) => {
         <button className="button is-icon" onClick={handleIncrement}>+</button>
       </td>
       <td>
-        <button className="button is-icon">
+      <button className="button is-icon">
+        <Link to={`/products/edit/${product.id}`}>
           <FontAwesomeIcon icon={faEdit} />
-        </button>
+        </Link>
+      </button>
       </td>
       <td>
         <button className="button is-icon is-trash" onClick={handleDelete}>

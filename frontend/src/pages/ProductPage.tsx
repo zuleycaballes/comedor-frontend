@@ -23,7 +23,7 @@ const ProductPage = () => {
       }}
     >
       <Navbar />
-
+      <h1 className="title is-3 mb-4 has-text-left">Productos</h1>
       <ProductTable products={products} />
     </div>
   );
