@@ -21,7 +21,7 @@ const ProductPage = () => {
             marginTop: "100px",
         }}>
       <Navbar_1.default />
-
+      <h1 className="title is-3 mb-4 has-text-left">Productos</h1>
       <ProductTable_1.default products={products}/>
     </div>);
 };

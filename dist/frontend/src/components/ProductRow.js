@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_fontawesome_1 = require("@fortawesome/react-fontawesome");
 const free_solid_svg_icons_1 = require("@fortawesome/free-solid-svg-icons");
 const ProductAPI_1 = require("../api/ProductAPI");
+const react_router_dom_1 = require("react-router-dom");
 const ProductRow = ({ product, onUpdate }) => {
     const handleIncrement = () => __awaiter(void 0, void 0, void 0, function* () {
         yield (0, ProductAPI_1.updateProduct)(product.id, Object.assign(Object.assign({}, product), { inventario: product.inventario + 1 }));
@@ -37,9 +38,11 @@ const ProductRow = ({ product, onUpdate }) => {
         <button className="button is-icon" onClick={handleIncrement}>+</button>
       </td>
       <td>
-        <button className="button is-icon">
+      <button className="button is-icon">
+        <react_router_dom_1.Link to={`/products/edit/${product.id}`}>
           <react_fontawesome_1.FontAwesomeIcon icon={free_solid_svg_icons_1.faEdit}/>
-        </button>
+        </react_router_dom_1.Link>
+      </button>
       </td>
       <td>
         <button className="button is-icon is-trash" onClick={handleDelete}>
