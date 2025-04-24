@@ -1,8 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const currentPath = window.location.pathname;
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/");
+  };
+  
 
   return (
       <nav
@@ -48,10 +56,8 @@ const Navbar = () => {
           </a>
 
           <div className="navbar-item mr-4">
-            <button
-              className="button is-white is-outlined has-text-weight-semibold"
-              onClick={() => console.log("Cerrar Sesión")}
-            >
+            <button onClick={handleLogout}
+              className="button is-white is-outlined has-text-weight-semibold">
               Cerrar Sesión
             </button>
           </div>
