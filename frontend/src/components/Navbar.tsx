@@ -4,22 +4,24 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const currentPath = window.location.pathname;
-
   const navigate = useNavigate();
 
   const handleLogout = () => {
     navigate("/");
   };
-  
+
+  const handleAdminClick = () => {
+    navigate("/admin");
+  };
 
   return (
-      <nav
-        className="navbar px-4 py-2 is-fixed-top"
-        style={{
-          backgroundColor: "#6FA4D3", // Fondo azul claro
-          fontFamily: "Jost, sans-serif",
-          margin: 0, // Elimina márgenes
-          padding: 0, // Elimina padding
+    <nav
+      className="navbar px-4 py-2 is-fixed-top"
+      style={{
+        backgroundColor: "#6FA4D3",
+        fontFamily: "Jost, sans-serif",
+        margin: 0,
+        padding: 0,
       }}
     >
       <div className="navbar-brand">
@@ -64,7 +66,6 @@ const Navbar = () => {
             </button>
           </div>
 
-
           <div className="navbar-item">
             <button
               className="button is-white is-outlined"
@@ -73,7 +74,7 @@ const Navbar = () => {
                 backgroundColor: "transparent",
                 padding: "0.25rem 0.5rem",
               }}
-              onClick={() => console.log("Perfil")}
+              onClick={handleAdminClick}
             >
               <FontAwesomeIcon icon={faUser} className="has-text-white" size="lg" />
             </button>

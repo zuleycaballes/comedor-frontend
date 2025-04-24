@@ -45,3 +45,4 @@ export const deletePerson = async (id: number): Promise<void> => {
 export const login = async (username: string, password: string) => {
   return axios.post("/api/comedor/login", { username, password }); // Retorna la respuesta completa
 };
+

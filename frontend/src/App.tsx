@@ -8,6 +8,7 @@ import EditarPage from './pages/EditarPage';
 import AddPersonPage from './pages/AddPersonPage'; 
 import EditarPersonaPage from "./pages/EditarPersonPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import AdminPage from "./pages/AdminPage";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/personas/add" element={<AddPersonPage />} />
         <Route path="/personas/edit/:id" element={<EditarPersonaPage />} />
         <Route path="/products/:id" element={<ProductDetailPage />} />
+        <Route path="/admin" element={<AdminPage />} />
 
       </Routes>
     </>

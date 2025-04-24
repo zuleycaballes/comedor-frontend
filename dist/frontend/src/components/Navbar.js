@@ -9,11 +9,14 @@ const Navbar = () => {
     const handleLogout = () => {
         navigate("/");
     };
+    const handleAdminClick = () => {
+        navigate("/admin");
+    };
     return (<nav className="navbar px-4 py-2 is-fixed-top" style={{
-            backgroundColor: "#6FA4D3", // Fondo azul claro
+            backgroundColor: "#6FA4D3",
             fontFamily: "Jost, sans-serif",
-            margin: 0, // Elimina márgenes
-            padding: 0, // Elimina padding
+            margin: 0,
+            padding: 0,
         }}>
       <div className="navbar-brand">
         <span className="navbar-item has-text-white has-text-weight-semibold is-size-4">
@@ -42,13 +45,12 @@ const Navbar = () => {
             </button>
           </div>
 
-
           <div className="navbar-item">
             <button className="button is-white is-outlined" style={{
             border: "none",
             backgroundColor: "transparent",
             padding: "0.25rem 0.5rem",
-        }} onClick={() => console.log("Perfil")}>
+        }} onClick={handleAdminClick}>
               <react_fontawesome_1.FontAwesomeIcon icon={free_solid_svg_icons_1.faUser} className="has-text-white" size="lg"/>
             </button>
           </div>
