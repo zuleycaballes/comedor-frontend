@@ -1,7 +1,6 @@
 import { useState } from "react";
-import FormularioAñadirPersona from "../components/FormularioAñadirPersona";
+import FormularioAñadirPersona from "../components/FormularioPerson";
 import Navbar from "../components/Navbar";
-import BotonAñadir from "../components/BotonAñadir";
 
 const AddPersonPage = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
@@ -16,17 +15,8 @@ const AddPersonPage = () => {
   return (
     <div className="container" style={{ fontFamily: "Jost, sans-serif", marginTop: "100px" }}>
       <Navbar />
-      <h1 className="title is-3 mb-4">Añadir Persona</h1>
-      {isFormSubmitted ? (
-        <div className="notification is-success">
-          <strong>¡Persona añadida con éxito!</strong> La persona ha sido registrada.
-        </div>
-      ) : (
+      <h1 className="title is-3 mb-4 has-text-left">Añadir Persona</h1>
         <FormularioAñadirPersona onSubmit={handleFormSubmit} />
-      )}
-      <div className="has-text-left mt-5 ms-5">
-        <BotonAñadir label="Volver a la lista de personas" to="/personas" />
-      </div>
     </div>
   );
 };

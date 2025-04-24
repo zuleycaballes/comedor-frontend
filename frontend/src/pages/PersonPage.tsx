@@ -26,7 +26,7 @@ const PersonPage = () => {
       <h1 className="title is-3 mb-4 has-text-left">Personas</h1>
       <PersonTable people={people} />
       <div className="has-text-right mt-5 mr-5">
-      <BotonAñadir label="Añadir Persona" to="/añadir-persona"/>
+      <BotonAñadir label="Añadir Persona" to="/personas/add"/>
       </div>
     </div>
   );
