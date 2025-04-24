@@ -37,22 +37,30 @@ const ProductRow = ({ product, onUpdate }: Props) => {
       <tr>
         <th className="has-text-weight-semibold">{product.id}</th>
         <td className="has-text-weight-semibold">
-        <Link to={`/products/${product.id}`} style={{ color: 'black', textDecoration: 'underline' }}>
-          {product.nombre}
-        </Link>
-      </td>
-        <td className="has-text-weight-semibold">{product.descripcion}</td>
+          <Link to={`/products/${product.id}`} style={{ color: 'black', textDecoration: 'underline' }}>
+            {product.nombre}
+          </Link>
+        </td>
+        <td
+          className="has-text-weight-semibold"
+          style={{
+            maxWidth: "200px",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis"
+          }}
+        >
+          {product.descripcion}
+        </td>
         <td className="is-flex is-align-items-center" style={{ border: "none" }}>
           <button className="button is-icon" onClick={handleDecrement}>−</button>
           <span className="mx-2">{product.inventario}</span>
           <button className="button is-icon" onClick={handleIncrement}>+</button>
         </td>
         <td>
-          <button className="button is-icon">
-          <Link to={`/products/edit/${product.id}`}>
+          <Link to={`/products/edit/${product.id}`} className ="button is-icon">
             <FontAwesomeIcon icon={faEdit} />
           </Link>
-        </button>
         </td>
         <td>
           <button className="button is-icon is-trash" onClick={() => setShowConfirm(true)}>
