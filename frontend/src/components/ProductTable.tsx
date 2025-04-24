@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import { Product } from "my-types";
 import { getAllProducts } from "../api/ProductAPI";
 import ProductRow from "./ProductRow";
+import FilterBar, { SortOption } from "./FilterBar";
 
 const ProductTable = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState<SortOption>("");
 
   useEffect(() => {
     handleUpdate();
@@ -12,17 +16,62 @@ const ProductTable = () => {
 
   const handleUpdate = async () => {
     const updated = await getAllProducts();
-    console.log("Actualizado:", updated); 
     setProducts(updated);
+    setFilteredProducts(updated);
   };
-  
+
+  const handleResetFilters = () => {
+    setSearchTerm("");
+    setSortBy("");
+    setFilteredProducts(products);
+  };
+
+  useEffect(() => {
+    let result = [...products];
+
+    if (searchTerm.trim() !== "") {
+      result = result.filter((p) =>
+        p.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    switch (sortBy) {
+      case "nombre-asc":
+        result.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        break;
+      case "nombre-desc":
+        result.sort((a, b) => b.nombre.localeCompare(a.nombre));
+        break;
+      case "inventario-asc":
+        result.sort((a, b) => a.inventario - b.inventario);
+        break;
+      case "inventario-desc":
+        result.sort((a, b) => b.inventario - a.inventario);
+        break;
+    }
+
+    setFilteredProducts(result);
+  }, [searchTerm, sortBy, products]);
 
   return (
     <div style={{ maxWidth: "90%", margin: "0 auto", fontFamily: "Jost, sans-serif" }}>
+      <FilterBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        showReset
+        onReset={handleResetFilters}
+        options={[
+          { label: "Ordenar A-Z", value: "nombre-asc" },
+          { label: "Ordenar Z-A", value: "nombre-desc" },
+          { label: "Cantidad menor a mayor", value: "inventario-asc" },
+          { label: "Cantidad mayor a menor", value: "inventario-desc" },
+        ]}
+      />
 
-      {/* Tabla */}
       <table className="table is-fullwidth is-striped custom-table">
-        <thead style={{ borderBottom: "2px solid #a0a0a0" }}>
+        <thead>
           <tr>
             <th className="has-text-weight-bold">ID</th>
             <th className="has-text-weight-bold">NOMBRE</th>
@@ -33,11 +82,11 @@ const ProductTable = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <ProductRow key={product.id} product={product} onUpdate={handleUpdate} />
           ))}
         </tbody>
-      </table>  
+      </table>
     </div>
   );
 };
