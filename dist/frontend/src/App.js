@@ -7,12 +7,11 @@ exports.default = App;
 const react_router_dom_1 = require("react-router-dom");
 const ProductPage_1 = __importDefault(require("./pages/ProductPage"));
 const DonarPage_1 = __importDefault(require("./pages/DonarPage"));
-const DashboardPage_1 = __importDefault(require("./pages/DashboardPage"));
 const PersonPage_1 = __importDefault(require("./pages/PersonPage"));
+const DashboardPage_1 = __importDefault(require("./pages/DashboardPage"));
+const LoginPage_1 = __importDefault(require("./pages/LoginPage"));
 const EditarPage_1 = __importDefault(require("./pages/EditarPage"));
 const AddPersonPage_1 = __importDefault(require("./pages/AddPersonPage"));
-const LoginPage_1 = __importDefault(require("./pages/LoginPage"));
-
 function App() {
     return (<>
       <react_router_dom_1.Routes>
