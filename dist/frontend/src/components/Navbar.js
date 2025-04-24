@@ -2,8 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_fontawesome_1 = require("@fortawesome/react-fontawesome");
 const free_solid_svg_icons_1 = require("@fortawesome/free-solid-svg-icons");
+const react_router_dom_1 = require("react-router-dom");
 const Navbar = () => {
     const currentPath = window.location.pathname;
+    const navigate = (0, react_router_dom_1.useNavigate)();
+    const handleLogout = () => {
+        navigate("/");
+    };
     return (<nav className="navbar px-4 py-2 is-fixed-top" style={{
             backgroundColor: "#6FA4D3", // Fondo azul claro
             fontFamily: "Jost, sans-serif",
@@ -16,7 +21,7 @@ const Navbar = () => {
         </span>
       </div>
 
-      <div className="navbar-menu is-active">
+      <div className="navbar-menu">
         <div className="navbar-end">
           <a href="/" className={`navbar-item has-text-white ${currentPath === "/" ? "has-text-weight-bold" : ""}`}>
             Dashboard
@@ -32,7 +37,7 @@ const Navbar = () => {
           </a>
 
           <div className="navbar-item mr-4">
-            <button className="button is-white is-outlined has-text-weight-semibold" onClick={() => console.log("Cerrar Sesión")}>
+            <button onClick={handleLogout} className="button is-white is-outlined has-text-weight-semibold">
               Cerrar Sesión
             </button>
           </div>
