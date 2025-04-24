@@ -4,7 +4,12 @@ const react_fontawesome_1 = require("@fortawesome/react-fontawesome");
 const free_solid_svg_icons_1 = require("@fortawesome/free-solid-svg-icons");
 const Navbar = () => {
     const currentPath = window.location.pathname;
-    return (<nav className="navbar px-4 py-2 is-fixed-top" style={{ backgroundColor: "#6FA4D3", fontFamily: "Jost, sans-serif" }}>
+    return (<nav className="navbar px-4 py-2 is-fixed-top" style={{
+            backgroundColor: "#6FA4D3", // Fondo azul claro
+            fontFamily: "Jost, sans-serif",
+            margin: 0, // Elimina márgenes
+            padding: 0, // Elimina padding
+        }}>
       <div className="navbar-brand">
         <span className="navbar-item has-text-white has-text-weight-semibold is-size-4">
           El Comedor

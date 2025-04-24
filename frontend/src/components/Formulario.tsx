@@ -147,9 +147,3 @@ const Formulario: React.FC = () => {
 };
 
 export default Formulario;
-
-
-
-
-
-

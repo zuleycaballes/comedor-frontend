@@ -6,11 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const DashboardChart_1 = __importDefault(require("../components/DashboardChart"));
 const Navbar_1 = __importDefault(require("../components/Navbar"));
 const DashboardPage = () => {
-    return (<div style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
+    return (<div className="container" style={{
+            fontFamily: "Jost, sans-serif",
+        }}>
       <Navbar_1.default />
       <div className="container" style={{
             fontFamily: "Jost, sans-serif",
-            marginTop: "100px",
         }}>
         <DashboardChart_1.default />
       </div>
