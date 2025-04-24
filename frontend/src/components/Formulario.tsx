@@ -14,7 +14,7 @@ const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [cantidad, setCantidad] = useState(0);
-  const [imagenUrl, setImagenUrl] = useState('');
+  const [imagenUrl, setImagenUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (product) {
@@ -44,7 +44,7 @@ const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }
         descripcion,
         inventario: cantidad,
         id_comedor: comedorId,
-        imagen: imagenUrl.replace("http://localhost:3000", "") // guarda solo la ruta relativa
+        imagen: imagenUrl ? imagenUrl.replace("http://localhost:3000", "") : null // guarda solo la ruta relativa
       });
       alert("Donación registrada con éxito");
       setNombre('');

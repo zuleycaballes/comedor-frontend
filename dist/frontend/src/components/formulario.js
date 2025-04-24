@@ -21,7 +21,7 @@ const Formulario = ({ product, onSubmit, buttonText }) => {
     const [nombre, setNombre] = (0, react_1.useState)('');
     const [descripcion, setDescripcion] = (0, react_1.useState)('');
     const [cantidad, setCantidad] = (0, react_1.useState)(0);
-    const [imagenUrl, setImagenUrl] = (0, react_1.useState)('');
+    const [imagenUrl, setImagenUrl] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
         if (product) {
             setNombre(product.nombre);
@@ -46,7 +46,7 @@ const Formulario = ({ product, onSubmit, buttonText }) => {
                 descripcion,
                 inventario: cantidad,
                 id_comedor: comedorId,
-                imagen: imagenUrl.replace("http://localhost:3000", "") // guarda solo la ruta relativa
+                imagen: imagenUrl ? imagenUrl.replace("http://localhost:3000", "") : null // guarda solo la ruta relativa
             });
             alert("Donación registrada con éxito");
             setNombre('');

@@ -7,7 +7,7 @@ declare module "my-types" {
     id_comedor: number;
     createdAt: Date;
     updatedAt: Date;
-    imagen?: string;
+    imagen?: string | null;
   }
 
   export interface Person {
@@ -18,6 +18,15 @@ declare module "my-types" {
     email: string;
     rol: "donador" | "consumidor";
     id_comedor: number;
+    createdAt: Date;
+    updatedAt: Date;
+  }
+
+  export interface Comedor {
+    id: number;
+    nombre: string;
+    direccion?: string;
+    telefono: string;
     createdAt: Date;
     updatedAt: Date;
   }

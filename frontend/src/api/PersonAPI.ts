@@ -32,6 +32,3 @@ export const deletePerson = async (id: number): Promise<void> => {
   await api.delete("/api/person", { data: { id } }); 
 };
 
-export const login = async (username: string, password: string) => {
-  return axios.post("/api/comedor/login", { username, password });
-};
