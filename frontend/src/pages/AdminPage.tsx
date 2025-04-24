@@ -1,7 +1,5 @@
 import Navbar from "../components/Navbar";
 import Admin from "../components/Admin";
-import BotonAñadir from "../components/BotonAñadir";
-
 const ProductDetailPage = () => {
 
   return (

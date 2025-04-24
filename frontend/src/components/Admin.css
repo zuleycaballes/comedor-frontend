@@ -25,7 +25,7 @@
   .admin-category {
     font-size: 2rem;
     line-height: 1.6;
-    color: #555;
+    color: #222222;
     background-color: aliceblue;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -35,7 +35,9 @@
     padding: 10px;
   }
 
-  .admin strong {
+  .admin-category strong {
     color: #333;
+    font-weight: 600;
   }
+  
   
