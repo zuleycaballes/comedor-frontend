@@ -21,7 +21,7 @@ const DonarPage = () => {
     const handleDonar = (product) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             yield (0, ProductAPI_1.createProduct)(product);
-            navigate("/product");
+            navigate("/products");
         }
         catch (error) {
             console.error('Error al crear el producto:', error);

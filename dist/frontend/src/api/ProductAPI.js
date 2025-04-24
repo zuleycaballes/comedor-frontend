@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getAllProducts = void 0;
+exports.getProductById = exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getAllProducts = void 0;
 const axios_1 = __importDefault(require("axios"));
 const api = axios_1.default.create({
     baseURL: "http://localhost:3000",
@@ -44,3 +44,8 @@ const deleteProduct = (id) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.deleteProduct = deleteProduct;
+const getProductById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const res = yield api.get(`/api/product/${id}`);
+    return res.data.payload;
+});
+exports.getProductById = getProductById;
