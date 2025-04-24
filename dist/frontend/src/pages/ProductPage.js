@@ -13,7 +13,7 @@ const ProductPage = () => {
         }}>
       <Navbar_1.default />
       <h1 className="title is-3 mb-4 has-text-left">Productos</h1>
-      <ProductTable_1.default products={products}/>
+      <ProductTable_1.default />
       <div className="has-text-right mt-5 ml-5">
       <BotonA_adir_1.default label="Donar Producto" to="/donar"/>
       </div>

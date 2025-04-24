@@ -13,7 +13,7 @@ const ProductPage = () => {
     >
       <Navbar />
       <h1 className="title is-3 mb-4 has-text-left">Productos</h1>
-      <ProductTable products={products} />
+      <ProductTable />
       <div className="has-text-right mt-5 ml-5">
       <BotonAñadir label="Donar Producto" to="/donar"/>
       </div>
