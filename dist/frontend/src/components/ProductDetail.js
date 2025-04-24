@@ -8,23 +8,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const react_router_dom_1 = require("react-router-dom");
 const ProductAPI_1 = require("../api/ProductAPI");
-require("./ProductDetail.css"); // Asegúrate de importar el CSS
+require("./ProductDetail.css");
+const a_adir_img_png_1 = __importDefault(require("../assets/a\u00F1adir_img.png"));
 const ProductDetailPage = () => {
-    const { id } = (0, react_router_dom_1.useParams)(); // Obtener el ID desde la URL
+    const { id } = (0, react_router_dom_1.useParams)();
     const [product, setProduct] = (0, react_1.useState)(null);
-    const [loading, setLoading] = (0, react_1.useState)(true); // Estado de carga
-    const [error, setError] = (0, react_1.useState)(null); // Estado de error
+    const [loading, setLoading] = (0, react_1.useState)(true);
+    const [error, setError] = (0, react_1.useState)(null);
     (0, react_1.useEffect)(() => {
         const fetchProduct = () => __awaiter(void 0, void 0, void 0, function* () {
             setLoading(true);
-            setError(null); // Reseteamos el error
+            setError(null);
             try {
                 if (id) {
-                    const fetchedProduct = yield (0, ProductAPI_1.getProductById)(Number(id)); // Llamada a la API para obtener el producto
+                    const fetchedProduct = yield (0, ProductAPI_1.getProductById)(Number(id));
                     setProduct(fetchedProduct);
                 }
             }
@@ -37,17 +41,24 @@ const ProductDetailPage = () => {
         });
         fetchProduct();
     }, [id]);
-    if (loading) {
+    if (loading)
         return <div>Cargando...</div>;
-    }
-    if (error) {
+    if (error)
         return <div>{error}</div>;
-    }
-    if (!product) {
+    if (!product)
         return <div>Producto no encontrado.</div>;
-    }
     return (<div className="product-detail-container">
       <h1 className="product-title">{product.nombre}</h1>
+
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem" }}>
+        <img src={product.imagen ? `http://localhost:3000${product.imagen}` : a_adir_img_png_1.default} alt={`Imagen de ${product.nombre}`} style={{
+            width: "250px",
+            height: "250px",
+            objectFit: "contain",
+            borderRadius: "1rem"
+        }}/>
+      </div>
+
       <div className="product-details">
         <p className="product-details-category"><strong>ID:</strong> {product.id}</p>
         <p className="product-details-category"><strong>Descripción:</strong> {product.descripcion}</p>
