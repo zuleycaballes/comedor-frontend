@@ -1,14 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
-require("./FormularioPerson.css"); // Asegúrate que este path sea correcto
+require("./FormularioPerson.css");
 const FormularioPersona = ({ initialData, onSubmit, submitLabel, }) => {
     const [nombre, setNombre] = (0, react_1.useState)('');
     const [apellido, setApellido] = (0, react_1.useState)('');
     const [edad, setEdad] = (0, react_1.useState)(0);
     const [email, setEmail] = (0, react_1.useState)('');
     const [rol, setRol] = (0, react_1.useState)("donador");
-    const [id_comedor, setIdComedor] = (0, react_1.useState)(1);
     (0, react_1.useEffect)(() => {
         if (initialData) {
             setNombre(initialData.nombre);
@@ -16,11 +15,15 @@ const FormularioPersona = ({ initialData, onSubmit, submitLabel, }) => {
             setEdad(initialData.edad);
             setEmail(initialData.email);
             setRol(initialData.rol);
-            setIdComedor(initialData.id_comedor);
         }
     }, [initialData]);
     const handleSubmit = (e) => {
         e.preventDefault();
+        const id_comedor = Number(localStorage.getItem("comedorId"));
+        if (!id_comedor) {
+            alert("No hay sesión activa.");
+            return;
+        }
         onSubmit({
             nombre,
             apellido,
@@ -33,7 +36,6 @@ const FormularioPersona = ({ initialData, onSubmit, submitLabel, }) => {
     return (<div className="formulario-container">
       <div className="formulario-content">
         <form onSubmit={handleSubmit} className="formulario-form">
-
           <div className="form-row">
             <div className="form-field">
               <label className="form-label">Nombre</label>
@@ -63,13 +65,6 @@ const FormularioPersona = ({ initialData, onSubmit, submitLabel, }) => {
                 </select>
                 <span className="select-icon">▼</span>
               </div>
-            </div>
-          </div>
-
-          <div className="form-row">
-            <div className="form-field">
-              <label className="form-label">Comedor</label>
-              <input className="input" type="number" value={id_comedor} onChange={(e) => setIdComedor(Number(e.target.value))} required/>
             </div>
           </div>
 

@@ -9,11 +9,15 @@ const DashboardChart = () => {
   const [bajoInventario, setBajoInventario] = useState<Product[]>([]);
 
   useEffect(() => {
+    const comedorId = Number(localStorage.getItem("comedorId"));
+    if (!comedorId) return;
+
     axios.get("http://localhost:3000/api/product")
       .then(res => {
-        setProductos(res.data.payload);
-        const filtrados = res.data.payload.filter((p: Product) => Number(p.inventario?.toString().trim()) <= 10);
-        setBajoInventario(filtrados);
+        const todos = res.data.payload as Product[];
+        const filtrados = todos.filter(p => p.id_comedor === comedorId);
+        setProductos(filtrados);
+        setBajoInventario(filtrados.filter(p => Number(p.inventario) <= 10));
       })
       .catch(err => console.error("Error al obtener productos:", err));
   }, []);
@@ -38,7 +42,7 @@ const DashboardChart = () => {
       <div style={{ padding: "2rem", backgroundColor: "#ffffff", fontFamily: "Jost, sans-serif", marginTop: "2rem" }}>
         <h1 style={{ fontSize: "2rem", fontWeight: 500, marginBottom: "1rem", marginTop: "2rem", color: "#363636" }}>
           Dashboard
-        </h1> 
+        </h1>
 
         <div style={boxStyle}>
           <div style={boxHeaderStyle}>
@@ -51,7 +55,9 @@ const DashboardChart = () => {
         </div>
 
         <div style={boxStyle}>
-          <h2 style={{ fontSize: "1.25rem", fontWeight: 600, color: "#363636", marginBottom: "1rem" }}>Productos con Bajo Inventario (≤ 10)</h2>
+          <h2 style={{ fontSize: "1.25rem", fontWeight: 600, color: "#363636", marginBottom: "1rem" }}>
+            Productos con Bajo Inventario (≤ 10)
+          </h2>
           <LowInventoryPieChart data={bajoInventario} />
         </div>
       </div>
