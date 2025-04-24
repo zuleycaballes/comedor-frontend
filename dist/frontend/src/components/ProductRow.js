@@ -39,6 +39,7 @@ const ProductRow = ({ product, onUpdate }) => {
       <tr>
         <th className="has-text-weight-semibold">{product.id}</th>
         <td className="has-text-weight-semibold">
+<<<<<<< HEAD
           <react_router_dom_1.Link to={`/products/${product.id}`} style={{ color: 'black', textDecoration: 'underline' }}>
             {product.nombre}
           </react_router_dom_1.Link>
@@ -51,15 +52,30 @@ const ProductRow = ({ product, onUpdate }) => {
         }}>
           {product.descripcion}
         </td>
+=======
+        <react_router_dom_1.Link to={`/products/${product.id}`} style={{ color: 'black', textDecoration: 'underline' }}>
+          {product.nombre}
+        </react_router_dom_1.Link>
+      </td>
+        <td className="has-text-weight-semibold">{product.descripcion}</td>
+>>>>>>> ae789b54a8cb4af260cd585737624e3d5e2e8cc9
         <td className="is-flex is-align-items-center" style={{ border: "none" }}>
           <button className="button is-icon" onClick={handleDecrement}>−</button>
           <span className="mx-2">{product.inventario}</span>
           <button className="button is-icon" onClick={handleIncrement}>+</button>
         </td>
         <td>
+<<<<<<< HEAD
           <react_router_dom_1.Link to={`/products/edit/${product.id}`} className="button is-icon">
             <react_fontawesome_1.FontAwesomeIcon icon={free_solid_svg_icons_1.faEdit}/>
           </react_router_dom_1.Link>
+=======
+          <button className="button is-icon">
+          <react_router_dom_1.Link to={`/products/edit/${product.id}`}>
+            <react_fontawesome_1.FontAwesomeIcon icon={free_solid_svg_icons_1.faEdit}/>
+          </react_router_dom_1.Link>
+        </button>
+>>>>>>> ae789b54a8cb4af260cd585737624e3d5e2e8cc9
         </td>
         <td>
           <button className="button is-icon is-trash" onClick={() => setShowConfirm(true)}>
