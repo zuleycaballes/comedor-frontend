@@ -1,16 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import ProductPage from "./pages/ProductPage";
-import DashboardPage from "./pages/DashboardPage";
+import ProductPage from "./pages/ProductPage";  
+import DonarPage from "./pages/DonarPage";  
+import DashboardPage from "./pages/DashboardPage"; 
 
-function App() {
+export default function App() {
   return (
-    <div className="container mt-5">
+    <>
       <Routes>
-        <Route path="/" element={<ProductPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path ="/" element={<DashboardPage />} />
+        <Route path="/products" element={<ProductPage />} />
+        <Route path="/donar" element={<DonarPage />} />
       </Routes>
-    </div>
+    </>
   );
 }
-
-export default App;

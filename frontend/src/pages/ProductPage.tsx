@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Product } from "my-types";
-import { getAllProducts, createProduct } from "../api/ProductAPI";
+import { getAllProducts} from "../api/ProductAPI";
 import Navbar from "../components/Navbar";
 import ProductTable from "../components/ProductTable";
 

@@ -14,18 +14,17 @@ const DashboardChart = () => {
         axios_1.default.get("http://localhost:3000/api/product")
             .then(res => {
             setProductos(res.data.payload);
-            const filtrados = res.data.payload.filter((p) => { var _a; return Number((_a = p.inventario) === null || _a === void 0 ? void 0 : _a.toString().trim()) < 15; });
-            console.log("Productos con inventario < 15:", filtrados);
+            const filtrados = res.data.payload.filter((p) => { var _a; return Number((_a = p.inventario) === null || _a === void 0 ? void 0 : _a.toString().trim()) < 10; });
             setBajoInventario(filtrados);
         })
             .catch(err => console.error("Error al obtener productos:", err));
     }, []);
     const pieColors = ["#6FA4D3", "#A8D0DB", "#BFD8EF", "#89B4D2", "#528AAE"];
-    return (<div style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
+    return (<div style={{ backgroundColor: "#ffffff", minHeight: "100vh", fontFamily: "Jost, sans-serif" }}>
       <Navbar_1.default />
-      <div style={{ padding: "2rem", backgroundColor: "#ffffff", fontFamily: "Jost, sans-serif", marginTop: "100px" }}>
-
-        {/* Resumen Total */}
+      
+      {/* Evitamos espacio excesivo */}
+      <div style={{ padding: "2rem 2rem 4rem 2rem", margin: "2rem" }}>
         <div className="box" style={{
             backgroundColor: "#ffffff",
             display: "flex",
@@ -55,13 +54,13 @@ const DashboardChart = () => {
           </recharts_1.ResponsiveContainer>
         </div>
 
-        {/* Gráfico 2 (Tipo Pie) */}
+        {/* Gráfico 2 (Pie) */}
         <div className="box" style={{ backgroundColor: "#ffffff" }}>
           <h2 className="title is-5 has-text-weight-semibold has-text-grey-dark mb-4">
-            Productos con Bajo Inventario (≤ 15)
+            Productos con Bajo Inventario (≤ 10)
           </h2>
           {bajoInventario.length === 0 ? (<p className="has-text-centered has-text-grey">
-              No hay productos con inventario menor o igual a 15.
+              No hay productos con inventario menor o igual a 10.
             </p>) : (<recharts_1.ResponsiveContainer width="100%" height={400}>
               <recharts_1.PieChart>
                 <recharts_1.Pie data={bajoInventario} dataKey="inventario" nameKey="descripcion" cx="50%" cy="50%" outerRadius={120} label={({ name }) => name}>
@@ -72,7 +71,6 @@ const DashboardChart = () => {
               </recharts_1.PieChart>
             </recharts_1.ResponsiveContainer>)}
         </div>
-
       </div>
     </div>);
 };

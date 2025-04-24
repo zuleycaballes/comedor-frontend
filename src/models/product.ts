@@ -6,7 +6,7 @@ interface ProductAttributes {
     id: number;
     nombre: string;
     descripcion: string;
-    inventario: number;
+    inventario: number ;
     id_comedor: number;
 }
 
@@ -22,9 +22,11 @@ export class Product extends Model<ProductAttributes, ProductCreationAttributes>
         autoIncrement: true
     })
     id!: number;
-
-    @ForeignKey(() => Comedor) // Foreign key
-    @Column
+    
+    @ForeignKey(() => Comedor) // llave foranea
+    @Column({
+    defaultValue: 1 
+    })
     id_comedor!: number;
 
     @BelongsTo(() => Comedor) // Define relationship with 'Comedor'

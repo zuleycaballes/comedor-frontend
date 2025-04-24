@@ -27,7 +27,7 @@ const ProductTable = () => {
         <thead style={{ borderBottom: "2px solid #a0a0a0" }}>
           <tr>
             <th className="has-text-weight-bold">ID</th>
-            <th className="has-text-weight-bold">TIPO</th>
+            <th className="has-text-weight-bold">NOMBRE</th>
             <th className="has-text-weight-bold">DESCRIPCIÓN</th>
             <th className="has-text-weight-bold">INVENTARIO</th>
             <th className="has-text-weight-bold"></th>
@@ -39,22 +39,7 @@ const ProductTable = () => {
             <ProductRow key={product.id} product={product} onUpdate={handleUpdate} />
           ))}
         </tbody>
-      </table>
-
-      {/* Botón alineado con tabla */}
-      <div className="has-text-right mt-4">
-        <button
-          className="button"
-          style={{
-            border: "1px solid #6FA4D3",
-            color: "#6FA4D3",
-            backgroundColor: "transparent",
-            fontWeight: 600,
-          }}
-        >
-          DONAR PRODUCTO
-        </button>
-      </div>
+      </table>  
     </div>
   );
 };

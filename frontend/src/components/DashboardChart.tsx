@@ -24,8 +24,7 @@ const DashboardChart = () => {
     axios.get("http://localhost:3000/api/product")
       .then(res => {
         setProductos(res.data.payload);
-        const filtrados = res.data.payload.filter((p: Product) => Number(p.inventario?.toString().trim()) < 15);
-        console.log("Productos con inventario < 15:", filtrados);
+        const filtrados = res.data.payload.filter((p: Product) => Number(p.inventario?.toString().trim()) < 10);
         setBajoInventario(filtrados);
       })
       .catch(err => console.error("Error al obtener productos:", err));
@@ -34,11 +33,11 @@ const DashboardChart = () => {
   const pieColors = ["#6FA4D3", "#A8D0DB", "#BFD8EF", "#89B4D2", "#528AAE"];
 
   return (
-    <div style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "#ffffff", minHeight: "100vh", fontFamily: "Jost, sans-serif" }}>
       <Navbar />
-      <div style={{ padding: "2rem", backgroundColor: "#ffffff", fontFamily: "Jost, sans-serif", marginTop: "100px" }}>
-
-        {/* Resumen Total */}
+      
+      {/* Evitamos espacio excesivo */}
+      <div style={{ padding: "2rem 2rem 4rem 2rem", margin: "2rem"}}>
         <div
           className="box"
           style={{
@@ -58,10 +57,7 @@ const DashboardChart = () => {
         </div>
 
         {/* Gráfico 1 */}
-        <div
-          className="box"
-          style={{ backgroundColor: "#ffffff", marginBottom: "3rem" }}
-        >
+        <div className="box" style={{ backgroundColor: "#ffffff", marginBottom: "3rem" }}>
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={productos} layout="vertical" margin={{ top: 20, right: 30, left: 100, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -74,14 +70,14 @@ const DashboardChart = () => {
           </ResponsiveContainer>
         </div>
 
-        {/* Gráfico 2 (Tipo Pie) */}
+        {/* Gráfico 2 (Pie) */}
         <div className="box" style={{ backgroundColor: "#ffffff" }}>
           <h2 className="title is-5 has-text-weight-semibold has-text-grey-dark mb-4">
-            Productos con Bajo Inventario (≤ 15)
+            Productos con Bajo Inventario (≤ 10)
           </h2>
           {bajoInventario.length === 0 ? (
             <p className="has-text-centered has-text-grey">
-              No hay productos con inventario menor o igual a 15.
+              No hay productos con inventario menor o igual a 10.
             </p>
           ) : (
             <ResponsiveContainer width="100%" height={400}>
@@ -105,7 +101,6 @@ const DashboardChart = () => {
             </ResponsiveContainer>
           )}
         </div>
-
       </div>
     </div>
   );
