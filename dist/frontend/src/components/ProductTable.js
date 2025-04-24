@@ -44,18 +44,7 @@ const ProductTable = () => {
         <tbody>
           {products.map((product) => (<ProductRow_1.default key={product.id} product={product} onUpdate={handleUpdate}/>))}
         </tbody>
-      </table>
-
-      <div className="has-text-right mt-4">
-        <button className="button" style={{
-            border: "1px solid #6FA4D3",
-            color: "#6FA4D3",
-            backgroundColor: "transparent",
-            fontWeight: 600,
-        }}>
-          DONAR PRODUCTO
-        </button>
-      </div>
+      </table>  
     </div>);
 };
 exports.default = ProductTable;
