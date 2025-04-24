@@ -13,36 +13,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
-const ProductAPI_1 = require("../api/ProductAPI");
-const ProductRow_1 = __importDefault(require("./ProductRow"));
-const ProductTable = () => {
-    const [products, setProducts] = (0, react_1.useState)([]);
+const PersonAPI_1 = require("../api/PersonAPI");
+const PersonRow_1 = __importDefault(require("./PersonRow"));
+const PersonTable = () => {
+    const [people, setPeople] = (0, react_1.useState)([]);
     (0, react_1.useEffect)(() => {
         handleUpdate();
     }, []);
     const handleUpdate = () => __awaiter(void 0, void 0, void 0, function* () {
-        const updated = yield (0, ProductAPI_1.getAllProducts)();
-        console.log("Actualizado:", updated); // <-- revisa si el número cambia aquí
-        setProducts(updated);
+        const updated = yield (0, PersonAPI_1.getAllPeople)();
+        setPeople(updated);
     });
     return (<div style={{ maxWidth: "90%", margin: "0 auto", fontFamily: "Jost, sans-serif" }}>
 
-      {/* Tabla */}
       <table className="table is-fullwidth is-striped custom-table">
-        <thead style={{ borderBottom: "2px solid #a0a0a0" }}>
+        <thead>
           <tr>
             <th className="has-text-weight-bold">ID</th>
             <th className="has-text-weight-bold">NOMBRE</th>
-            <th className="has-text-weight-bold">DESCRIPCIÓN</th>
-            <th className="has-text-weight-bold">INVENTARIO</th>
-            <th className="has-text-weight-bold"></th>
-            <th className="has-text-weight-bold"></th>
+            <th className="has-text-weight-bold">APELLIDO</th>
+            <th className="has-text-weight-bold">EMAIL</th>
+            <th className="has-text-weight-bold">ROL</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (<ProductRow_1.default key={product.id} product={product} onUpdate={handleUpdate}/>))}
+          {people.map((person) => (<PersonRow_1.default key={person.id} person={person} onUpdate={handleUpdate}/>))}
         </tbody>
-      </table>  
+      </table>
     </div>);
 };
-exports.default = ProductTable;
+exports.default = PersonTable;

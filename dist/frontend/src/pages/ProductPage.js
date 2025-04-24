@@ -7,6 +7,7 @@ const react_1 = require("react");
 const ProductAPI_1 = require("../api/ProductAPI");
 const Navbar_1 = __importDefault(require("../components/Navbar"));
 const ProductTable_1 = __importDefault(require("../components/ProductTable"));
+const BotonA_adir_1 = __importDefault(require("../components/BotonA\u00F1adir"));
 const ProductPage = () => {
     const [products, setProducts] = (0, react_1.useState)([]);
     // Obtener productos al montar el componente
@@ -23,6 +24,9 @@ const ProductPage = () => {
       <Navbar_1.default />
       <h1 className="title is-3 mb-4 has-text-left">Productos</h1>
       <ProductTable_1.default products={products}/>
+      <div className="has-text-right mt-5 ml-5">
+      <BotonA_adir_1.default label="Donar Producto" to="/donar"/>
+      </div>
     </div>);
 };
 exports.default = ProductPage;

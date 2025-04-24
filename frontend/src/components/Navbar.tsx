@@ -35,10 +35,10 @@ const Navbar = () => {
             Productos
           </a>
           <a
-            href="/entregas"
-            className={`navbar-item has-text-white ${currentPath === "/entregas" ? "has-text-weight-bold" : ""}`}
+            href="/personas"
+            className={`navbar-item has-text-white ${currentPath === "/personas" ? "has-text-weight-bold" : ""}`}
           >
-            Entregas
+            Personas
           </a>
           <a
             href="/donar"
