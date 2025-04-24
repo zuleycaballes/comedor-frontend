@@ -32,6 +32,7 @@ const PersonTable = () => {
             <th className="has-text-weight-bold">ID</th>
             <th className="has-text-weight-bold">NOMBRE</th>
             <th className="has-text-weight-bold">APELLIDO</th>
+            <th className="has-text-weight-bold">EDAD</th>
             <th className="has-text-weight-bold">EMAIL</th>
             <th className="has-text-weight-bold">ROL</th>
             <th></th>

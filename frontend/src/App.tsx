@@ -6,6 +6,7 @@ import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 import EditarPage from './pages/EditarPage';
 import AddPersonPage from './pages/AddPersonPage'; 
+import EditarPersonaPage from "./pages/EditarPersonPage";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/personas" element={<PersonPage />} />
         <Route path="/products/edit/:id" element={<EditarPage />} />
         <Route path="/personas/add" element={<AddPersonPage />} />
+        <Route path="/personas/edit/:id" element={<EditarPersonaPage />} />
 
       </Routes>
     </>
