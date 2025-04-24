@@ -30,3 +30,8 @@ export const deleteProduct = async (id: number) => {
     console.error("Error deleting product:", error);
   }
 };
+
+export const getProductById = async (id: number): Promise<Product> => {
+  const res = await api.get(`/api/product/${id}`);
+  return res.data.payload;
+};

@@ -19,12 +19,12 @@ const PersonRow = ({ person, onUpdate }) => {
         onUpdate();
     });
     return (<tr>
-        <td>{person.id}</td>
-        <td>{person.nombre}</td>
-        <td>{person.apellido}</td>
-        <td>{person.edad}</td>
-        <td>{person.email}</td>
-        <td>{person.rol}</td>
+        <td className="has-text-weight-semibold">{person.id}</td>
+        <td className="has-text-weight-semibold">{person.nombre}</td>
+        <td className="has-text-weight-semibold">{person.apellido}</td>
+        <td className="has-text-weight-semibold">{person.edad}</td>
+        <td className="has-text-weight-semibold">{person.email}</td>
+        <td className="has-text-weight-semibold">{person.rol}</td>
         <td>
         <react_router_dom_1.Link to={`/personas/edit/${person.id}`} className="button is-icon">
           <react_fontawesome_1.FontAwesomeIcon icon={free_solid_svg_icons_1.faEdit}/>
