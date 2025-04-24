@@ -108,8 +108,10 @@ h3.title {
   color: #6FA4D3 !important;
 }
 
-.navbar-item:hover {
+.navbar-item:hover,
+.navbar-item.is-active {
   background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .custom-table td,

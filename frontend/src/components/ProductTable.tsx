@@ -12,7 +12,7 @@ const ProductTable = () => {
 
   const handleUpdate = async () => {
     const updated = await getAllProducts();
-    console.log("Actualizado:", updated); // <-- revisa si el número cambia aquí
+    console.log("Actualizado:", updated); 
     setProducts(updated);
   };
   
@@ -20,6 +20,7 @@ const ProductTable = () => {
   return (
     <div style={{ maxWidth: "90%", margin: "0 auto", fontFamily: "Jost, sans-serif" }}>
       {/* Título alineado al borde izquierdo de la tabla */}
+      <h1 className="title is-3 mb-4 has-text-left" style={{fontWeight: '800'}}>Productos</h1>
 
       {/* Tabla */}
       <table className="table is-fullwidth is-striped custom-table">

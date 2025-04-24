@@ -16,7 +16,7 @@ const Navbar = () => {
         </span>
       </div>
 
-      <div className="navbar-menu is-active">
+      <div className="navbar-menu">
         <div className="navbar-end">
           <a href="/" className={`navbar-item has-text-white ${currentPath === "/" ? "has-text-weight-bold" : ""}`}>
             Dashboard

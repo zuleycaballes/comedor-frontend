@@ -20,7 +20,7 @@ const Navbar = () => {
         </span>
       </div>
 
-      <div className="navbar-menu is-active">
+      <div className="navbar-menu">
         <div className="navbar-end">
           <a
             href="/"

@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
-const recharts_1 = require("recharts");
 const axios_1 = __importDefault(require("axios"));
-const Navbar_1 = __importDefault(require("../components/Navbar"));
+const InventoryBarchart_1 = __importDefault(require("../components/InventoryBarchart"));
+const LowInventoryPieChart_1 = __importDefault(require("../components/LowInventoryPieChart"));
 const DashboardChart = () => {
     const [productos, setProductos] = (0, react_1.useState)([]);
     const [bajoInventario, setBajoInventario] = (0, react_1.useState)([]);
@@ -14,62 +14,43 @@ const DashboardChart = () => {
         axios_1.default.get("http://localhost:3000/api/product")
             .then(res => {
             setProductos(res.data.payload);
-            const filtrados = res.data.payload.filter((p) => { var _a; return Number((_a = p.inventario) === null || _a === void 0 ? void 0 : _a.toString().trim()) < 10; });
+            const filtrados = res.data.payload.filter((p) => { var _a; return Number((_a = p.inventario) === null || _a === void 0 ? void 0 : _a.toString().trim()) <= 10; });
             setBajoInventario(filtrados);
         })
             .catch(err => console.error("Error al obtener productos:", err));
     }, []);
-    const pieColors = ["#6FA4D3", "#A8D0DB", "#BFD8EF", "#89B4D2", "#528AAE"];
-    return (<div style={{ backgroundColor: "#ffffff", minHeight: "100vh", fontFamily: "Jost, sans-serif" }}>
-      <Navbar_1.default />
-      
-      {/* Evitamos espacio excesivo */}
-      <div style={{ padding: "2rem 2rem 4rem 2rem", margin: "2rem" }}>
-        <div className="box" style={{
-            backgroundColor: "#ffffff",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "2rem"
-        }}>
-          <h2 className="title is-4 has-text-weight-semibold has-text-grey-dark">
-            Inventario por Producto
-          </h2>
-          <div style={{ fontSize: "1.1rem", fontWeight: 500, color: "#6FA4D3" }}>
-            Total de productos: {productos.length}
+    const boxStyle = {
+        backgroundColor: "#ffffff",
+        border: "1px solid #e0e0e0",
+        borderRadius: "8px",
+        padding: "1.5rem",
+        marginBottom: "1.5rem"
+    };
+    const boxHeaderStyle = {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: "1rem"
+    };
+    return (<div style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
+      <div style={{ padding: "2rem", backgroundColor: "#ffffff", fontFamily: "Jost, sans-serif", marginTop: "2rem" }}>
+        <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "1rem", marginTop: "2rem", color: "#363636" }}>
+          Dashboard
+        </h1> 
+
+        <div style={boxStyle}>
+          <div style={boxHeaderStyle}>
+            <h2 style={{ fontSize: "1.25rem", fontWeight: 600, color: "#363636" }}>Inventario por Producto</h2>
+            <div style={{ fontSize: "1rem", color: "#6FA4D3", fontWeight: 500 }}>
+              Total de productos: {productos.length}
+            </div>
           </div>
+          <InventoryBarchart_1.default data={productos}/>
         </div>
 
-        {/* Gráfico 1 */}
-        <div className="box" style={{ backgroundColor: "#ffffff", marginBottom: "3rem" }}>
-          <recharts_1.ResponsiveContainer width="100%" height={400}>
-            <recharts_1.BarChart data={productos} layout="vertical" margin={{ top: 20, right: 30, left: 100, bottom: 5 }}>
-              <recharts_1.CartesianGrid strokeDasharray="3 3"/>
-              <recharts_1.XAxis type="number" tick={{ fontSize: 12 }}/>
-              <recharts_1.YAxis dataKey="descripcion" type="category" tick={{ fontSize: 12 }} width={150}/>
-              <recharts_1.Tooltip wrapperStyle={{ fontSize: "14px" }}/>
-              <recharts_1.Legend />
-              <recharts_1.Bar dataKey="inventario" fill="#6FA4D3" barSize={24} radius={[0, 4, 4, 0]} name="Inventario Total"/>
-            </recharts_1.BarChart>
-          </recharts_1.ResponsiveContainer>
-        </div>
-
-        {/* Gráfico 2 (Pie) */}
-        <div className="box" style={{ backgroundColor: "#ffffff" }}>
-          <h2 className="title is-5 has-text-weight-semibold has-text-grey-dark mb-4">
-            Productos con Bajo Inventario (≤ 10)
-          </h2>
-          {bajoInventario.length === 0 ? (<p className="has-text-centered has-text-grey">
-              No hay productos con inventario menor o igual a 10.
-            </p>) : (<recharts_1.ResponsiveContainer width="100%" height={400}>
-              <recharts_1.PieChart>
-                <recharts_1.Pie data={bajoInventario} dataKey="inventario" nameKey="descripcion" cx="50%" cy="50%" outerRadius={120} label={({ name }) => name}>
-                  {bajoInventario.map((_, index) => (<recharts_1.Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]}/>))}
-                </recharts_1.Pie>
-                <recharts_1.Tooltip wrapperStyle={{ fontSize: "14px" }}/>
-                <recharts_1.Legend />
-              </recharts_1.PieChart>
-            </recharts_1.ResponsiveContainer>)}
+        <div style={boxStyle}>
+          <h2 style={{ fontSize: "1.25rem", fontWeight: 600, color: "#363636", marginBottom: "1rem" }}>Productos con Bajo Inventario (≤ 10)</h2>
+          <LowInventoryPieChart_1.default data={bajoInventario}/>
         </div>
       </div>
     </div>);
