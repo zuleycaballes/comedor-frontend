@@ -106,13 +106,5 @@ const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }
   );
 };
 
+
 export default Formulario;
-
-
-
-
-
-
-
-
-
