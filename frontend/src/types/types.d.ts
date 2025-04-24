@@ -16,6 +16,7 @@ declare module "my-types" {
     edad: number;
     email: string;
     rol: "donador" | "consumidor";
+    id_comedor: number;
     createdAt: Date;
     updatedAt: Date;
   }

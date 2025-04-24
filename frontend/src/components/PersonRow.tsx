@@ -17,13 +17,14 @@ const PersonRow = ({ person, onUpdate }: Props) => {
 
   return (
     <tr>
-      <td>{person.id}</td>
-      <td>{person.nombre}</td>
-      <td>{person.apellido}</td>
-      <td>{person.email}</td>
-      <td>{person.rol}</td>
-      <td>
-        <Link to={`/persons/edit/${person.id}`} className="button is-icon">
+        <td>{person.id}</td>
+        <td>{person.nombre}</td>
+        <td>{person.apellido}</td>
+        <td>{person.edad}</td>
+        <td>{person.email}</td>
+        <td>{person.rol}</td>
+        <td>
+        <Link to={`/personas/edit/${person.id}`} className="button is-icon">
           <FontAwesomeIcon icon={faEdit} />
         </Link>
       </td>

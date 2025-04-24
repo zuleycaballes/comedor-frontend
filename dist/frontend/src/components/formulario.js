@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const a_adir_img_png_1 = __importDefault(require("../assets/a\u00F1adir_img.png"));
-require("./Formulario.css"); // Asegúrate de importar el archivo CSS
+require("./Formulario.css");
 const Formulario = ({ product, onSubmit, buttonText }) => {
     const [nombre, setNombre] = (0, react_1.useState)('');
     const [descripcion, setDescripcion] = (0, react_1.useState)('');

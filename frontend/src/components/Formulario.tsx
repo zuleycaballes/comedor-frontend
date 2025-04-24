@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import Image from '../assets/añadir_img.png';
-import './Formulario.css'; // Asegúrate de importar el archivo CSS
+import './Formulario.css';
 
 interface FormularioProps {
-  product?: { nombre: string; descripcion: string; inventario: number };  // Si estamos editando, el producto estará disponible
-  onSubmit: (product: { nombre: string; descripcion: string; inventario: number }) => void;  // Función que maneja el envío
-  buttonText: string;  // Texto del botón, cambia según si es 'Donar' o 'Guardar'
+  product?: { nombre: string; descripcion: string; inventario: number };  
+  onSubmit: (product: { nombre: string; descripcion: string; inventario: number }) => void; 
+  buttonText: string; 
 }
 
 const Formulario: React.FC<FormularioProps> = ({ product, onSubmit, buttonText }) => {

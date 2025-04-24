@@ -12,17 +12,19 @@ export const getAllPeople = async (): Promise<Person[]> => {
 };
 
 export const getPersonById = async (id: number): Promise<Person> => {
+    
   const response = await api.get(`/api/person/${id}`);
   return response.data.payload;
 };
 
-export const createPerson = async (person: Omit<Person, "id">): Promise<Person> => {
-  const response = await api.post("/api/person", person); 
+export const createPerson = async (personData: Omit<Person, 'id' | 'createdAt' | 'updatedAt' | 'id_comedor'>): Promise<Person> => {
+    console.log("Sending to backend:", personData);
+  const response = await api.post("/api/person", personData); 
   return response.data.payload;
 };
 
 export const updatePerson = async (id: number, person: Partial<Person>): Promise<Person> => {
-  const response = await api.put(`/api/person/${id}`, person); 
+  const response = await api.patch(`/api/person/${id}`, person); 
   return response.data.payload;
 };
 
