@@ -13,6 +13,7 @@ const app = (0, express_1.default)();
 const port = 3000;
 // Configurar archivos estáticos
 app.use(express_1.default.static(path_1.default.resolve(__dirname, "public")));
+app.use('/uploads', express_1.default.static('uploads'));
 app.use(morgan('dev'));
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());

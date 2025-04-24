@@ -13,9 +13,12 @@ const EditarPage: React.FC = () => {
   useEffect(() => {
     getAllProducts().then((products) => {
       const found = products.find((p) => p.id === Number(id));
-      if (found) setProduct(found);
+      if (found) {
+        console.log("Producto encontrado:", found); 
+        setProduct(found);
+      }
     });
-  }, [id]);
+  }, [id]);  
 
   const handleEditProduct = async (updatedProduct: { nombre: string; descripcion: string; inventario: number }) => {
     if (product) {
@@ -47,6 +50,3 @@ const EditarPage: React.FC = () => {
 };
 
 export default EditarPage;
-
-
-

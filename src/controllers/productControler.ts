@@ -19,14 +19,16 @@ export const createProduct: RequestHandler = async (req: Request, res: Response)
             nombre,
             descripcion,
             inventario,
-            id_comedor = 1
+            id_comedor,
+            imagen
         } = req.body;
 
         const product = {
             nombre,
             descripcion,
             inventario,
-            id_comedor
+            id_comedor,
+            imagen
         };
         console.log("Creando producto con:", product); 
         const data = await Product.create(product);

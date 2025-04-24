@@ -24,8 +24,10 @@ const EditarPage = () => {
     (0, react_1.useEffect)(() => {
         (0, ProductAPI_1.getAllProducts)().then((products) => {
             const found = products.find((p) => p.id === Number(id));
-            if (found)
+            if (found) {
+                console.log("Producto encontrado:", found);
                 setProduct(found);
+            }
         });
     }, [id]);
     const handleEditProduct = (updatedProduct) => __awaiter(void 0, void 0, void 0, function* () {

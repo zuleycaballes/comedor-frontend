@@ -2,7 +2,7 @@ import axios from "axios";
 import { Person } from "my-types";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000", // Asegúrate de que esta URL sea correcta
+  baseURL: "http://localhost:3000",
   headers: { "Content-Type": "application/json" },
 });
 

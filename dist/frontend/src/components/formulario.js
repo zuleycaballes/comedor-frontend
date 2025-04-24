@@ -16,15 +16,18 @@ const react_1 = require("react");
 const a_adir_img_png_1 = __importDefault(require("../assets/a\u00F1adir_img.png"));
 require("./Formulario.css");
 const ProductAPI_1 = require("../api/ProductAPI");
-const Formulario = ({ product, buttonText }) => {
+const ImageUpload_1 = __importDefault(require("./ImageUpload"));
+const Formulario = ({ product, onSubmit, buttonText }) => {
     const [nombre, setNombre] = (0, react_1.useState)('');
     const [descripcion, setDescripcion] = (0, react_1.useState)('');
     const [cantidad, setCantidad] = (0, react_1.useState)(0);
+    const [imagenUrl, setImagenUrl] = (0, react_1.useState)('');
     (0, react_1.useEffect)(() => {
         if (product) {
             setNombre(product.nombre);
             setDescripcion(product.descripcion);
             setCantidad(product.inventario);
+            setImagenUrl(product.imagen ? `http://localhost:3000${product.imagen}` : '');
         }
     }, [product]);
     const handleProductosClick = () => {
@@ -43,11 +46,13 @@ const Formulario = ({ product, buttonText }) => {
                 descripcion,
                 inventario: cantidad,
                 id_comedor: comedorId,
+                imagen: imagenUrl.replace("http://localhost:3000", "") // guarda solo la ruta relativa
             });
             alert("Donación registrada con éxito");
-            setNombre("");
-            setDescripcion("");
+            setNombre('');
+            setDescripcion('');
             setCantidad(0);
+            setImagenUrl('');
         }
         catch (error) {
             alert("Hubo un error al registrar la donación.");
@@ -56,7 +61,8 @@ const Formulario = ({ product, buttonText }) => {
     return (<div className="formulario-container">
       <div className="formulario-content">
         <div className="formulario-image">
-          <img src={a_adir_img_png_1.default} alt="Añadir imagen"/>
+          <img src={imagenUrl || a_adir_img_png_1.default} alt="Vista previa" style={{ width: "350px", height: "300px", objectFit: "contain", borderRadius: "1rem" }}/>
+          <ImageUpload_1.default onUpload={(url) => setImagenUrl(`http://localhost:3000${url}`)}/>
         </div>
 
         <form onSubmit={handleSubmit} className="formulario-form">

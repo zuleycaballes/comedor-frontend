@@ -42,6 +42,12 @@ export class Product extends Model<ProductAttributes, ProductCreationAttributes>
     @Column
     inventario!: number;
 
+    @Column({
+        type: DataType.STRING,
+        allowNull: true
+      })
+      imagen?: string;      
+
     @CreatedAt
     @Column
     createdAt!: Date;
