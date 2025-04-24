@@ -28,13 +28,14 @@ const getPersonById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return response.data.payload;
 });
 exports.getPersonById = getPersonById;
-const createPerson = (person) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield api.post("/api/person", person);
+const createPerson = (personData) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Sending to backend:", personData);
+    const response = yield api.post("/api/person", personData);
     return response.data.payload;
 });
 exports.createPerson = createPerson;
 const updatePerson = (id, person) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield api.put(`/api/person/${id}`, person);
+    const response = yield api.patch(`/api/person/${id}`, person);
     return response.data.payload;
 });
 exports.updatePerson = updatePerson;

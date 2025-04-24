@@ -36,7 +36,11 @@ const ProductRow = ({ product, onUpdate }: Props) => {
     <>
       <tr>
         <th className="has-text-weight-semibold">{product.id}</th>
-        <td className="has-text-weight-semibold">{product.nombre}</td>
+        <td className="has-text-weight-semibold">
+        <Link to={`/products/${product.id}`} style={{ color: 'black', textDecoration: 'underline' }}>
+          {product.nombre}
+        </Link>
+      </td>
         <td className="has-text-weight-semibold">{product.descripcion}</td>
         <td className="is-flex is-align-items-center" style={{ border: "none" }}>
           <button className="button is-icon" onClick={handleDecrement}>−</button>
@@ -44,9 +48,11 @@ const ProductRow = ({ product, onUpdate }: Props) => {
           <button className="button is-icon" onClick={handleIncrement}>+</button>
         </td>
         <td>
-          <Link to={`/products/edit/${product.id}`} className="button is-icon">
+          <button className="button is-icon">
+          <Link to={`/products/edit/${product.id}`}>
             <FontAwesomeIcon icon={faEdit} />
           </Link>
+        </button>
         </td>
         <td>
           <button className="button is-icon is-trash" onClick={() => setShowConfirm(true)}>

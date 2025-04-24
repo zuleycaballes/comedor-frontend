@@ -1,12 +1,15 @@
 import { createProduct } from "../api/ProductAPI";
+import { useNavigate } from "react-router-dom";
 import Formulario from "../components/Formulario";
 import Navbar from "../components/Navbar";
 
 const DonarPage: React.FC = () => {
+  const navigate = useNavigate();
+  
   const handleDonar = async (product: { nombre: string; descripcion: string; inventario: number }) => {
     try {
       await createProduct(product);
-      alert('Producto creado con éxito');
+      navigate("/products");
     } catch (error) {
       console.error('Error al crear el producto:', error);
       alert('Hubo un error al crear el producto.');

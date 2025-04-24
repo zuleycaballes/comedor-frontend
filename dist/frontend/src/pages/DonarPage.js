@@ -13,13 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProductAPI_1 = require("../api/ProductAPI");
+const react_router_dom_1 = require("react-router-dom");
 const Formulario_1 = __importDefault(require("../components/Formulario"));
 const Navbar_1 = __importDefault(require("../components/Navbar"));
 const DonarPage = () => {
+    const navigate = (0, react_router_dom_1.useNavigate)();
     const handleDonar = (product) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             yield (0, ProductAPI_1.createProduct)(product);
-            alert('Producto creado con éxito');
+            navigate("/products");
         }
         catch (error) {
             console.error('Error al crear el producto:', error);

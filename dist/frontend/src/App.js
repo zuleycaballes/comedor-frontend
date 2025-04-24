@@ -12,6 +12,8 @@ const DashboardPage_1 = __importDefault(require("./pages/DashboardPage"));
 const LoginPage_1 = __importDefault(require("./pages/LoginPage"));
 const EditarPage_1 = __importDefault(require("./pages/EditarPage"));
 const AddPersonPage_1 = __importDefault(require("./pages/AddPersonPage"));
+const EditarPersonPage_1 = __importDefault(require("./pages/EditarPersonPage"));
+const ProductDetailPage_1 = __importDefault(require("./pages/ProductDetailPage"));
 function App() {
     return (<>
       <react_router_dom_1.Routes>
@@ -22,6 +24,8 @@ function App() {
         <react_router_dom_1.Route path="/personas" element={<PersonPage_1.default />}/>
         <react_router_dom_1.Route path="/products/edit/:id" element={<EditarPage_1.default />}/>
         <react_router_dom_1.Route path="/personas/add" element={<AddPersonPage_1.default />}/>
+        <react_router_dom_1.Route path="/personas/edit/:id" element={<EditarPersonPage_1.default />}/>
+        <react_router_dom_1.Route path="/products/:id" element={<ProductDetailPage_1.default />}/>
 
       </react_router_dom_1.Routes>
     </>);

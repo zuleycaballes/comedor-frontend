@@ -26,7 +26,9 @@ export class Person extends Model<PersonAttributes, PersonCreationAttributes>{
     id!: number;
 
     @ForeignKey(() => Comedor)  // llave foranea
-    @Column
+    @Column({
+        defaultValue: 1 
+    })
     id_comedor!: number;
 
     @BelongsTo(() => Comedor)  // define que la relacion es con 'Comedor'
