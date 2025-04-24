@@ -30,7 +30,7 @@ const PersonRow = ({ person, onUpdate }: Props) => {
         <td className="has-text-weight-semibold">{person.email}</td>
         <td className="has-text-weight-semibold">{person.rol}</td>
         <td>
-          <Link to={`/persons/edit/${person.id}`} className="button is-icon">
+          <Link to={`/personas/edit/${person.id}`} className="button is-icon">
             <FontAwesomeIcon icon={faEdit} />
           </Link>
         </td>

@@ -34,7 +34,7 @@ const PersonRow = ({ person, onUpdate }) => {
         <td className="has-text-weight-semibold">{person.email}</td>
         <td className="has-text-weight-semibold">{person.rol}</td>
         <td>
-          <react_router_dom_1.Link to={`/persons/edit/${person.id}`} className="button is-icon">
+          <react_router_dom_1.Link to={`/personas/edit/${person.id}`} className="button is-icon">
             <react_fontawesome_1.FontAwesomeIcon icon={free_solid_svg_icons_1.faEdit}/>
           </react_router_dom_1.Link>
         </td>
