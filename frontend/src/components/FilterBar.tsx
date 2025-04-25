@@ -1,4 +1,4 @@
-import React from "react";
+
 
 // Tipos de opciones de ordenamiento
 export type SortOption =

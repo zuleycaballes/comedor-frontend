@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getPersonById, updatePerson } from "../api/PersonAPI";
-import FormularioPersona from "../components/FormularioPerson";
+import FormsPersona from "../components/FormsPerson";
 import Navbar from "../components/Navbar";
 
 const EditarPersonaPage = () => {
@@ -58,7 +58,7 @@ const EditarPersonaPage = () => {
     >
       <Navbar /> 
       <h1 className="title is-3 mb-4 has-text-left">Editar Persona</h1> 
-      <FormularioPersona
+      <FormsPersona
         initialData={persona} // Datos iniciales de la persona
         onSubmit={handleEdit} // Manejar el envío del formulario
         submitLabel="Actualizar Persona" 

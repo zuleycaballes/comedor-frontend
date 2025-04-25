@@ -1,4 +1,4 @@
-import BotonAñadir from "../components/BotonAñadir";
+import AddButton from "../components/AddButton";
 import Navbar from "../components/Navbar";
 import PersonTable from "../components/PersonTable";
 
@@ -16,7 +16,7 @@ const PersonPage = () => {
       <h1 className="title is-3 mb-4 has-text-left">Personas</h1>
       <PersonTable />
       <div className="has-text-right mt-5 mr-5">
-      <BotonAñadir label="Añadir Persona" to="/personas/add"/>
+      <AddButton label="Añadir Persona" to="/personas/add"/>
       </div>
     </div>
   );

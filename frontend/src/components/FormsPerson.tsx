@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./FormularioPerson.css";
+import "./FormsPerson.css";
 
 interface FormularioPersonaProps {
   initialData?: {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import DefaultImage from '../assets/añadir_img.png';
-import './Formulario.css';
+import './Forms.css';
 import ImageUpload from './ImageUpload';
 
 interface FormularioProps {

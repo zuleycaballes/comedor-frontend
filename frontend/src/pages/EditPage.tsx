@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getAllProducts, modifyProduct } from "../api/ProductAPI";
 import { Product } from "my-types";
 import Navbar from "../components/Navbar";
-import Formulario from "../components/Formulario";
+import Forms from "../components/Forms";
 
 const EditarPage: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Obtener el ID del producto
@@ -42,7 +42,7 @@ const EditarPage: React.FC = () => {
     >
       <Navbar /> 
       <h1 className="title is-3 mb-4 has-text-left">Editar Producto</h1> 
-      <Formulario
+      <Forms
         product={{ ...product, imagen: product.imagen ?? undefined }} // Producto a editar
         onSubmit={handleEditProduct} // Manejar el envío del formulario
         buttonText="Guardar" 

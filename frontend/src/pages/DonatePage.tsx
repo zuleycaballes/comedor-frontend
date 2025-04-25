@@ -1,6 +1,6 @@
 import { createProduct } from "../api/ProductAPI";
 import { useNavigate } from "react-router-dom";
-import Formulario from "../components/Formulario";
+import Forms from "../components/Forms";
 import Navbar from "../components/Navbar";
 
 const DonarPage: React.FC = () => {
@@ -28,7 +28,7 @@ const DonarPage: React.FC = () => {
     >
       <Navbar />
       <h1 className="title is-3 mb-4 has-text-left">Donar Producto</h1> 
-      <Formulario onSubmit={handleDonar} buttonText="Donar" />
+      <Forms onSubmit={handleDonar} buttonText="Donar" />
     </div>
   );
 };

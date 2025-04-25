@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"; 
-import "./BotonAñadir.css"; 
+import "./AddButton.css"; 
 
 // Interfaz para las propiedades del componente
 interface Props {

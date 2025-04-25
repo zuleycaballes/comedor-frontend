@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import FormularioPerson from "../components/FormularioPerson";
+import FormsPerson from "../components/FormsPerson";
 import { createPerson } from "../api/PersonAPI";
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +34,7 @@ const AñadirPersonaPage = () => {
     >
       <Navbar /> 
       <h1 className="title is-3 mb-4 has-text-left">Añadir Persona</h1>
-      <FormularioPerson 
+      <FormsPerson 
         initialData={{ nombre: "", apellido: "", edad: 0, email: "", rol: "donador", id_comedor: 1 }} // Datos iniciales
         onSubmit={handleSubmit} // Manejar el envío
         submitLabel="Añadir Persona"
