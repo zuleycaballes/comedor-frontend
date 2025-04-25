@@ -38,7 +38,7 @@ const ProductDetailPage = () => {
 
       <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem" }}>
         <img
-          src={product.imagen ? `http://localhost:3000${product.imagen}` : DefaultImage} // Mostrar imagen del producto o una por defecto
+          src={product.imagen ? `${product.imagen}` : DefaultImage} // Mostrar imagen del producto o una por defecto
           alt={`Imagen de ${product.nombre}`}
           style={{
             width: "250px",

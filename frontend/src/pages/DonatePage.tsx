@@ -7,16 +7,16 @@ const DonarPage: React.FC = () => {
   const navigate = useNavigate(); // Navegación para redirigir
 
   // Manejar la donación de un producto
-  const handleDonar = async (product: { nombre: string; descripcion: string; inventario: number }) => {
+  const handleDonar = async (product: { nombre: string; descripcion: string; inventario: number; imagen?: string }) => {
     try {
-      const productWithComedor = { ...product, id_comedor: 1 }; 
-      await createProduct(productWithComedor); // Crear producto en la API
-      navigate("/products"); // Redirigir a la lista de productos
+      await createProduct(product);
+      navigate("/products");
     } catch (error) {
-      console.error('Error al crear el producto:', error); // Mostrar error en consola
-      alert('Hubo un error al crear el producto.'); // Mostrar alerta al usuario
+      console.error("Error al crear el producto:", error);
+      alert("Hubo un error al crear el producto.");
     }
   };
+  
 
   return (
     <div

@@ -51,7 +51,7 @@ const ProductDetailPage = () => {
       <h1 className="product-title">{product.nombre}</h1> 
 
       <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem" }}>
-        <img src={product.imagen ? `http://localhost:3000${product.imagen}` : a_adir_img_png_1.default} // Mostrar imagen del producto o una por defecto
+        <img src={product.imagen ? `${product.imagen}` : a_adir_img_png_1.default} // Mostrar imagen del producto o una por defecto
      alt={`Imagen de ${product.nombre}`} style={{
             width: "250px",
             height: "250px",

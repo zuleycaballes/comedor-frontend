@@ -51,7 +51,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   };
 
   try {
-    await onSubmit({ ...productoData, id_comedor: comedorId }); // << Usa la función pasada como prop
+    await onSubmit(product ? productoData : { ...productoData, id_comedor: comedorId }); 
     alert("Operación realizada con éxito");
     
     // Si estás en modo creación, puedes resetear:

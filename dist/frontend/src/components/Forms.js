@@ -51,7 +51,7 @@ const Formulario = ({ product, buttonText, onSubmit }) => {
             imagen: imagenUrl ? imagenUrl.replace("http://localhost:3000", "") : undefined,
         };
         try {
-            yield onSubmit(Object.assign(Object.assign({}, productoData), { id_comedor: comedorId })); // << Usa la función pasada como prop
+            yield onSubmit(product ? productoData : Object.assign(Object.assign({}, productoData), { id_comedor: comedorId }));
             alert("Operación realizada con éxito");
             // Si estás en modo creación, puedes resetear:
             if (!product) {

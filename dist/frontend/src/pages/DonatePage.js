@@ -21,13 +21,12 @@ const DonarPage = () => {
     // Manejar la donación de un producto
     const handleDonar = (product) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const productWithComedor = Object.assign(Object.assign({}, product), { id_comedor: 1 });
-            yield (0, ProductAPI_1.createProduct)(productWithComedor); // Crear producto en la API
-            navigate("/products"); // Redirigir a la lista de productos
+            yield (0, ProductAPI_1.createProduct)(product);
+            navigate("/products");
         }
         catch (error) {
-            console.error('Error al crear el producto:', error); // Mostrar error en consola
-            alert('Hubo un error al crear el producto.'); // Mostrar alerta al usuario
+            console.error("Error al crear el producto:", error);
+            alert("Hubo un error al crear el producto.");
         }
     });
     return (<div className="container" style={{
