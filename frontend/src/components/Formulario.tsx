@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import DefaultImage from '../assets/añadir_img.png';
 import './Formulario.css';
-import { createProduct } from "../api/ProductAPI";
 import ImageUpload from './ImageUpload';
 
 interface FormularioProps {
   product?: { nombre: string; descripcion: string; inventario: number; imagen?: string };
-  onSubmit: (product: { nombre: string; descripcion: string; inventario: number; imagen?: string }) => void;
+  onSubmit: (product: { nombre: string; descripcion: string; inventario: number; imagen?: string; id_comedor?: number }) => void;
   buttonText: string;
 }
 
-const Formulario: React.FC<FormularioProps> = ({ product, buttonText }) => {
+
+const Formulario: React.FC<FormularioProps> = ({ product, buttonText, onSubmit }) => {
   // Estados para manejar los valores del formulario
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
@@ -33,34 +33,40 @@ const Formulario: React.FC<FormularioProps> = ({ product, buttonText }) => {
   };
 
   // Maneja el envío del formulario
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Maneja el envío del formulario
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    const comedorId = Number(localStorage.getItem("comedorId"));
-    if (!comedorId) {
-      alert("Error: no hay sesión activa");
-      return;
-    }
+  const comedorId = Number(localStorage.getItem("comedorId"));
+  if (!comedorId) {
+    alert("Error: no hay sesión activa");
+    return;
+  }
 
-    try {
-      // Llama a la API para crear el producto
-      await createProduct({
-        nombre,
-        descripcion,
-        inventario: cantidad,
-        id_comedor: comedorId,
-        imagen: imagenUrl ? imagenUrl.replace("http://localhost:3000", "") : null // guarda solo la ruta relativa
-      });
-      alert("Donación registrada con éxito");
-      // Resetea los valores del formulario
+  const productoData = {
+    nombre,
+    descripcion,
+    inventario: cantidad,
+    imagen: imagenUrl ? imagenUrl.replace("http://localhost:3000", "") : undefined,
+  };
+
+  try {
+    await onSubmit({ ...productoData, id_comedor: comedorId }); // << Usa la función pasada como prop
+    alert("Operación realizada con éxito");
+    
+    // Si estás en modo creación, puedes resetear:
+    if (!product) {
       setNombre('');
       setDescripcion('');
       setCantidad(0);
       setImagenUrl('');
-    } catch (error) {
-      alert("Hubo un error al registrar la donación.");
     }
-  };
+
+  } catch (error) {
+    alert("Hubo un error al guardar el producto.");
+  }
+};
+
 
   return (
     <div className="formulario-container">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getAllProducts, updateProduct } from "../api/ProductAPI";
+import { getAllProducts, modifyProduct } from "../api/ProductAPI";
 import { Product } from "my-types";
 import Navbar from "../components/Navbar";
 import Formulario from "../components/Formulario";
@@ -25,7 +25,7 @@ const EditarPage: React.FC = () => {
   const handleEditProduct = async (updatedProduct: { nombre: string; descripcion: string; inventario: number }) => {
     if (product) {
       const updated = { ...product, ...updatedProduct }; // Actualizar los datos del producto
-      await updateProduct(updated.id, updated); // Llamada a la API para actualizar
+      await modifyProduct(updated.id, updated); // Llamada a la API para actualizar
       navigate("/products"); // Redirigir a la lista de productos
     }
   };
@@ -43,7 +43,7 @@ const EditarPage: React.FC = () => {
       <Navbar /> 
       <h1 className="title is-3 mb-4 has-text-left">Editar Producto</h1> 
       <Formulario
-        product={product} // Producto a editar
+        product={{ ...product, imagen: product.imagen ?? undefined }} // Producto a editar
         onSubmit={handleEditProduct} // Manejar el envío del formulario
         buttonText="Guardar" 
       />

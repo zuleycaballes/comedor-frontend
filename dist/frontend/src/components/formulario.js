@@ -15,9 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = require("react");
 const a_adir_img_png_1 = __importDefault(require("../assets/a\u00F1adir_img.png"));
 require("./Formulario.css");
-const ProductAPI_1 = require("../api/ProductAPI");
 const ImageUpload_1 = __importDefault(require("./ImageUpload"));
-const Formulario = ({ product, buttonText }) => {
+const Formulario = ({ product, buttonText, onSubmit }) => {
     // Estados para manejar los valores del formulario
     const [nombre, setNombre] = (0, react_1.useState)('');
     const [descripcion, setDescripcion] = (0, react_1.useState)('');
@@ -37,6 +36,7 @@ const Formulario = ({ product, buttonText }) => {
         window.location.pathname = '/products';
     };
     // Maneja el envío del formulario
+    // Maneja el envío del formulario
     const handleSubmit = (e) => __awaiter(void 0, void 0, void 0, function* () {
         e.preventDefault();
         const comedorId = Number(localStorage.getItem("comedorId"));
@@ -44,24 +44,25 @@ const Formulario = ({ product, buttonText }) => {
             alert("Error: no hay sesión activa");
             return;
         }
+        const productoData = {
+            nombre,
+            descripcion,
+            inventario: cantidad,
+            imagen: imagenUrl ? imagenUrl.replace("http://localhost:3000", "") : undefined,
+        };
         try {
-            // Llama a la API para crear el producto
-            yield (0, ProductAPI_1.createProduct)({
-                nombre,
-                descripcion,
-                inventario: cantidad,
-                id_comedor: comedorId,
-                imagen: imagenUrl ? imagenUrl.replace("http://localhost:3000", "") : null // guarda solo la ruta relativa
-            });
-            alert("Donación registrada con éxito");
-            // Resetea los valores del formulario
-            setNombre('');
-            setDescripcion('');
-            setCantidad(0);
-            setImagenUrl('');
+            yield onSubmit(Object.assign(Object.assign({}, productoData), { id_comedor: comedorId })); // << Usa la función pasada como prop
+            alert("Operación realizada con éxito");
+            // Si estás en modo creación, puedes resetear:
+            if (!product) {
+                setNombre('');
+                setDescripcion('');
+                setCantidad(0);
+                setImagenUrl('');
+            }
         }
         catch (error) {
-            alert("Hubo un error al registrar la donación.");
+            alert("Hubo un error al guardar el producto.");
         }
     });
     return (<div className="formulario-container">

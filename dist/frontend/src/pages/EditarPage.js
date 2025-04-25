@@ -18,6 +18,7 @@ const ProductAPI_1 = require("../api/ProductAPI");
 const Navbar_1 = __importDefault(require("../components/Navbar"));
 const Formulario_1 = __importDefault(require("../components/Formulario"));
 const EditarPage = () => {
+    var _a;
     const { id } = (0, react_router_dom_1.useParams)(); // Obtener el ID del producto
     const navigate = (0, react_router_dom_1.useNavigate)(); // Navegación para redirigir
     const [product, setProduct] = (0, react_1.useState)(null);
@@ -35,7 +36,7 @@ const EditarPage = () => {
     const handleEditProduct = (updatedProduct) => __awaiter(void 0, void 0, void 0, function* () {
         if (product) {
             const updated = Object.assign(Object.assign({}, product), updatedProduct); // Actualizar los datos del producto
-            yield (0, ProductAPI_1.updateProduct)(updated.id, updated); // Llamada a la API para actualizar
+            yield (0, ProductAPI_1.modifyProduct)(updated.id, updated); // Llamada a la API para actualizar
             navigate("/products"); // Redirigir a la lista de productos
         }
     });
@@ -47,7 +48,7 @@ const EditarPage = () => {
         }}>
       <Navbar_1.default /> 
       <h1 className="title is-3 mb-4 has-text-left">Editar Producto</h1> 
-      <Formulario_1.default product={product} // Producto a editar
+      <Formulario_1.default product={Object.assign(Object.assign({}, product), { imagen: (_a = product.imagen) !== null && _a !== void 0 ? _a : undefined })} // Producto a editar
      onSubmit={handleEditProduct} // Manejar el envío del formulario
      buttonText="Guardar"/>
     </div>);

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProductById = exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getAllProducts = void 0;
+exports.getProductById = exports.deleteProduct = exports.modifyProduct = exports.createProduct = exports.getAllProducts = void 0;
 const axios_1 = __importDefault(require("axios"));
 const api = axios_1.default.create({
     baseURL: "http://localhost:3000",
@@ -33,11 +33,11 @@ const createProduct = (productData // Excluye ciertos campos del tipo Product
 });
 exports.createProduct = createProduct;
 // Función para actualizar un producto existente en el backend
-const updateProduct = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
+const modifyProduct = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
     const res = yield api.patch(`/api/product/${id}`, data); // Realiza una solicitud PATCH con los datos a actualizar
     return res.data.payload; // Retorna el producto actualizado
 });
-exports.updateProduct = updateProduct;
+exports.modifyProduct = modifyProduct;
 // Función para eliminar un producto del backend
 const deleteProduct = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Product } from "my-types";
-import { updateProduct, deleteProduct } from "../api/ProductAPI";
+import { modifyProduct, deleteProduct } from "../api/ProductAPI";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ConfirmDialog from "./ConfirmDialog";
@@ -16,14 +16,14 @@ const ProductRow = ({ product, onUpdate }: Props) => {
 
   // Incrementar inventario del producto
   const handleIncrement = async () => {
-    await updateProduct(product.id, { ...product, inventario: product.inventario + 1 });
+    await modifyProduct(product.id, { ...product, inventario: product.inventario + 1 });
     onUpdate();
   };
 
   // Decrementar inventario del producto
   const handleDecrement = async () => {
     if (product.inventario > 0) {
-      await updateProduct(product.id, { ...product, inventario: product.inventario - 1 });
+      await modifyProduct(product.id, { ...product, inventario: product.inventario - 1 });
       onUpdate();
     }
   };

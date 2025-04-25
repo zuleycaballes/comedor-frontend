@@ -22,7 +22,7 @@ export const createProduct = async (
 };
 
 // Función para actualizar un producto existente en el backend
-export const updateProduct = async (id: number, data: Partial<Product>) => {
+export const modifyProduct = async (id: number, data: Partial<Product>) => {
   const res = await api.patch(`/api/product/${id}`, data); // Realiza una solicitud PATCH con los datos a actualizar
   return res.data.payload; // Retorna el producto actualizado
 };

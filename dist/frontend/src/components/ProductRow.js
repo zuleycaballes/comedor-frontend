@@ -22,13 +22,13 @@ const ProductRow = ({ product, onUpdate }) => {
     const [showConfirm, setShowConfirm] = (0, react_1.useState)(false);
     // Incrementar inventario del producto
     const handleIncrement = () => __awaiter(void 0, void 0, void 0, function* () {
-        yield (0, ProductAPI_1.updateProduct)(product.id, Object.assign(Object.assign({}, product), { inventario: product.inventario + 1 }));
+        yield (0, ProductAPI_1.modifyProduct)(product.id, Object.assign(Object.assign({}, product), { inventario: product.inventario + 1 }));
         onUpdate();
     });
     // Decrementar inventario del producto
     const handleDecrement = () => __awaiter(void 0, void 0, void 0, function* () {
         if (product.inventario > 0) {
-            yield (0, ProductAPI_1.updateProduct)(product.id, Object.assign(Object.assign({}, product), { inventario: product.inventario - 1 }));
+            yield (0, ProductAPI_1.modifyProduct)(product.id, Object.assign(Object.assign({}, product), { inventario: product.inventario - 1 }));
             onUpdate();
         }
     });
